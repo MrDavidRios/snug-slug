@@ -6,5 +6,9 @@ type ButtonProps = {
 };
 
 export const Button: React.FC<ButtonProps> = ({ onClick, text }) => {
-  return <button onClick={onClick}>{text}</button>;
+  return (
+    <button className="button" onClick={onClick}>
+      {text}
+    </button>
+  );
 };
