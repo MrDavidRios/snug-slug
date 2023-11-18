@@ -1,12 +1,15 @@
+@import url("https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap");
 .hero {
   display: flex;
   justify-content: center; }
 
 button {
   border: none;
-  border-radius: 5px;
+  border-radius: var(--border-radius-md);
   padding: 10px 20px;
-  font-weight: 700; }
+  font-weight: var(--font-weight-bold);
+  font-family: var(--default-font-family);
+  font-size: var(--font-size-sm); }
 
 .button {
   background-color: var(--accent-color);
@@ -74,13 +77,25 @@ button {
   text-align: center; }
 
 body {
-  margin: 0; }
+  margin: 0;
+  font-family: var(--default-font-family); }
 
 :root {
   --accent-color: #85e4e4;
   --background-color: #ffffff;
   --border-color: #888888;
-  --secondary-text: #c7c7c7; }
+  --secondary-text: #c7c7c7;
+  --default-font-family: "Jost", sans-serif;
+  --font-size-lg: 24px;
+  --font-size-md: 18px;
+  --font-size-sm: 14px;
+  --font-size-xs: 12px;
+  --font-weight-bold: 700;
+  --font-weight-normal: 400;
+  --font-weight-light: 300;
+  --border-radius-lg: 12px;
+  --border-radius-md: 6px;
+  --border-radius-sm: 4px; }
 
 ul {
   list-style: none; }
