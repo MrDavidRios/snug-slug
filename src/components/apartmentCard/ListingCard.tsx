@@ -1,7 +1,10 @@
 import './listingCard.scss'
 import { useState } from 'react';
 
-export const ListingCard = ({ location, description, features, dates, rent, apartmentImg}) => {
+import marker from '../../assets/Marker.svg';
+
+
+export const ListingCard = ({ location, description, features, dates, rent, apartmentImg, locationIndex}) => {
 
     const [isLiked, setIsLiked] = useState(false);
 
@@ -9,8 +12,13 @@ export const ListingCard = ({ location, description, features, dates, rent, apar
 
     return (
       <>
+      
         <div className="listingCard">
           <div className="imageContainer">
+            <div className="marker">
+              <div className="locationNumber"> {locationIndex} </div>
+              <img src={marker}/>
+            </div>
                 <img src={apartmentImg} alt="Apartment"/>
           </div>
 
