@@ -1,4 +1,19 @@
 .hero {
   display: flex;
   justify-content: center;
+  align-items: center;
+  gap: 20px;
 }
+
+.hero img {
+  height: auto;
+  width: 300px;
+}
+
+// .hero h1 {
+//   font: san;
+//   font-size: 2em;
+//   font-weight: bold;
+//   margin: 0;
+// }
+

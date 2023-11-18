@@ -1,0 +1,93 @@
+.listingCard{
+    height: 500px;
+    width: 330px;
+    border-radius: 20px;
+    box-shadow: 0 2px 5px rgba($color: (#000000), $alpha: 0.2);
+    overflow: hidden;
+
+    .imageContainer { // image container
+        overflow: hidden;
+    
+        height: 50%;
+        width: 100%;
+    
+        img{
+            width: 100%;
+            height: 100%;
+            object-fit: 'cover';
+            object-position: 'center';
+        }
+    }
+
+    hr { // divider
+        border-top: 1px solid #bbb;  
+        width: 100%;
+    }
+
+        
+    .text { // text container
+        // align-items: left;
+        width: 100%;
+        height: 50%;
+        font-family: Futura;
+        text-align: left;
+        padding: 25px;
+        font-size: 14px;
+        box-sizing: border-box; // ensure padding is include in width and height
+
+        justify-content: space-between;
+        display: flex;
+        flex-direction: column;
+
+        .locationText {
+            font-size: 18px;
+        }
+
+        .description {
+            color: rgba(0, 0, 0, 0.76);
+            margin-bottom: 15px;
+            margin-top: 15px;
+        }
+
+        .allTags{
+
+            display: flex;
+            gap: 10px;
+            color: #3C3C43;
+
+
+            .tag {
+                font-size: 12px;
+                border-width: 1px;
+                border-style: solid;
+                display: inline-block;
+                padding: 5px;
+                padding-left: 10px;
+                padding-right: 10px;
+            
+                border-radius: 15px;
+            }
+
+        }
+
+        .bottomRow{
+            margin-top: auto;
+
+            display: flex;
+            justify-content: space-between;
+
+            .datesRent{
+                display: flex;
+                line-height: 25px;
+            }
+
+            .heart{
+                display: flex;
+                align-items: center;
+            }
+        }
+        
+    }        
+
+}
+
