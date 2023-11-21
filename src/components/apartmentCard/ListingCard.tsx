@@ -3,7 +3,6 @@ import { useState } from 'react';
 
 import marker from '../../assets/Marker.svg';
 
-
 export const ListingCard = ({ location, description, features, dates, rent, apartmentImg, locationIndex}) => {
 
     const [isLiked, setIsLiked] = useState(false);
