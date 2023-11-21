@@ -1,9 +1,9 @@
 import React from "react";
-import { Hero } from "../components/hero/Hero";
+import { Hero } from "../../components/hero/Hero";
 
 export const Login: React.FC = () => {
   return (
-    <div>
+    <div id="loginPageWrapper">
       <Hero />
       <h2>Login</h2>
       {/* This is going to have to change (i think? Not sure how to implement forms yet) */}
