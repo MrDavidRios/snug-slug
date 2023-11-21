@@ -1,14 +1,5 @@
 .listingCard {
   font-weight: 400;
-
-  height: 500px;
-  width: 330px;
-  border-radius: 20px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  overflow: hidden;
-
-  display: flex;
-  flex-direction: column;
   flex: 1 1; // sets equal height to both children
 
   .imageContainer {

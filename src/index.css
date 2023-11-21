@@ -44,15 +44,17 @@ button {
   align-items: center;
   max-width: calc(3 * 330px + 2 * 20px); }
 
-.listingCard {
-  font-weight: 400;
-  height: 500px;
-  width: 330px;
+.card {
   border-radius: 20px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   overflow: hidden;
+  height: 500px;
+  width: 330px;
   display: flex;
-  flex-direction: column;
+  flex-direction: column; }
+
+.listingCard {
+  font-weight: 400;
   flex: 1 1; }
   .listingCard .imageContainer {
     position: relative;
