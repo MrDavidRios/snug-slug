@@ -1,24 +1,21 @@
-// import { useState } from 'react';
-import './allListings.scss';
-import { ListingCard } from '../apartmentCard/ListingCard';
+import React from "react";
+import { Listing } from "../../types/listing";
+import { ListingCard } from "../apartmentCard/ListingCard";
+import "./allListings.scss";
 
-export const AllListings = ({listings}) => {
-    return (
-        <>
-        {/* Create a 3-card wide grid */}
-        <div className='listingGrid'>
-            {listings.map((listing,index) =>(
-                <ListingCard
-                location={listing.location}
-                description={listing.description}
-                features={listing.features}
-                dates={listing.dates}
-                rent={listing.rent}
-                apartmentImg={listing.apartmentImg}
-                locationIndex={index+1}
-                key={index+1}
-                />
-            ))}
-        </div>
-        </>)
+interface ListingViewProps {
+  listings: Listing[];
 }
+
+export const ListingView: React.FC<ListingViewProps> = ({ listings }) => {
+  return (
+    <>
+      {/* Create a 3-card wide grid */}
+      <div className="listingGrid">
+        {listings.map((listing: Listing, index: number) => (
+          <ListingCard listing={listing} locationIndex={index + 1} key={index + 1} />
+        ))}
+      </div>
+    </>
+  );
+};
