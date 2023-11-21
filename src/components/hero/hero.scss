@@ -1,11 +1,19 @@
 .hero {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 20px;
-}
+  &.size-small {
+    height: 30px;
+  }
 
-.hero img {
-  height: auto;
-  width: 300px;
+  &.size-medium {
+    height: 60px;
+  }
+
+  &.size-large {
+    height: 100px;
+  }
+
+  img {
+    display: block;
+    height: 100%;
+    object-fit: cover;
+  }
 }
