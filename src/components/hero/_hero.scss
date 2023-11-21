@@ -1,0 +1,19 @@
+.hero {
+  &.size-small {
+    height: 30px;
+  }
+
+  &.size-medium {
+    height: 60px;
+  }
+
+  &.size-large {
+    height: 100px;
+  }
+
+  img {
+    display: block;
+    height: 100%;
+    object-fit: cover;
+  }
+}
