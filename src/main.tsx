@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import App from "./App";
 import "./index.css";
 import { Login } from "./pages/Login";
+import { Test } from "./pages/Test";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
@@ -11,6 +12,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
       <Routes>
         <Route path="/" Component={App} /> {/* 👈 Renders at /app/ */}
         <Route path="/login" Component={Login} />
+        <Route path="/test" Component={Test} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>

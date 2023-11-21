@@ -1,16 +1,13 @@
-import React, { useState, useRef, useEffect } from "react";
-import DropdownArrow from "../../assets/dropdown-arrow.svg";
+import React, { useEffect, useRef, useState } from "react";
 import ClearButton from "../../assets/clear.svg";
+import DropdownArrow from "../../assets/dropdown-arrow.svg";
 
 type DropdownProps = {
   options: string[];
   defaultOption: string;
 };
 
-export const Dropdown: React.FC<DropdownProps> = ({
-  options,
-  defaultOption,
-}) => {
+export const Dropdown: React.FC<DropdownProps> = ({ options, defaultOption }) => {
   const [selectedOption, setSelectedOption] = useState(defaultOption);
   const [isOpen, setIsOpen] = useState(false);
   const [dropdownIcon, setDropdownIcon] = useState(DropdownArrow);
@@ -32,10 +29,7 @@ export const Dropdown: React.FC<DropdownProps> = ({
   };
 
   const handleClickOutside = (event: MouseEvent) => {
-    if (
-      dropdownRef.current &&
-      !dropdownRef.current.contains(event.target as Node)
-    ) {
+    if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
       setIsOpen(false);
     }
   };
@@ -67,11 +61,7 @@ export const Dropdown: React.FC<DropdownProps> = ({
         <ul className="dropdown-menu">
           {options.map((option) => (
             <div className="option-container">
-              <li
-                className="dropdown-item"
-                key={option}
-                onClick={() => handleOptionClick(option)}
-              >
+              <li className="dropdown-item" key={option} onClick={() => handleOptionClick(option)}>
                 {option}
               </li>
             </div>

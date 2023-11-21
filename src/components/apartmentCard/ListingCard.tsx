@@ -1,5 +1,3 @@
-import "./listingCard.scss";
-
 import { useState } from "react";
 import marker from "../../assets/Marker.svg";
 import { Listing } from "../../types/listing";

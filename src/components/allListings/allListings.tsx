@@ -1,7 +1,6 @@
 import React from "react";
 import { Listing } from "../../types/listing";
 import { ListingCard } from "../apartmentCard/ListingCard";
-import "./allListings.scss";
 
 interface ListingViewProps {
   listings: Listing[];
