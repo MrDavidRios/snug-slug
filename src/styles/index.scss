@@ -1,7 +1,14 @@
 @import "../components/hero/hero";
 @import "../components/button/button";
+<<<<<<< HEAD
 @import "../components/alllListings/allListings";
 @import "../components/apartmentCard/listingCard";
+=======
+@import "../components/dropdown/dropdown";
+
+// Jost font (Futura imitation)
+@import url("https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap");
+>>>>>>> main
 
 #root {
   text-align: center;
@@ -9,9 +16,31 @@
 
 body {
   margin: 0;
+  font-family: var(--default-font-family);
 }
 
-// Colors
 :root {
+  // Theme
   --accent-color: #85e4e4;
+  --background-color: #ffffff;
+  --border-color: #888888;
+  --secondary-text: #c7c7c7;
+
+  // Font
+  --default-font-family: "Jost", sans-serif;
+  --font-size-lg: 24px;
+  --font-size-md: 18px;
+  --font-size-sm: 14px;
+  --font-size-xs: 12px;
+  --font-weight-bold: 700;
+  --font-weight-normal: 400;
+  --font-weight-light: 300;
+
+  --border-radius-lg: 12px;
+  --border-radius-md: 6px;
+  --border-radius-sm: 4px;
+}
+
+ul {
+  list-style: none;
 }

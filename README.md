@@ -1,5 +1,7 @@
 # Snug Slug
 
+The packages necessary to run this project are detailed in the file **package.json** in the repository's home directory.
+
 ### Running Web UI locally
 
 1. Install dependencies: `npm install`

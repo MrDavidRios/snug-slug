@@ -1,12 +1,15 @@
 button {
   border: none;
-  border-radius: 5px;
-  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); // light box-shadow
-
-  background-color: var(--accent-color);
+  border-radius: var(--border-radius-md);
   padding: 10px 20px;
+  font-weight: var(--font-weight-bold);
+  font-family: var(--default-font-family);
+  font-size: var(--font-size-sm);
+}
 
-  font-weight: 700;
+.button {
+  background-color: var(--accent-color);
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); // light box-shadow
 
   &:active {
     box-shadow: none;
