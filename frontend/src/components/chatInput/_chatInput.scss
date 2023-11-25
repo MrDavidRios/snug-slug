@@ -6,7 +6,7 @@
     .input-field{
         flex-grow: 1;
         padding:10px;
-        font-size: --font-size-sm;
+        font-size: var(--font-size-sm);
         border-radius: 15px;
         border: 1px solid #9BDDFF;
     }
