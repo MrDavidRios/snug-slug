@@ -1,0 +1,72 @@
+.personCard {
+  font-weight: 400;
+  flex: 1 1; // sets equal height to both children
+
+  hr {
+    // divider
+    border-top: 1px solid #bbb;
+    width: 75%;
+  }
+
+  .topOfCard {
+    .side {
+      display: inline-block;
+      padding: 1rem 1rem;
+      vertical-align: middle;
+
+      .name {
+        margin-top: 10px;
+        text-align: left;
+      }
+
+      .email {
+        font-style: italic;
+        color: grey;
+      }
+
+      .pronouns {
+        text-align: left;
+      }
+
+      .imageContainer {
+        width: 105x;
+        height: 105px;
+        position: relative;
+        overflow: hidden;
+        border-radius: 50%;
+        border: 2px solid black;
+
+        img {
+          display: inline;
+          margin: 0 auto;
+          height: 100%;
+          width: auto;
+        }
+      }
+    }
+  }
+
+  .aboutMe {
+    margin-top: -25px;
+    padding: 1rem 1rem;
+    text-align: left;
+  }
+
+  .lookingFor {
+    padding: 1rem 1rem;
+    text-align: left;
+  }
+
+  .actions {
+    margin-left: auto;
+
+    .heart {
+      display: inline-block;
+      margin-right: 15px;
+    }
+    .archive {
+      display: inline-block;
+      margin-right: 15px;
+    }
+  }
+}
