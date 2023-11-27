@@ -1,6 +1,6 @@
 These are the instructions to set up the Flask backend for Snug Slug.
 
-Frontend setup instructions can be found in `./frontend/README.md`.
+Frontend setup instructions can be found in [`./frontend/README.md`](https://github.com/MrDavidRios/snug-slug/tree/main/frontend#readme).
 
 ## Setup
 
