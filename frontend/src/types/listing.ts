@@ -4,5 +4,5 @@ export type Listing = {
   features: string[];
   dates: string;
   rent: number;
-  apartmentImg: string;
+  apartmentImgUrl: string;
 };
