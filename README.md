@@ -18,6 +18,8 @@ Simply run `flask run` in this directory (`./backend`). It should start on `loca
 
 Run `flask run --debug` to run in [debug](https://flask.palletsprojects.com/en/3.0.x/quickstart/#debug-mode) mode.
 
+If testing frontend code, make sure to go to frontend directory and run `npm run build` to build the frontend code. This is because the Flask server serves the frontend code from the `./frontend/dist` directory, contains a static version of our UI.
+
 ### Routing
 
 Backend data will be server at `api/<data route name here>`. For example, `api/listings` can return some fake listing data.

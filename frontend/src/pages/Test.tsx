@@ -2,6 +2,7 @@ import React from "react";
 import { ListingCard } from "../components/apartmentCard/ListingCard";
 import { Carousel } from "../components/carousel/Carousel";
 import { Dropdown } from "../components/dropdown/Dropdown";
+import { Modal } from "../components/modal/Modal";
 import { Listing } from "../types/listing";
 
 const testListing: Listing = {
@@ -21,11 +22,18 @@ const testApartmentImgUrls = [
 ];
 
 export const Test: React.FC = () => {
+  const [showModal, setShowModal] = React.useState(true);
+
   return (
     <div>
       <Carousel imgUrls={testApartmentImgUrls} />
       <Dropdown options={["Option 1", "Option 2", "Option 3"]} defaultOption="Select an Option" />
       <ListingCard listing={testListing} locationIndex={0} />
+      {showModal && (
+        <Modal title="Test" onClose={() => setShowModal(false)}>
+          Hey there!
+        </Modal>
+      )}
     </div>
   );
 };

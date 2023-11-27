@@ -41,6 +41,23 @@ button {
   font-size: var(--font-size-sm);
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
   background-color: transparent; }
+  button.icon-button {
+    box-shadow: none;
+    padding: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center; }
+    button.icon-button img {
+      filter: var(--svg-filter-accent); }
+    button.icon-button.sm img {
+      width: 20px;
+      height: 20px; }
+    button.icon-button.md img {
+      width: 28px;
+      height: 28px; }
+    button.icon-button.lg img {
+      width: 32px;
+      height: 32px; }
   button.action {
     background-color: var(--accent-color); }
   button:active {
@@ -246,6 +263,39 @@ nav {
   box-sizing: border-box;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); }
 
+.modal {
+  position: fixed;
+  z-index: 10;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  border-radius: 5px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  gap: 12px; }
+  .modal .header-row {
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: center; }
+    .modal .header-row .modal-close {
+      position: absolute;
+      left: 0; }
+
+.modal-backdrop {
+  position: fixed;
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0; }
+
 .italics {
   font-style: italic;
   color: var(--dark-gray); }
@@ -276,7 +326,8 @@ body {
   --border-radius-lg: 12px;
   --border-radius-md: 6px;
   --border-radius-sm: 4px;
-  --svg-filter-white: invert(100%) sepia(0%) saturate(7441%) hue-rotate(21deg) brightness(100%) contrast(114%); }
+  --svg-filter-white: invert(100%) sepia(0%) saturate(7441%) hue-rotate(21deg) brightness(100%) contrast(114%);
+  --svg-filter-accent: invert(87%) sepia(36%) saturate(432%) hue-rotate(122deg) brightness(92%) contrast(95%); }
 
 ul {
   list-style: none; }

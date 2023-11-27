@@ -10,6 +10,7 @@
 @import "../components/dropdown/dropdown";
 @import "../components/carousel/carousel";
 @import "../components/navbar/navbar";
+@import "../components/modal/modal";
 
 // Text
 @import "text";
@@ -54,6 +55,7 @@ body {
 
   // SVG filters
   --svg-filter-white: invert(100%) sepia(0%) saturate(7441%) hue-rotate(21deg) brightness(100%) contrast(114%);
+  --svg-filter-accent: invert(87%) sepia(36%) saturate(432%) hue-rotate(122deg) brightness(92%) contrast(95%);
 }
 
 ul {
