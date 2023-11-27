@@ -9,7 +9,7 @@ interface ListingCardProps {
 }
 
 export const ListingCard: React.FC<ListingCardProps> = ({ listing, locationIndex }) => {
-  const { location, description, features, dates, rent, apartmentImg } = listing;
+  const { location, description, features, dates, rent, apartmentImgUrl: apartmentImg } = listing;
 
   const [isLiked, setIsLiked] = useState(false);
 

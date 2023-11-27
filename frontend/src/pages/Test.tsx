@@ -10,7 +10,7 @@ const testListing: Listing = {
   features: ["Test Feature 1", "Test Feature 2", "Test Feature 3"],
   dates: "Test Dates",
   rent: 1234,
-  apartmentImg: "https://via.placeholder.com/150",
+  apartmentImgUrl: "https://via.placeholder.com/150",
 };
 
 /* Carousel Test Code */

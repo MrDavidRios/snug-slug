@@ -5,18 +5,18 @@ button {
   font-weight: var(--font-weight-bold);
   font-family: var(--default-font-family);
   font-size: var(--font-size-sm);
-}
-
-.button {
-  background-color: var(--accent-color);
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); // light box-shadow
+  background-color: transparent;
+
+  &.action {
+    background-color: var(--accent-color);
+  }
 
   &:active {
-    box-shadow: none;
-    opacity: 0.9;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.05);
   }
 
   &:hover {
-    filter: brightness(1.02);
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.16);
   }
 }
