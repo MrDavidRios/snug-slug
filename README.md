@@ -1,27 +1,25 @@
-# Snug Slug
+These are the instructions to set up the Flask backend for Snug Slug.
 
-The packages necessary to run this project are detailed in the file **package.json** in the repository's home directory.
+Frontend setup instructions can be found in `./frontend/README.md`.
 
-### Running Web UI locally
+## Setup
 
-1. Install dependencies: `npm install`
-2. Run the environment: `npm run dev`
+Make sure to get a virtual environment up and running.
 
-After this, it should start a local server where you can view, work on, and test the web UI.
-
-## Making _changes_
-
-1. Making SASS (CSS) changes? Make sure you have the SASS compiler watching your every move by opening another terminal window and running `npm run sass`.
-
-That's it. The environment hot-reloads, so your React changes will automatically update the relevant components on the page.
-
-## Adding a new component
-
-A good example is located in [`src/assets/components/button`](https://github.com/MrDavidRios/snug-slug/tree/main/src/components/button).
-
-1. Make a new folder under [`src/assets/components`](https://github.com/MrDavidRios/snug-slug/tree/main/src/components)
-2. Make a .tsx file with your component name as the file name (e.g. Button.tsx - _uppercase filename is React component convention_)
-3. Make a .scss file with your component name as the file name (e.g. button.scss - _lowercase filename is CSS convention_)
-4. In [`src/styles/index.scss`](https://github.com/MrDavidRios/snug-slug/blob/main/src/styles/index.scss), add an `@import` line that references your newly created .scss file. This makes sure that it's included in the compiled styles. (e.g. `@import "../components/button/button";`)
+1. Run `python -m venv venv`
+2. Run `source venv/bin/activate`. If on Windows, run `venv/Scripts/activate` instead.
+3. You should now be in your virtual environment. Run `pip install -r requirements.txt` to install all dependencies.
 
 You're good to go!
+
+## Running the server
+
+Simply run `flask run` in this directory (`./backend`). It should start on `localhost:5000`.
+
+Run `flask run --debug` to run in [debug](https://flask.palletsprojects.com/en/3.0.x/quickstart/#debug-mode) mode.
+
+### Routing
+
+Backend data will be server at `api/<data route name here>`. For example, `api/listings` can return some fake listing data.
+
+Frontend routing is done with React Router. To go to the login page, for example, go to `localhost:5000/login`.

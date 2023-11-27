@@ -2,11 +2,11 @@ import React from "react";
 import { Listing } from "../../types/listing";
 import { ListingCard } from "../apartmentCard/ListingCard";
 
-interface ListingViewProps {
+interface ListingsViewProps {
   listings: Listing[];
 }
 
-export const ListingView: React.FC<ListingViewProps> = ({ listings }) => {
+export const ListingsView: React.FC<ListingsViewProps> = ({ listings }) => {
   return (
     <>
       {/* Create a 3-card wide grid */}
