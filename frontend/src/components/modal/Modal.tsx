@@ -2,17 +2,17 @@ import React from "react";
 import ReactFocusLock from "react-focus-lock";
 import LeftArrow from "../../assets/left-arrow.svg";
 
-interface ModalProps {
+interface ModalProps extends React.HTMLAttributes<HTMLDivElement> {
   title: string;
   children: React.ReactNode;
   onClose?: () => void;
 }
 
-export const Modal: React.FC<ModalProps> = ({ title, children, onClose }) => {
+export const Modal: React.FC<ModalProps> = ({ title, children, id, onClose }) => {
   return (
     <ReactFocusLock>
       <div className="modal-backdrop" />
-      <div className="modal">
+      <div className="modal" id={id}>
         <div className="header-row">
           <button className="modal-close icon-button lg" onClick={onClose}>
             <img src={LeftArrow} alt="Close" />
