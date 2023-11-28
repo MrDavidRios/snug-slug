@@ -9,4 +9,13 @@
   height: 100%;
 
   border-radius: var(--border-radius-xl);
+
+  .modal-content {
+    padding-top: 16px;
+    height: 100%;
+    width: 100%;
+
+    display: grid;
+    grid-template-columns: 50% 50%;
+  }
 }

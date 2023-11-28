@@ -16,6 +16,10 @@ swiper-slide {
   justify-content: center;
   align-items: center;
 
+  overflow: hidden;
+  border-radius: var(--border-radius-xl);
+  height: auto;
+
   img {
     display: block;
     width: 100%;
@@ -28,6 +32,11 @@ swiper-slide {
 .carousel-wrapper {
   position: relative;
   width: 100%;
+
+  & {
+    border-radius: var(--border-radius-xl);
+    overflow: hidden;
+  }
 
   .button-wrapper {
     width: 100%;
