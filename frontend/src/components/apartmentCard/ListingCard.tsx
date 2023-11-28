@@ -16,21 +16,21 @@ export const ListingCard: React.FC<ListingCardProps> = ({ listing, locationIndex
   const heartColor = isLiked ? "#FF0000" : "#BDBDBD";
 
   return (
-    <Card className="listingCard">
-      <div className="imageContainer">
+    <Card className="listing-card">
+      <div className="image-container">
         <div className="marker">
-          <div className="locationNumber"> {locationIndex} </div>
+          <div className="location-number"> {locationIndex} </div>
           <img src={marker} />
         </div>
         <img src={apartmentImg} alt="Apartment" />
       </div>
 
       <div className="text">
-        <div className="locationText">{location}</div>
+        <div className="location-text">{location}</div>
         <hr />
         <div className="description">{description}</div>
 
-        <div className="allTags">
+        <div className="all-tags">
           {features.map((feature, index) => (
             <div key={index} className="tag">
               {feature}
@@ -38,8 +38,8 @@ export const ListingCard: React.FC<ListingCardProps> = ({ listing, locationIndex
           ))}
         </div>
 
-        <div className="bottomRow">
-          <div className="datesRent">
+        <div className="bottom-row">
+          <div className="dates-rent">
             {dates}
             <p>${rent}/month</p>
           </div>

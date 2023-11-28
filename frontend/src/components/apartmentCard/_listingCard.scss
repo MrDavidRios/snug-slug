@@ -1,8 +1,8 @@
-.listingCard {
-  font-weight: 400;
+.listing-card {
+  font-weight: --font-weight-normal;
   flex: 1 1; // sets equal height to both children
 
-  .imageContainer {
+  .image-container {
     position: relative;
     overflow: hidden;
     width: 100%;
@@ -18,13 +18,13 @@
       justify-content: center;
       align-items: center;
 
-      .locationNumber {
+      .location-number {
         display: flex;
         position: absolute;
         transform: translate(0%, -30%);
         z-index: 2;
         color: white;
-        font-size: 12px;
+        font-size: --font-size-xs;
         font-weight: bold;
       }
     }
@@ -46,31 +46,31 @@
     width: 100%;
     text-align: left;
     padding: 25px;
-    font-size: 14px;
+    font-size: --font-size-sm;
     box-sizing: border-box; // padding included in width and height
 
     justify-content: space-between;
     display: flex;
     flex-direction: column;
 
-    .locationText {
-      font-size: 18px;
-      font-weight: 500;
+    .location-text {
+      font-size: --font-size-md;
+      font-weight: --font-weight-normal;
     }
 
     .description {
-      color: rgba(0, 0, 0, 0.76);
+      color: rgba(0, 0, 0, 0.75);
       margin-bottom: 15px;
       margin-top: 15px;
     }
 
-    .allTags {
+    .all-tags {
       display: flex;
       gap: 10px;
       color: #3c3c43;
 
       .tag {
-        font-size: 12px;
+        font-size: --font-size-xs;
         border-width: 1px;
         border-style: solid;
         display: inline-block;
@@ -79,13 +79,13 @@
       }
     }
 
-    .bottomRow {
+    .bottom-row {
       margin-top: auto;
 
       display: flex;
       justify-content: space-between;
 
-      .datesRent {
+      .dates-rent {
         display: flex;
         flex-direction: column;
         line-height: 25px;

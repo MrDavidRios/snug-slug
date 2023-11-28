@@ -1,9 +1,7 @@
-function App() {
-  return (
-    <>
-      <h1>Snug Slug</h1>
-    </>
-  );
-}
+import React from "react";
+
+const App: React.FC = () => {
+  return <div>Snug Slug</div>;
+};
 
 export default App;
