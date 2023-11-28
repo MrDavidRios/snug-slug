@@ -15,6 +15,7 @@
 @import "../components/chatInput/chatInput";
 @import "../components/chatBubble/chatBubble";
 @import "../components/detailedListing/detailedListing";
+@import "../components/button/heart-button/heartButton";
 
 // Text
 @import "text";
@@ -32,6 +33,11 @@ body {
 
   * {
     margin: 0;
+  }
+
+  // Prevents body from scrolling when modal is open
+  &:has(.modal) {
+    overflow: hidden;
   }
 }
 
@@ -53,6 +59,7 @@ body {
   --font-weight-normal: 400;
   --font-weight-light: 300;
 
+  --border-radius-xl: 24px;
   --border-radius-lg: 12px;
   --border-radius-md: 6px;
   --border-radius-sm: 4px;
@@ -60,6 +67,9 @@ body {
   // SVG filters
   --svg-filter-white: invert(100%) sepia(0%) saturate(7441%) hue-rotate(21deg) brightness(100%) contrast(114%);
   --svg-filter-accent: invert(87%) sepia(36%) saturate(432%) hue-rotate(122deg) brightness(92%) contrast(95%);
+
+  // Component-specific variables
+  --navbar-height: 60px;
 }
 
 ul {

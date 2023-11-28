@@ -1,0 +1,29 @@
+#detailedListing {
+  position: fixed;
+  top: calc(1.5 * var(--navbar-height));
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+
+  width: 90vw;
+  height: 100%;
+
+  border-radius: var(--border-radius-xl);
+
+  .modal-content {
+    padding-top: 16px;
+    height: 100%;
+
+    box-sizing: border-box;
+
+    display: grid;
+    grid-template-columns: 50% 50%;
+
+    .left {
+      padding-right: 16px;
+    }
+
+    .right {
+    }
+  }
+}

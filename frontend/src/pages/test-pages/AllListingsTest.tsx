@@ -9,7 +9,7 @@ export function AllListingsTest() {
       features: ["In-unit washer", "Dog friendly"],
       dates: "May 15 - Aug 31",
       rent: 1500,
-      apartmentImgUrl: "src/assets/apartment.png",
+      apartmentImgUrls: ["src/assets/apartment.png"],
     },
     {
       location: "76th Street, Upper West Side",
@@ -17,7 +17,7 @@ export function AllListingsTest() {
       features: ["In-unit washer", "Dog friendly"],
       dates: "May 15 - Aug 31",
       rent: 1500,
-      apartmentImgUrl: "src/assets/apartment.png",
+      apartmentImgUrls: ["src/assets/apartment.png"],
     },
     {
       location: "76th Street, Upper West Side",
@@ -25,7 +25,7 @@ export function AllListingsTest() {
       features: ["In-unit washer", "Dog friendly"],
       dates: "May 15 - Aug 31",
       rent: 1500,
-      apartmentImgUrl: "src/assets/apartment.png",
+      apartmentImgUrls: ["src/assets/apartment.png"],
     },
     {
       location: "76th Street, Upper West Side",
@@ -33,7 +33,7 @@ export function AllListingsTest() {
       features: ["In-unit washer", "Dog friendly"],
       dates: "May 15 - Aug 31",
       rent: 1500,
-      apartmentImgUrl: "src/assets/apartment.png",
+      apartmentImgUrls: ["src/assets/apartment.png"],
     },
   ];
 
