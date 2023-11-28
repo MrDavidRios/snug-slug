@@ -11,7 +11,7 @@ export const DetailedListing: React.FC<DetailedListingProps> = ({ listing, onClo
   const { location, dates, rent, description, apartmentImgUrls } = listing;
 
   return (
-    <Modal title={location} id="detailedListing" onClose={onClose}>
+    <Modal title={location} id="detailedListing" onClose={onClose} blurBackdrop={true}>
       <div className="left">
         <h2>{dates}</h2>
         <h2>{`$${rent}/month`}</h2>
