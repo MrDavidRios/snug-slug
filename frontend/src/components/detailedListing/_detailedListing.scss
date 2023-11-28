@@ -1,0 +1,12 @@
+#detailedListing {
+  position: fixed;
+  top: calc(1.5 * var(--navbar-height));
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+
+  width: 90vw;
+  height: 100%;
+
+  border-radius: var(--border-radius-xl);
+}

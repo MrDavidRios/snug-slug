@@ -44,7 +44,9 @@ export const Marketplace: React.FC = () => {
   return (
     <div id="marketplacePageWrapper">
       <ListingsView listings={sampleListings} />
-      {showDetailedListing && <DetailedListing listing={sampleListings[0]} />}
+      {showDetailedListing && (
+        <DetailedListing listing={sampleListings[0]} onClose={() => setShowDetailedListing(false)} />
+      )}
       <button onClick={() => setShowDetailedListing(true)}>Test show detailed listing</button>
     </div>
   );

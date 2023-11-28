@@ -1,10 +1,15 @@
 import { Listing } from "../../types/listing";
-import { Card } from "../card/Card";
+import { Modal } from "../modal/Modal";
 
 interface DetailedListingProps {
   listing: Listing;
+  onClose?: () => void;
 }
 
-export const DetailedListing: React.FC<DetailedListingProps> = ({ listing }) => {
-  return <Card id="detailedListing">{listing.location}</Card>;
+export const DetailedListing: React.FC<DetailedListingProps> = ({ listing, onClose }) => {
+  return (
+    <Modal title={listing.location} id="detailedListing" onClose={onClose}>
+      {listing.location}
+    </Modal>
+  );
 };
