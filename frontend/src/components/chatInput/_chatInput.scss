@@ -1,17 +1,16 @@
-.chat-input{
+.chat-input {
+  display: flex;
+  margin: 10px;
 
-    display: flex;
-    margin: 10px;
+  .input-field {
+    flex-grow: 1;
+    padding: 10px;
+    font-size: var(--font-size-sm);
+    border-radius: 15px;
+    border: 1px solid #9bddff;
+  }
 
-    .input-field{
-        flex-grow: 1;
-        padding:10px;
-        font-size: var(--font-size-sm);
-        border-radius: 15px;
-        border: 1px solid #9BDDFF;
-    }
-
-    Button{
-        margin-left: 10px;
-    }
+  button {
+    margin-left: 10px;
+  }
 }

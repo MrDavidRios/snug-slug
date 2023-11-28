@@ -1,9 +1,9 @@
 import React from "react";
-import { ListingCard } from "../components/apartmentCard/ListingCard";
-import { Carousel } from "../components/carousel/Carousel";
-import { Dropdown } from "../components/dropdown/Dropdown";
-import { Modal } from "../components/modal/Modal";
-import { Listing } from "../types/listing";
+import { ListingCard } from "../../components/apartmentCard/ListingCard";
+import { Carousel } from "../../components/carousel/Carousel";
+import { Dropdown } from "../../components/dropdown/Dropdown";
+import { Modal } from "../../components/modal/Modal";
+import { Listing } from "../../types/listing";
 
 const testListing: Listing = {
   location: "1234 Test Street",
