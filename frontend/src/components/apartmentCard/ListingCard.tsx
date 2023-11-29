@@ -12,8 +12,8 @@ interface ListingCardProps {
 export const ListingCard: React.FC<ListingCardProps> = ({ listing, locationIndex }) => {
   const {
     location,
-    description,
-    features,
+    overview,
+    tags,
     dates,
     rent,
     apartmentImgUrls: [apartmentImg],
@@ -33,12 +33,12 @@ export const ListingCard: React.FC<ListingCardProps> = ({ listing, locationIndex
       <div className="text">
         <div className="location-text">{location}</div>
         <hr />
-        <div className="description">{description}</div>
+        <div className="overview">{overview}</div>
 
         <div className="all-tags">
-          {features.map((feature, index) => (
+          {tags.map((tag, index) => (
             <div key={index} className="tag">
-              {feature}
+              {tag}
             </div>
           ))}
         </div>
