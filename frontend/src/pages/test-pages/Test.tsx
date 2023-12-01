@@ -7,11 +7,16 @@ import { Listing } from "../../types/listing";
 
 const testListing: Listing = {
   location: "1234 Test Street",
-  description: "This is a test description",
-  features: ["Test Feature 1", "Test Feature 2", "Test Feature 3"],
-  dates: "Test Dates",
-  rent: 1234,
-  apartmentImgUrl: "https://via.placeholder.com/150",
+  overview: "This is a test listing",
+  details: ["This is a test listing"],
+  requirements: ["This is a test listing"],
+  additionalInfo: ["This is a test listing"],
+  tags: ["tag1", "tag2", "tag3"],
+  dates: "01/01/2021 - 01/01/2022",
+  rent: 1000,
+  apartmentImgUrls: [
+    "https://www.apartments.com/blog/sites/default/files/styles/x_large_hq/public/image/2023-06/ParkLine-apartment-in-Miami-FL.jpg?itok=kQmw64UU",
+  ],
 };
 
 /* Carousel Test Code */
@@ -27,7 +32,10 @@ export const Test: React.FC = () => {
   return (
     <div>
       <Carousel imgUrls={testApartmentImgUrls} />
-      <Dropdown options={["Option 1", "Option 2", "Option 3"]} defaultOption="Select an Option" />
+      <Dropdown
+        options={["Option 1", "Option 2", "Option 3"]}
+        defaultOption="Select an Option"
+      />
       <ListingCard listing={testListing} locationIndex={0} />
       {showModal && (
         <Modal title="Test" onClose={() => setShowModal(false)}>

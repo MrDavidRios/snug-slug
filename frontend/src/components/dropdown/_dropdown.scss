@@ -48,6 +48,13 @@
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
 }
 
+.dropdown-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
 .option-container {
   width: 100%;
   cursor: pointer;

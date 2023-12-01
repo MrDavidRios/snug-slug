@@ -104,10 +104,22 @@ export const Marketplace: React.FC = () => {
     <div id="marketplacePageWrapper">
       {/* // Need to separate the map and listing cards into two separate containers so that the listings one is scrollable */}
       <div id="marketPlaceSearchBar">
-        <Input value={searchInput} onChange={handleInputChange} placeholder="Search..." />
+        <Input
+          value={searchInput}
+          onChange={handleInputChange}
+          placeholder="Search..."
+        />
 
-        <Dropdown options={priceOptions} defaultOption="Min Price" onChange={handleMinPriceChange} />
-        <Dropdown options={priceOptions} defaultOption="Max Price" onChange={handleMaxPriceChange} />
+        <Dropdown
+          options={priceOptions}
+          defaultOption="Min Price"
+          onChange={handleMinPriceChange}
+        />
+        <Dropdown
+          options={priceOptions}
+          defaultOption="Max Price"
+          onChange={handleMaxPriceChange}
+        />
 
         <DatePickerDropdown />
         <div id="advancedSearch">Advanced search</div>

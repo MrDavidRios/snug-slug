@@ -9,7 +9,10 @@ interface ListingCardProps {
   locationIndex: number;
 }
 
-export const ListingCard: React.FC<ListingCardProps> = ({ listing, locationIndex }) => {
+export const ListingCard: React.FC<ListingCardProps> = ({
+  listing,
+  locationIndex,
+}) => {
   const {
     location,
     overview,
@@ -48,6 +51,7 @@ export const ListingCard: React.FC<ListingCardProps> = ({ listing, locationIndex
             {dates}
             <p>${rent}/month</p>
           </div>
+          <div>{isLiked}</div>
           <HeartButton onChange={setIsLiked} />
         </div>
       </div>
