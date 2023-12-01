@@ -2,9 +2,8 @@ import { initializeApp } from "firebase/app";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-// import App from "./App";
+import App from "./App";
 import "./styles/index.scss";
-import { Homepage } from "./pages/homepage/Homepage";
 import { Root } from "./pages/Root";
 import { Login } from "./pages/login/Login";
 import { Marketplace } from "./pages/marketplace/Marketplace";
@@ -15,7 +14,7 @@ const router = createBrowserRouter([
     path: "/",
     element: <Root />,
     children: [
-      { path: "/", element: <Homepage /> },
+      { path: "/", element: <App /> },
       { path: "login", element: <Login /> },
       { path: "test", element: <Test /> },
       { path: "marketplace", element: <Marketplace /> },
