@@ -109,11 +109,14 @@ export const Marketplace: React.FC = () => {
         <div id="listingsContainer">
           <div id="marketPlaceSearchBar">
           <Input value={searchInput} onChange={handleInputChange} placeholder = "Search..." />
+          
           <Dropdown options={priceOptions} defaultOption="Min Price" onChange={handleMinPriceChange}/>
           <Dropdown options={priceOptions} defaultOption="Max Price" onChange={handleMaxPriceChange}/>
 
           <DatePickerDropdown/> 
-          <div id="advancedSearch">Advanced search</div>
+          <div id="advancedSearch">Advanced search</div> 
+          {/* Need to update the above to also render additional search criteria */}
+
           </div>
           <ListingsView listings={sampleListings} />
         </div>
