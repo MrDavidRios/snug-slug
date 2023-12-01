@@ -23,9 +23,9 @@
     width:100%;
 
     position: sticky;
-    top: 0; /* Adjust this value based on your needs, like if you have a header */
-    z-index: 1; /* Ensure the search bar stays on top of other content */
-    background: white; /* Or any other color, to make sure the text is readable */
+    top: 0; 
+    z-index: 1; 
+    background: white; 
 
    Button{
       font-weight: var(--font-weight-normal);
