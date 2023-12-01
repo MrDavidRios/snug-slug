@@ -5,9 +5,10 @@ import DropdownArrow from "../../assets/dropdown-arrow.svg";
 type DropdownProps = {
   options: string[];
   defaultOption: string;
+  onChange: (e:React.ChangeEvent<HTMLInputElement>) => void;
 };
 
-export const Dropdown: React.FC<DropdownProps> = ({ options, defaultOption }) => {
+export const Dropdown: React.FC<DropdownProps> = ({ options, defaultOption, onChange }) => {
   const [selectedOption, setSelectedOption] = useState(defaultOption);
   const [isOpen, setIsOpen] = useState(false);
   const [dropdownIcon, setDropdownIcon] = useState(DropdownArrow);

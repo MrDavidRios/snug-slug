@@ -15,6 +15,8 @@
     "firebase": "^10.6.0",
     "node-sass": "^9.0.0",
     "react": "^18.2.0",
+    "react-date-range": "^1.4.0",
+    "react-datepicker": "^4.23.0",
     "react-dom": "^18.2.0",
     "react-focus-lock": "^2.9.6",
     "react-hook-form": "^7.48.2",
@@ -24,6 +26,7 @@
   },
   "devDependencies": {
     "@types/react": "^18.2.15",
+    "@types/react-datepicker": "^4.19.3",
     "@types/react-dom": "^18.2.7",
     "@typescript-eslint/eslint-plugin": "^6.0.0",
     "@typescript-eslint/parser": "^6.0.0",

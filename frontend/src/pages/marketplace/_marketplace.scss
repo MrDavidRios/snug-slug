@@ -1,3 +1,67 @@
 #marketplacePageWrapper {
+  display: flex;
+  flex-direction: column;
   padding: 16px;
+
+  #cardsAndMap{
+    display: flex;
+    gap: 15px;
+    width: 100%;
+    box-sizing: border-box;
+
+    #listingsContainer{
+      flex: 1;
+      height: 100vh; // Update as needed
+      overflow-y: scroll; // Vertical scrolling
+
+
+  #marketPlaceSearchBar{
+    display: flex;
+    gap: 30px;
+    padding-bottom: 30px;
+    justify-content: space-between;
+    width:100%;
+
+    position: sticky;
+    top: 0; /* Adjust this value based on your needs, like if you have a header */
+    z-index: 1; /* Ensure the search bar stays on top of other content */
+    background: white; /* Or any other color, to make sure the text is readable */
+
+   Button{
+      font-weight: var(--font-weight-normal);
+    }
+
+    Input{
+      font-weight: var(--font-weight-normal);
+      font-family: var(--default-font-family);
+      font-size: var(--font-size-sm);
+    }
+
+    Input::placeholder{
+      font-weight: var(--font-weight-normal);
+      font-family: var(--default-font-family);
+      font-size: var(--font-size-sm);
+      color: var(--secondary-text);
+    }
+
+    #advancedSearch{
+      font-weight: var(--font-weight-normal);
+      font-family: var(--default-font-family);
+      font-size: var(--font-size-sm);
+      color: var(--secondary-text);
+      text-decoration: underline;
+
+    }
+  }
+  
+    }
+
+    #mapContainer {
+      .map-view{
+        border-radius: 25px;
+        height: 500px;
+        width: 500px;
+      }
+    }
+  }
 }

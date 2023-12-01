@@ -1,7 +1,7 @@
 .listing-card {
   font-weight: var(--font-weight-normal);
-  height: 460px;
-  width: 330px;
+  height: 460*0.9px;
+  width: 330*0.9px;
 
   display: grid;
   grid-template-rows: 50% 50%;
