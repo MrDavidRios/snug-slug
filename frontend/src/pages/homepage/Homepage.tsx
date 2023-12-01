@@ -1,18 +1,19 @@
-import { Input } from "../../components/input/Input";
-import { Dropdown } from "../../components/dropdown/Dropdown";
-import DatePickerDropdown from "../../components/datePicker/Datepicker";
-import { Hero } from "../../components/hero/Hero";
 import { Button } from "../../components/button/Button";
+import { DatePickerDropdown } from "../../components/datePickerDropdown/DatePickerDropdown";
+import { Dropdown } from "../../components/dropdown/Dropdown";
+import { Hero } from "../../components/hero/Hero";
+import { Input } from "../../components/input/Input";
 
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { getYMDString } from "../../utils/datefunctions";
 
 export const Homepage: React.FC = () => {
   const [location, setLocation] = useState("");
   const [minPrice, setMinPrice] = useState("");
   const [maxPrice, setMaxPrice] = useState("");
-  const [startDate, setStartDate] = useState("");
-  const [endDate, setEndDate] = useState("");
+  const [startDate, setStartDate] = useState(getYMDString(new Date()));
+  const [endDate, setEndDate] = useState(getYMDString(new Date()));
 
   // Need to define the dropdown props
 
@@ -32,21 +33,21 @@ export const Homepage: React.FC = () => {
 
   // Functions to handle input change
 
-  const handleInputChange = (e) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setLocation(e.target.value);
   };
 
-  const handleMinPriceChange = (selectedOption) => {
+  const handleMinPriceChange = (selectedOption: string) => {
     setMinPrice(selectedOption);
   };
 
-  const handleMaxPriceChange = (selectedOption) => {
+  const handleMaxPriceChange = (selectedOption: string) => {
     setMaxPrice(selectedOption);
   };
 
   const navigate = useNavigate();
 
-  const handleSearch = (e) => {
+  const handleSearch = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     navigate(
       `/marketplace?query=${location}&minPrice=${minPrice}&maxPrice=${maxPrice}&startDate=${startDate}&endDate=${endDate}`
@@ -61,26 +62,21 @@ export const Homepage: React.FC = () => {
       </p>
       <div id="homepageSearch">
         <div id="searchWrapper">
-          <Input
-            value={location}
-            onChange={handleInputChange}
-            placeholder="Search location..."
-          />
+          <Input value={location} onChange={handleInputChange} placeholder="Search location..." />
           <Button onClick={handleSearch} text="Search" />
         </div>
         <div id="searchOptions">
-          <Dropdown
-            options={priceOptions}
-            defaultOption="Min Price"
-            onChange={handleMinPriceChange}
-          />
-          <Dropdown
-            options={priceOptions}
-            defaultOption="Max Price"
-            onChange={handleMaxPriceChange}
-          />
+          <Dropdown options={priceOptions} placeholder="Min Price" onChange={handleMinPriceChange} />
+          <Dropdown options={priceOptions} placeholder="Max Price" onChange={handleMaxPriceChange} />
 
-          <DatePickerDropdown />
+          <DatePickerDropdown
+            startDate={new Date(startDate)}
+            endDate={new Date(endDate)}
+            onChange={(e) => {
+              setStartDate(getYMDString(e.startDate));
+              setEndDate(getYMDString(e.endDate));
+            }}
+          />
         </div>
         <div id="advancedSearch">Advanced search</div>
         {/* Need to update the above to also render additional search criteria */}

@@ -1,31 +1,36 @@
 import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
+import { Button } from "../../components/button/Button";
 import { ListingsView } from "../../components/cardList/cardList";
-import DatePickerDropdown from "../../components/datePicker/Datepicker";
+import { DatePickerDropdown } from "../../components/datePickerDropdown/DatePickerDropdown";
 import { Dropdown } from "../../components/dropdown/Dropdown";
 import { Input } from "../../components/input/Input";
 import { MapView } from "../../components/mapView/MapView";
 import { Listing } from "../../types/listing";
-import { useLocation } from "react-router-dom";
-import { set } from "firebase/database";
+import { getYMDString } from "../../utils/datefunctions";
 
-// import { DatePickerDropdown }
-
-// would likely need to introduce states for startdate, end date, min price, max price, and the input
 export const Marketplace: React.FC = () => {
-  const query = new URLSearchParams(useLocation().search);
-  const [location, setLocation] = useState("");
-  const [minPrice, setMinPrice] = useState("");
-  const [maxPrice, setMaxPrice] = useState("");
-  const [startDate, setStartDate] = useState("");
-  const [endDate, setEndDate] = useState("");
+  const searchStr = useLocation().search;
+  const query = new URLSearchParams(searchStr);
+
+  const [location, setLocation] = useState(query.get("query") || "");
+  const [minPrice, setMinPrice] = useState(query.get("minPrice") || "");
+  const [maxPrice, setMaxPrice] = useState(query.get("maxPrice") || "");
+  const [startDate, setStartDate] = useState(query.get("startDate") || getYMDString(new Date()));
+  const [endDate, setEndDate] = useState(query.get("endDate") || getYMDString(new Date()));
 
   const [listings, setListings] = useState<Listing[]>([]);
 
-  // Need to define the dropdown props
+  // Only fetch listings based on query parameters on page load
+  useEffect(() => {
+    fetchSearchResults(location, minPrice, maxPrice, startDate, endDate).then((data) => {
+      console.log("Listings loaded!!", data);
 
-  // Likely need to pass in props - all listings
+      setListings(data);
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-  // Function to generate price options
   const generatePriceOptions = () => {
     const options = [];
     for (let i = 0; i <= 9999; i += 100) {
@@ -36,30 +41,29 @@ export const Marketplace: React.FC = () => {
   };
 
   const priceOptions = generatePriceOptions();
-
-  // Functions to handle input change
-
-  const handleInputChange = (e) => {
-    setSearchInput(e.target.value);
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setLocation(e.target.value);
   };
 
-  const handleMinPriceChange = (selectedOption) => {
+  const handleMinPriceChange = (selectedOption: string) => {
     setMinPrice(selectedOption);
   };
 
-  const handleMaxPriceChange = (selectedOption) => {
+  const handleMaxPriceChange = (selectedOption: string) => {
     setMaxPrice(selectedOption);
   };
 
   async function fetchSearchResults(
-    location,
-    minPrice,
-    maxPrice,
-    startDate,
-    endDate
+    location: string,
+    minPrice: string,
+    maxPrice: string,
+    startDate: string,
+    endDate: string
   ) {
+    console.log("Start and end date: ", startDate, endDate);
+
     try {
-      const response = await fetch(`http://localhost:5000/search`, {
+      const response = await fetch(`http://localhost:5000/api/search`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -83,54 +87,41 @@ export const Marketplace: React.FC = () => {
     }
   }
 
-  useEffect(() => {
-    if (query.get("query")) {
-      setLocation(query.get("query"));
-    }
-    if (query.get("minPrice")) {
-      setMinPrice(query.get("minPrice"));
-    }
-    if (query.get("maxPrice")) {
-      setMaxPrice(query.get("maxPrice"));
-    }
-    if (query.get("startDate")) {
-      setStartDate(query.get("startDate"));
-    }
-    if (query.get("endDate")) {
-      setEndDate(query.get("endDate"));
-    }
-
-    fetchSearchResults(location, minPrice, maxPrice, startDate, endDate).then(
-      (data) => {
-        setListings(data);
-      }
-    );
-  }, [location, minPrice, maxPrice, startDate, endDate]);
-
   return (
     <div id="marketplacePageWrapper">
       {/* // Need to separate the map and listing cards into two separate containers so that the listings one is scrollable */}
       <div id="marketPlaceSearchBar">
-        <Input
-          value={location}
-          onChange={handleInputChange}
-          placeholder="Search..."
-        />
+        <Input value={location} onChange={handleInputChange} placeholder="Search..." />
 
         <Dropdown
           options={priceOptions}
-          defaultOption="Min Price"
+          placeholder="Min Price"
+          defaultSelection={minPrice}
           onChange={handleMinPriceChange}
         />
         <Dropdown
           options={priceOptions}
-          defaultOption="Max Price"
+          placeholder="Max Price"
+          defaultSelection={maxPrice}
           onChange={handleMaxPriceChange}
         />
 
-        <DatePickerDropdown />
+        <DatePickerDropdown
+          startDate={new Date(startDate)}
+          endDate={new Date(endDate)}
+          onChange={(e) => {
+            setStartDate(getYMDString(e.startDate));
+            setEndDate(getYMDString(e.endDate));
+          }}
+        />
+        <Button
+          onClick={() =>
+            fetchSearchResults(location, minPrice, maxPrice, startDate, endDate).then((data) => setListings(data))
+          }
+          text="Search"
+          className="action"
+        />
         <div id="advancedSearch">Advanced search</div>
-        {/* Need to update the above to also render additional search criteria */}
       </div>
       <div id="cardsAndMap">
         <div id="listingsContainer">

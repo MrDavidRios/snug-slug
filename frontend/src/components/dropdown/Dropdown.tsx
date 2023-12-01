@@ -4,26 +4,25 @@ import dropdownArrow from "../../assets/dropdown-arrow.svg";
 
 type DropdownProps = {
   options: string[];
-  defaultOption: string;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  defaultSelection?: string;
+  placeholder: string;
+  onChange: (selectedOption: string) => void;
 };
 
-export const Dropdown: React.FC<DropdownProps> = ({ options, defaultOption, onChange }) => {
-  const [selectedOption, setSelectedOption] = useState(defaultOption);
+export const Dropdown: React.FC<DropdownProps> = ({ options, placeholder, defaultSelection, onChange }) => {
+  const [selectedOption, setSelectedOption] = useState<string | undefined>(defaultSelection);
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   const handleOptionClick = (option: string) => {
     setSelectedOption(option);
+    onChange(option);
     setIsOpen(false);
   };
 
   const clearOption = (event: React.MouseEvent<HTMLElement>) => {
-    if (selectedOption !== defaultOption) {
-      setSelectedOption(defaultOption);
-    }
-
     event.stopPropagation();
+    setSelectedOption(undefined);
   };
 
   const handleClickOutside = (event: MouseEvent) => {
@@ -43,16 +42,20 @@ export const Dropdown: React.FC<DropdownProps> = ({ options, defaultOption, onCh
   return (
     <div className="dropdown" ref={dropdownRef}>
       <button className="dropdown-toggle" onClick={() => setIsOpen(!isOpen)}>
-        {selectedOption}
-
-        {selectedOption !== defaultOption ? (
-          <span className="icon-wrapper" onClick={(e) => clearOption(e)}>
-            <img src={clearIcon} alt="Clear selection" />
-          </span>
+        {selectedOption !== undefined ? (
+          <>
+            {selectedOption}
+            <span className="icon-wrapper" onClick={(e) => clearOption(e)}>
+              <img src={clearIcon} alt="Clear selection" />
+            </span>
+          </>
         ) : (
-          <span className="icon-wrapper" onClick={() => setIsOpen(!isOpen)}>
-            <img src={dropdownArrow} alt="Open dropdown" />
-          </span>
+          <>
+            {placeholder}
+            <span className="icon-wrapper" onClick={() => setIsOpen(!isOpen)}>
+              <img src={dropdownArrow} alt="Open dropdown" />
+            </span>
+          </>
         )}
       </button>
       {isOpen && (

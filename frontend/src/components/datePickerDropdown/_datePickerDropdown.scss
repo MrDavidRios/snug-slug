@@ -1,7 +1,7 @@
 @import "node_modules/react-datepicker/src/stylesheets/datepicker.scss";
 
 #DatePickerContainer .react-datepicker__input-container input {
-  min-width: 200px; /* Adjust as needed to ensure both dates fit */
+  min-width: 220px; /* Adjust as needed to ensure both dates fit */
   min-height: 40px;
   border-radius: 5px;
   border: 1px solid var(--border-color);

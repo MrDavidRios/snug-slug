@@ -17,7 +17,7 @@
 @import "../components/chatBubble/chatBubble";
 @import "../components/detailedListing/detailedListing";
 @import "../components/button/heart-button/heartButton";
-@import "../components/datePicker/datePicker";
+@import "../components/datePickerDropdown/datePickerDropdown";
 @import "../components/input/input";
 
 // Text
@@ -68,10 +68,8 @@ body {
   --border-radius-sm: 4px;
 
   // SVG filters
-  --svg-filter-white: invert(100%) sepia(0%) saturate(7441%) hue-rotate(21deg)
-    brightness(100%) contrast(114%);
-  --svg-filter-accent: invert(87%) sepia(36%) saturate(432%) hue-rotate(122deg)
-    brightness(92%) contrast(95%);
+  --svg-filter-white: invert(100%) sepia(0%) saturate(7441%) hue-rotate(21deg) brightness(100%) contrast(114%);
+  --svg-filter-accent: invert(87%) sepia(36%) saturate(432%) hue-rotate(122deg) brightness(92%) contrast(95%);
 
   // Component-specific variables
   --navbar-height: 60px;

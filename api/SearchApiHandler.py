@@ -24,6 +24,9 @@ class SearchApiHandler(Resource):
         start_date = datetime.strptime(start_date, '%Y-%m-%d').date() if start_date else ""
         end_date = datetime.strptime(end_date, '%Y-%m-%d').date() if end_date else ""
 
+        min_price = int(min_price.lstrip('$')) if min_price else None
+        max_price = int(max_price.lstrip('$')) if max_price else None
+
         results = []
         for listing in listings:
             listing_start_date = datetime.strptime(listing['startDate'], '%Y-%m-%d').date() if listing['startDate'] else ""
@@ -37,3 +40,4 @@ class SearchApiHandler(Resource):
                 results.append(listing)
 
         return results
+

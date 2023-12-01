@@ -1,13 +1,13 @@
 import React from "react";
 
-type ButtonProps = {
-  onClick?: () => void;
+interface ButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
   text: string;
-};
+  onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
+}
 
-export const Button: React.FC<ButtonProps> = ({ onClick, text }) => {
+export const Button: React.FC<ButtonProps> = ({ onClick, text, className }) => {
   return (
-    <button className="button" onClick={onClick}>
+    <button className={`button ${className}`} onClick={onClick}>
       {text}
     </button>
   );
