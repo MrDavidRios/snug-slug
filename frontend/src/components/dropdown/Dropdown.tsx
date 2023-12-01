@@ -1,29 +1,26 @@
 import React, { useEffect, useRef, useState } from "react";
-import ClearButton from "../../assets/clear.svg";
-import DropdownArrow from "../../assets/dropdown-arrow.svg";
+import clearIcon from "../../assets/clear.svg";
+import dropdownArrow from "../../assets/dropdown-arrow.svg";
 
 type DropdownProps = {
   options: string[];
   defaultOption: string;
-  onChange: (e:React.ChangeEvent<HTMLInputElement>) => void;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
 export const Dropdown: React.FC<DropdownProps> = ({ options, defaultOption, onChange }) => {
   const [selectedOption, setSelectedOption] = useState(defaultOption);
   const [isOpen, setIsOpen] = useState(false);
-  const [dropdownIcon, setDropdownIcon] = useState(DropdownArrow);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   const handleOptionClick = (option: string) => {
     setSelectedOption(option);
     setIsOpen(false);
-    setDropdownIcon(ClearButton);
   };
 
-  const clearOption = (event: React.MouseEvent<HTMLSpanElement>) => {
+  const clearOption = (event: React.MouseEvent<HTMLElement>) => {
     if (selectedOption !== defaultOption) {
       setSelectedOption(defaultOption);
-      setDropdownIcon(DropdownArrow);
     }
 
     event.stopPropagation();
@@ -50,18 +47,18 @@ export const Dropdown: React.FC<DropdownProps> = ({ options, defaultOption, onCh
 
         {selectedOption !== defaultOption ? (
           <span className="icon-wrapper" onClick={(e) => clearOption(e)}>
-            <img src={ClearButton} alt="Clear icon" />
+            <img src={clearIcon} alt="Clear selection" />
           </span>
         ) : (
           <span className="icon-wrapper" onClick={() => setIsOpen(!isOpen)}>
-            <img src={dropdownIcon} alt="Dropdown icon" />
+            <img src={dropdownArrow} alt="Open dropdown" />
           </span>
         )}
       </button>
       {isOpen && (
         <ul className="dropdown-menu">
-          {options.map((option) => (
-            <div className="option-container">
+          {options.map((option, idx) => (
+            <div className="option-container" key={idx}>
               <li className="dropdown-item" key={option} onClick={() => handleOptionClick(option)}>
                 {option}
               </li>

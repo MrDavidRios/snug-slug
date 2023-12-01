@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { ListingsView } from "../../components/cardList/cardList";
-import { Listing } from "../../types/listing";
-import { MapView } from "../../components/mapView/MapView";
-import { Input } from "../../components/input/Input";
-import { Dropdown } from "../../components/dropdown/Dropdown";
 import DatePickerDropdown from "../../components/datePicker/Datepicker";
+import { Dropdown } from "../../components/dropdown/Dropdown";
+import { Input } from "../../components/input/Input";
+import { MapView } from "../../components/mapView/MapView";
+import { Listing } from "../../types/listing";
 
 // import { DatePickerDropdown }
 
@@ -60,14 +60,11 @@ const sampleListings: Listing[] = [
   },
 ];
 
-
-
 // would likely need to introduce states for startdate, end date, min price, max price, and the input
 export const Marketplace: React.FC = () => {
-
   // States
   const [searchInput, setSearchInput] = useState("");
-  
+
   const [minPrice, setMinPrice] = useState("");
   const [maxPrice, setMaxPrice] = useState("");
   const [startDate, setStartDate] = useState("");
@@ -80,13 +77,14 @@ export const Marketplace: React.FC = () => {
   // Function to generate price options
   const generatePriceOptions = () => {
     const options = [];
-    for (let i = 0; i <= 9999; i += 100) { // Change 100 to your desired increment
+    for (let i = 0; i <= 9999; i += 100) {
+      // Change 100 to your desired increment
       options.push(`$${i}`);
     }
     return options;
   };
 
-  const priceOptions = generatePriceOptions()
+  const priceOptions = generatePriceOptions();
 
   // Functions to handle input change
 
@@ -105,23 +103,24 @@ export const Marketplace: React.FC = () => {
   return (
     <div id="marketplacePageWrapper">
       {/* // Need to separate the map and listing cards into two separate containers so that the listings one is scrollable */}
+      <div id="marketPlaceSearchBar">
+        <Input value={searchInput} onChange={handleInputChange} placeholder="Search..." />
+
+        <Dropdown options={priceOptions} defaultOption="Min Price" onChange={handleMinPriceChange} />
+        <Dropdown options={priceOptions} defaultOption="Max Price" onChange={handleMaxPriceChange} />
+
+        <DatePickerDropdown />
+        <div id="advancedSearch">Advanced search</div>
+        {/* Need to update the above to also render additional search criteria */}
+      </div>
       <div id="cardsAndMap">
         <div id="listingsContainer">
-          <div id="marketPlaceSearchBar">
-          <Input value={searchInput} onChange={handleInputChange} placeholder = "Search..." />
-          
-          <Dropdown options={priceOptions} defaultOption="Min Price" onChange={handleMinPriceChange}/>
-          <Dropdown options={priceOptions} defaultOption="Max Price" onChange={handleMaxPriceChange}/>
-
-          <DatePickerDropdown/> 
-          <div id="advancedSearch">Advanced search</div> 
-          {/* Need to update the above to also render additional search criteria */}
-
-          </div>
           <ListingsView listings={sampleListings} />
         </div>
         <div id="mapContainer">
-          <div id="map"><MapView></MapView></div>
+          <div id="map">
+            <MapView></MapView>
+          </div>
         </div>
       </div>
     </div>

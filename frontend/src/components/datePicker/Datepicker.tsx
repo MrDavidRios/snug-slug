@@ -1,11 +1,9 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import DatePicker from "react-datepicker";
 // import "react-datepicker/dist/react-datepicker.css"; // Ensure you import the CSS
 
-
 export default function DatePickerDropdown() {
-
-// States
+  // States
   const [date, setDate] = useState(new Date());
   const [startDate, setStartDate] = useState();
   const [endDate, setEndDate] = useState();
@@ -24,7 +22,8 @@ export default function DatePickerDropdown() {
         startDate={startDate}
         endDate={endDate}
         placeholderText="Select Dates"
-        selectsRange/>
+        selectsRange
+      />
     </div>
   );
 }
