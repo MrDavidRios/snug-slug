@@ -6,7 +6,10 @@ interface ChatInputProps {
   placeholder?: string;
 }
 
-export const ChatInput: React.FC<ChatInputProps> = ({ onSend, placeholder = "Type a message..." }) => {
+export const ChatInput: React.FC<ChatInputProps> = ({
+  onSend,
+  placeholder = "Type a message...",
+}) => {
   const [message, setMessage] = useState("");
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -21,8 +24,14 @@ export const ChatInput: React.FC<ChatInputProps> = ({ onSend, placeholder = "Typ
 
   return (
     <form onSubmit={handleSubmit} className="chat-input">
-      <input type="text" value={message} onChange={handleChange} placeholder={placeholder} className="input-field" />
-      <Button text="Send" />
+      <input
+        type="text"
+        value={message}
+        onChange={handleChange}
+        placeholder={placeholder}
+        className="input-field"
+      />
+      <Button onClick={() => {}} text="Send" />
     </form>
   );
 };

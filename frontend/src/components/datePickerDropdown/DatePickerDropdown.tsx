@@ -2,19 +2,25 @@ import { useState } from "react";
 import DatePicker from "react-datepicker";
 
 interface DatePickerDropdownProps {
-  startDate: Date;
-  endDate: Date;
-  onChange: (range: { startDate: Date; endDate: Date }) => void;
+  startDate: Date | null;
+  endDate: Date | null;
+  onChange: (range: { startDate: Date | null; endDate: Date | null }) => void;
 }
 
-export const DatePickerDropdown: React.FC<DatePickerDropdownProps> = (props) => {
-  const { startDate: initialStartDate, endDate: initialEndDate, onChange } = props;
+export const DatePickerDropdown: React.FC<DatePickerDropdownProps> = (
+  props
+) => {
+  const {
+    startDate: initialStartDate,
+    endDate: initialEndDate,
+    onChange,
+  } = props;
 
   // States
   const [startDate, setStartDate] = useState(initialStartDate);
   const [endDate, setEndDate] = useState(initialEndDate);
 
-  const handleChange = (range: Date[]) => {
+  const handleChange = (range: (Date | null)[]) => {
     const [startDate, endDate] = range;
 
     setStartDate(startDate);
@@ -32,7 +38,7 @@ export const DatePickerDropdown: React.FC<DatePickerDropdownProps> = (props) => 
       <DatePicker
         selected={startDate}
         onChange={(e) => {
-          handleChange(e as Date[]);
+          handleChange(e as (Date | null)[]);
         }}
         startDate={startDate}
         endDate={endDate}

@@ -11,21 +11,21 @@ class SearchApiHandler(Resource):
         max_price = data.get('maxPrice', '')
         start_date = data.get('startDate', '')
         end_date = data.get('endDate', '')
-
         results = self.perform_search(location, min_price, max_price, start_date, end_date)
+        
+        response = jsonify(results)
 
-        return jsonify(results)
+        return response
 
     def perform_search(self, location, min_price, max_price, start_date, end_date):
-        with open("./Listings.json", "r") as file:
+        with open("./static/Listings.json", "r") as file:
             listings = json.load(file)
 
         location = location.lower()
-        start_date = datetime.strptime(start_date, '%Y-%m-%d').date() if start_date else ""
-        end_date = datetime.strptime(end_date, '%Y-%m-%d').date() if end_date else ""
-
-        min_price = int(min_price.lstrip('$')) if min_price else None
-        max_price = int(max_price.lstrip('$')) if max_price else None
+        start_date = datetime.strptime(start_date, '%Y-%m-%d').date() if start_date else None
+        end_date = datetime.strptime(end_date, '%Y-%m-%d').date() if end_date else None
+        min_price = int(min_price) if min_price else None
+        max_price = int(max_price) if max_price else None
 
         results = []
         for listing in listings:
@@ -35,8 +35,8 @@ class SearchApiHandler(Resource):
             if ((not location or location in listing['location'].lower()) and
                 (not min_price or listing['rent'] >= min_price) and 
                 (not max_price or listing['rent'] <= max_price) and
-                (not start_date or listing_start_date >= start_date) and 
-                (not end_date or listing_end_date <= end_date)):
+                (not start_date or listing_start_date <= start_date) and 
+                (not end_date or listing_end_date >= end_date)):
                 results.append(listing)
 
         return results
