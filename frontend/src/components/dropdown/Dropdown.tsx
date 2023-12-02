@@ -9,8 +9,15 @@ type DropdownProps = {
   onChange: (selectedOption: string) => void;
 };
 
-export const Dropdown: React.FC<DropdownProps> = ({ options, placeholder, defaultSelection, onChange }) => {
-  const [selectedOption, setSelectedOption] = useState<string | undefined>(defaultSelection);
+export const Dropdown: React.FC<DropdownProps> = ({
+  options,
+  placeholder,
+  defaultSelection,
+  onChange,
+}) => {
+  const [selectedOption, setSelectedOption] = useState<string | undefined>(
+    defaultSelection
+  );
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -26,7 +33,10 @@ export const Dropdown: React.FC<DropdownProps> = ({ options, placeholder, defaul
   };
 
   const handleClickOutside = (event: MouseEvent) => {
-    if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+    if (
+      dropdownRef.current &&
+      !dropdownRef.current.contains(event.target as Node)
+    ) {
       setIsOpen(false);
     }
   };
@@ -62,7 +72,11 @@ export const Dropdown: React.FC<DropdownProps> = ({ options, placeholder, defaul
         <ul className="dropdown-menu">
           {options.map((option, idx) => (
             <div className="option-container" key={idx}>
-              <li className="dropdown-item" key={option} onClick={() => handleOptionClick(option)}>
+              <li
+                className="dropdown-item"
+                key={option}
+                onClick={() => handleOptionClick(option)}
+              >
                 {option}
               </li>
             </div>

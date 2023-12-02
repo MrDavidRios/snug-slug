@@ -32,7 +32,11 @@ export const Test: React.FC = () => {
   return (
     <div>
       <Carousel imgUrls={testApartmentImgUrls} />
-      <Dropdown options={["Option 1", "Option 2", "Option 3"]} placeholder="Select an Option" />
+      <Dropdown
+        options={["Option 1", "Option 2", "Option 3"]}
+        placeholder="Select an Option"
+        onChange={() => {}}
+      />
       <ListingCard listing={testListing} locationIndex={0} />
       {showModal && (
         <Modal title="Test" onClose={() => setShowModal(false)}>

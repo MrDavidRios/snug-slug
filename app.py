@@ -14,5 +14,8 @@ api = Api(app)
 def serve(path):
     return send_from_directory(app.static_folder, 'index.html')
 
-api.add_resource(HelloApiHandler, '/api/data')
+@app.route('/images/<filename>')
+def serve_image(filename):
+    return send_from_directory('static/images', filename)
+
 api.add_resource(SearchApiHandler, '/api/search')

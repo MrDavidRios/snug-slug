@@ -3,17 +3,17 @@ import { DatePickerDropdown } from "../../components/datePickerDropdown/DatePick
 import { Dropdown } from "../../components/dropdown/Dropdown";
 import { Hero } from "../../components/hero/Hero";
 import { Input } from "../../components/input/Input";
+import { getYMDString } from "../../utils/datefunctions";
 
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { getYMDString } from "../../utils/datefunctions";
 
 export const Homepage: React.FC = () => {
   const [location, setLocation] = useState("");
   const [minPrice, setMinPrice] = useState("");
   const [maxPrice, setMaxPrice] = useState("");
-  const [startDate, setStartDate] = useState(getYMDString(new Date()));
-  const [endDate, setEndDate] = useState(getYMDString(new Date()));
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
 
   // Need to define the dropdown props
 
@@ -50,7 +50,7 @@ export const Homepage: React.FC = () => {
   const handleSearch = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     navigate(
-      `/marketplace?query=${location}&minPrice=${minPrice}&maxPrice=${maxPrice}&startDate=${startDate}&endDate=${endDate}`
+      `/marketplace?location=${location}&minPrice=${minPrice}&maxPrice=${maxPrice}&startDate=${startDate}&endDate=${endDate}`
     );
   };
 
@@ -62,16 +62,28 @@ export const Homepage: React.FC = () => {
       </p>
       <div id="homepageSearch">
         <div id="searchWrapper">
-          <Input value={location} onChange={handleInputChange} placeholder="Search location..." />
+          <Input
+            value={location}
+            onChange={handleInputChange}
+            placeholder="Search location..."
+          />
           <Button onClick={handleSearch} text="Search" />
         </div>
         <div id="searchOptions">
-          <Dropdown options={priceOptions} placeholder="Min Price" onChange={handleMinPriceChange} />
-          <Dropdown options={priceOptions} placeholder="Max Price" onChange={handleMaxPriceChange} />
+          <Dropdown
+            options={priceOptions}
+            placeholder="Min Price"
+            onChange={handleMinPriceChange}
+          />
+          <Dropdown
+            options={priceOptions}
+            placeholder="Max Price"
+            onChange={handleMaxPriceChange}
+          />
 
           <DatePickerDropdown
-            startDate={new Date(startDate)}
-            endDate={new Date(endDate)}
+            startDate={startDate === "" ? null : new Date(startDate)}
+            endDate={endDate === "" ? null : new Date(endDate)}
             onChange={(e) => {
               setStartDate(getYMDString(e.startDate));
               setEndDate(getYMDString(e.endDate));

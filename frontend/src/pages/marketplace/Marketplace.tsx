@@ -13,21 +13,23 @@ export const Marketplace: React.FC = () => {
   const searchStr = useLocation().search;
   const query = new URLSearchParams(searchStr);
 
-  const [location, setLocation] = useState(query.get("query") || "");
+  const [location, setLocation] = useState(query.get("location") || "");
   const [minPrice, setMinPrice] = useState(query.get("minPrice") || "");
   const [maxPrice, setMaxPrice] = useState(query.get("maxPrice") || "");
-  const [startDate, setStartDate] = useState(query.get("startDate") || getYMDString(new Date()));
-  const [endDate, setEndDate] = useState(query.get("endDate") || getYMDString(new Date()));
+  const [startDate, setStartDate] = useState(query.get("startDate") || "");
+  const [endDate, setEndDate] = useState(query.get("endDate") || "");
 
   const [listings, setListings] = useState<Listing[]>([]);
 
   // Only fetch listings based on query parameters on page load
   useEffect(() => {
-    fetchSearchResults(location, minPrice, maxPrice, startDate, endDate).then((data) => {
-      console.log("Listings loaded!!", data);
+    fetchSearchResults(location, minPrice, maxPrice, startDate, endDate).then(
+      (data) => {
+        console.log("Listings loaded!!", data);
 
-      setListings(data);
-    });
+        setListings(data);
+      }
+    );
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -63,15 +65,15 @@ export const Marketplace: React.FC = () => {
     console.log("Start and end date: ", startDate, endDate);
 
     try {
-      const response = await fetch(`http://localhost:5000/api/search`, {
+      const response = await fetch(`http://localhost:8080/api/search`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
           location: location,
-          minPrice: minPrice,
-          maxPrice: maxPrice,
+          minPrice: minPrice.slice(1),
+          maxPrice: maxPrice.slice(1),
           startDate: startDate,
           endDate: endDate,
         }),
@@ -91,7 +93,11 @@ export const Marketplace: React.FC = () => {
     <div id="marketplacePageWrapper">
       {/* // Need to separate the map and listing cards into two separate containers so that the listings one is scrollable */}
       <div id="marketPlaceSearchBar">
-        <Input value={location} onChange={handleInputChange} placeholder="Search..." />
+        <Input
+          value={location}
+          onChange={handleInputChange}
+          placeholder="Search..."
+        />
 
         <Dropdown
           options={priceOptions}
@@ -107,8 +113,8 @@ export const Marketplace: React.FC = () => {
         />
 
         <DatePickerDropdown
-          startDate={new Date(startDate)}
-          endDate={new Date(endDate)}
+          startDate={startDate === "" ? null : new Date(startDate)}
+          endDate={endDate === "" ? null : new Date(endDate)}
           onChange={(e) => {
             setStartDate(getYMDString(e.startDate));
             setEndDate(getYMDString(e.endDate));
@@ -116,7 +122,13 @@ export const Marketplace: React.FC = () => {
         />
         <Button
           onClick={() =>
-            fetchSearchResults(location, minPrice, maxPrice, startDate, endDate).then((data) => setListings(data))
+            fetchSearchResults(
+              location,
+              minPrice,
+              maxPrice,
+              startDate,
+              endDate
+            ).then((data) => setListings(data))
           }
           text="Search"
           className="action"
