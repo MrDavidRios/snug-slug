@@ -14,7 +14,7 @@ You're good to go!
 
 ## Running the server
 
-Simply run `flask run` in this directory (`./backend`). It should start on `localhost:5000`.
+Simply run `flask run --port 8080` in this directory (`./backend`). It should start on `localhost:8080`.
 
 Run `flask run --debug` to run in [debug](https://flask.palletsprojects.com/en/3.0.x/quickstart/#debug-mode) mode.
 
@@ -25,3 +25,7 @@ If testing frontend code, make sure to go to frontend directory and run `npm run
 Backend data will be server at `api/<data route name here>`. For example, `api/listings` can return some fake listing data.
 
 Frontend routing is done with React Router. To go to the login page, for example, go to `localhost:5000/login`.
+
+### Progress
+
+Currently, we have searching from the homepage working. Inputting a location and specifiying any search options returns the set of matching listings (which we are currently using dummy data for) in the marketplace page. Some bugs still need to be sorted out for subseqeunt searches from the marketplace page. Functionality for the rest of the application will be implemented as well.
