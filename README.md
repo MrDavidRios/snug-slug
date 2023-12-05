@@ -14,7 +14,7 @@ You're good to go!
 
 ## Running the server
 
-Simply run `flask run --port 8080` in this directory (`./backend`). It should start on `localhost:8080`.
+Simply run `flask run --port 8080` in this directory. It should start on `localhost:8080`.
 
 Run `flask run --debug` to run in [debug](https://flask.palletsprojects.com/en/3.0.x/quickstart/#debug-mode) mode.
 
