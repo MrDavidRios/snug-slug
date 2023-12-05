@@ -2,49 +2,47 @@ import { useState } from "react";
 import DatePicker from "react-datepicker";
 
 interface DatePickerDropdownProps {
-  startDate: Date | null;
-  endDate: Date | null;
-  onChange: (range: { startDate: Date | null; endDate: Date | null }) => void;
+  startDate?: Date;
+  endDate?: Date;
+  onChange: (range: { startDate?: Date; endDate?: Date }) => void;
 }
 
-export const DatePickerDropdown: React.FC<DatePickerDropdownProps> = (
-  props
-) => {
-  const {
-    startDate: initialStartDate,
-    endDate: initialEndDate,
-    onChange,
-  } = props;
+export const DatePickerDropdown: React.FC<DatePickerDropdownProps> = (props) => {
+  const { startDate: initialStartDate, endDate: initialEndDate, onChange } = props;
 
   // States
   const [startDate, setStartDate] = useState(initialStartDate);
   const [endDate, setEndDate] = useState(initialEndDate);
 
-  const handleChange = (range: (Date | null)[]) => {
+  const handleChange = (range: (Date | undefined)[]) => {
     const [startDate, endDate] = range;
 
     setStartDate(startDate);
     setEndDate(endDate);
 
-    if (startDate === null || endDate === null) {
+    if (startDate === undefined || endDate === undefined) {
       return;
     }
 
     onChange({ startDate, endDate });
   };
 
+  console.log("Start date: ", startDate);
+  console.log("End date: ", endDate);
+
   return (
     <div id="DatePickerContainer">
       <DatePicker
-        selected={startDate}
+        selected={startDate ?? new Date()}
         onChange={(e) => {
-          handleChange(e as (Date | null)[]);
+          console.log("hi there");
+          console.log(e);
+
+          handleChange(e as (Date | undefined)[]);
         }}
-        startDate={startDate}
+        startDate={startDate ?? new Date()}
         endDate={endDate}
-        allowSameDay={false}
         placeholderText="Select Dates"
-        isClearable={true}
         selectsRange
       />
     </div>
