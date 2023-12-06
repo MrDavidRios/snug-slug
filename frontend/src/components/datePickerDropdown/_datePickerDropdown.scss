@@ -1,13 +1,23 @@
 @import "node_modules/react-datepicker/src/stylesheets/datepicker.scss";
 
-#DatePickerContainer .react-datepicker__input-container input {
-  min-width: 220px; /* Adjust as needed to ensure both dates fit */
-  min-height: 40px;
-  border-radius: 5px;
-  border: 1px solid var(--border-color);
-  color: var(--secondary-text);
+#DatePickerContainer {
+  .react-datepicker-popper {
+    z-index: 2;
 
-  &:hover {
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    button {
+      box-shadow: none;
+    }
+  }
+
+  .react-datepicker__input-container input {
+    min-width: 220px; /* Adjust as needed to ensure both dates fit */
+    min-height: 40px;
+    border-radius: 5px;
+    border: 1px solid var(--border-color);
+    color: var(--secondary-text);
+
+    &:hover {
+      box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    }
   }
 }
