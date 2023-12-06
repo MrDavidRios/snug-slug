@@ -131,12 +131,12 @@ export const Marketplace: React.FC = () => {
         />
         <div id="advancedSearch">Advanced search</div>
       </div>
-      <div id="cardsAndMap">
-        <div id="listingsContainer">
+      <div className="listings-and-map-page">
+        <div className="listings-container">
           <ListingsView listings={listings} />
         </div>
-        <div id="mapContainer">
-          <div id="map">
+        <div className="map-container">
+          <div>
             <MapView></MapView>
           </div>
         </div>

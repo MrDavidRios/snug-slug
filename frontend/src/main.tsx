@@ -3,11 +3,12 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import App from "./App";
-import "./styles/index.scss";
 import { Root } from "./pages/Root";
 import { Login } from "./pages/login/Login";
 import { Marketplace } from "./pages/marketplace/Marketplace";
+import { SavedPlaces } from "./pages/saved-places/SavedPlaces";
 import { Test } from "./pages/test-pages/Test";
+import "./styles/index.scss";
 
 const router = createBrowserRouter([
   {
@@ -18,6 +19,7 @@ const router = createBrowserRouter([
       { path: "login", element: <Login /> },
       { path: "test", element: <Test /> },
       { path: "marketplace", element: <Marketplace /> },
+      { path: "saved-places", element: <SavedPlaces /> },
     ],
   },
 ]);
