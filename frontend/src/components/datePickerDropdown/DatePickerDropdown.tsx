@@ -28,9 +28,6 @@ export const DatePickerDropdown: React.FC<DatePickerDropdownProps> = (props) => 
       <DatePicker
         selected={startDate ?? new Date()}
         onChange={(e) => {
-          console.log("hi there");
-          console.log(e);
-
           handleChange(e as (Date | null)[]);
         }}
         startDate={startDate ?? new Date()}

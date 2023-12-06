@@ -25,11 +25,7 @@ export const Marketplace: React.FC = () => {
 
   // Only fetch listings based on query parameters on page load
   useEffect(() => {
-    fetchSearchResults(location, minPrice, maxPrice, startDate, endDate).then((data) => {
-      console.log("Listings loaded!!", data);
-
-      setListings(data);
-    });
+    fetchSearchResults(location, minPrice, maxPrice, startDate, endDate).then((data) => setListings(data));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -62,16 +58,6 @@ export const Marketplace: React.FC = () => {
     startDate: string,
     endDate: string
   ) {
-    // console.log("Start and end date: ", startDate, endDate);
-
-    // console.log("POST request", {
-    //   location: location,
-    //   minPrice: minPrice.slice(1),
-    //   maxPrice: maxPrice.slice(1),
-    //   startDate: startDate,
-    //   endDate: endDate,
-    // });
-
     try {
       const response = await fetch(`http://localhost:8080/api/search`, {
         method: "POST",
