@@ -11,19 +11,6 @@
     "rent": 1500,
     "apartmentImgUrls": ["images/apartment.png"]
   },
-
-  {
-    "location": "76th Street, Upper West Side",
-    "overview": "1 Bedroom in a 3 Bedroom suite",
-    "details": ["In-unit washer", "Dog friendly"],
-    "tags": ["In-unit washer", "Dog friendly"],
-    "requirements": ["No smoking", "Interview required"],
-    "additionalInfo": ["Pets allowed"],
-    "startDate": "2024-05-15",
-    "endDate": "2024-08-31",
-    "rent": 1500,
-    "apartmentImgUrls": ["images/apartment.png"]
-  },
   {
     "location": "Park Avenue, Midtown",
     "overview": "Studio Apartment",
