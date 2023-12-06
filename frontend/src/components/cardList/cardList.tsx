@@ -1,6 +1,7 @@
 import _ from "lodash";
 import React, { useEffect, useState } from "react";
 import { Listing } from "../../types/listing";
+import { savedListingsListener } from "../../utils/savedlistingslistener";
 import { ListingCard } from "../apartmentCard/ListingCard";
 
 interface ListingsViewProps {
@@ -11,22 +12,9 @@ export const ListingsView: React.FC<ListingsViewProps> = ({ listings }) => {
   const savedListingsFromStorage = localStorage.getItem("savedListings");
   const [savedListings, setSavedListings] = useState<Listing[]>(JSON.parse(savedListingsFromStorage || "[]"));
 
-  console.log("savedListings", savedListings);
-
   // Update saved listings in local storage whenever savedListings changes in local storage
-  useEffect(() => {
-    const updatedSavedListings = () => {
-      console.log("hey there", JSON.parse(localStorage.getItem("savedListings") ?? "[]"));
-
-      setSavedListings(JSON.parse(savedListingsFromStorage || "[]"));
-    };
-
-    window.addEventListener("storage", updatedSavedListings);
-
-    return () => {
-      window.removeEventListener("storage", updatedSavedListings);
-    };
-  }, []);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(savedListingsListener(setSavedListings), []);
 
   const handleLikeUpdate = (listing: Listing, liked: boolean) => {
     if (liked) {
@@ -36,14 +24,11 @@ export const ListingsView: React.FC<ListingsViewProps> = ({ listings }) => {
       setSavedListings(updatedSavedListings);
     } else {
       // Remove listing from saved listings
-      console.log("Removing listing...", savedListings, listing);
-
       const updatedSavedListings = savedListings.filter((savedListing) => !_.isEqual(listing, savedListing));
       localStorage.setItem("savedListings", JSON.stringify(updatedSavedListings));
       setSavedListings(updatedSavedListings);
     }
 
-    console.log("storage event!!!");
     window.dispatchEvent(new Event("storage"));
   };
 

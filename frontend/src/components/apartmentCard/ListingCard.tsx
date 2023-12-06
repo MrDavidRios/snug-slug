@@ -1,4 +1,3 @@
-import { useState } from "react";
 import marker from "../../assets/Marker.svg";
 import { Listing } from "../../types/listing";
 import { HeartButton } from "../button/heart-button/HeartButton";
@@ -20,8 +19,6 @@ export const ListingCard: React.FC<ListingCardProps> = ({ locationIndex, listing
     rent,
     apartmentImgUrls: [apartmentImg],
   } = listing;
-  const [isLiked, setIsLiked] = useState(liked);
-
   return (
     <Card className="listing-card">
       <div className="image-container">
@@ -50,12 +47,11 @@ export const ListingCard: React.FC<ListingCardProps> = ({ locationIndex, listing
             {dates}
             <p>${rent}/month</p>
           </div>
-          <div>{isLiked}</div>
+          <div>{liked}</div>
           <HeartButton
-            liked={isLiked}
+            liked={liked}
             onClick={() => {
-              setIsLiked(!isLiked);
-              likeUpdate(listing, !isLiked);
+              likeUpdate(listing, !liked);
             }}
           />
         </div>

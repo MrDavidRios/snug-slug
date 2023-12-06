@@ -2,25 +2,15 @@ import { useEffect, useState } from "react";
 import { ListingsView } from "../../components/cardList/cardList";
 import { MapView } from "../../components/mapView/MapView";
 import { Listing } from "../../types/listing";
+import { savedListingsListener } from "../../utils/savedlistingslistener";
 
 export const SavedPlaces: React.FC = () => {
   const savedListingsFromStorage = localStorage.getItem("savedListings");
   const [savedListings, setSavedListings] = useState<Listing[]>(JSON.parse(savedListingsFromStorage || "[]"));
 
   // Update saved listings in local storage whenever savedListings changes in local storage
-  useEffect(() => {
-    const updatedSavedListings = () => {
-      console.log("hey now", JSON.parse(localStorage.getItem("savedListings") ?? "[]"));
-
-      // setSavedListings(JSON.parse(localStorage.getItem("savedListings") || "[]"));
-    };
-
-    window.addEventListener("storage", updatedSavedListings);
-
-    return () => {
-      window.removeEventListener("storage", updatedSavedListings);
-    };
-  }, []);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(savedListingsListener(setSavedListings), []);
 
   return (
     <div id="savedPlacesPageWrapper">

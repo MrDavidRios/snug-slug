@@ -23,9 +23,6 @@ export const DatePickerDropdown: React.FC<DatePickerDropdownProps> = (props) => 
     onChange({ startDate, endDate });
   };
 
-  console.log("Start date: ", startDate);
-  console.log("End date: ", endDate);
-
   return (
     <div id="DatePickerContainer">
       <DatePicker
