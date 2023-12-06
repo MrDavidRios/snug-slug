@@ -2,7 +2,7 @@ nav {
   position: sticky;
   top: 0;
   z-index: 3;
-  background-color: var(--background-color);
+  background-color: var(--surface-primary);
 
   width: 100%;
   height: var(--navbar-height);
@@ -10,7 +10,18 @@ nav {
 
   display: flex;
   align-items: center;
+  justify-content: space-between;
 
   box-sizing: border-box;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.nav-buttons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  button {
+    box-shadow: none;
+  }
 }
