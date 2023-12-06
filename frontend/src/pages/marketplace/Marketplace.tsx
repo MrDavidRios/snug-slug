@@ -60,15 +60,15 @@ export const Marketplace: React.FC = () => {
     startDate: string,
     endDate: string
   ) {
-    console.log("Start and end date: ", startDate, endDate);
+    // console.log("Start and end date: ", startDate, endDate);
 
-    console.log("Yo", {
-      location: location,
-      minPrice: minPrice.slice(1),
-      maxPrice: maxPrice.slice(1),
-      startDate: startDate,
-      endDate: endDate,
-    });
+    // console.log("POST request", {
+    //   location: location,
+    //   minPrice: minPrice.slice(1),
+    //   maxPrice: maxPrice.slice(1),
+    //   startDate: startDate,
+    //   endDate: endDate,
+    // });
 
     try {
       const response = await fetch(`http://localhost:8080/api/search`, {
@@ -115,8 +115,8 @@ export const Marketplace: React.FC = () => {
         />
 
         <DatePickerDropdown
-          startDate={startDate === "" ? undefined : new Date(startDate)}
-          endDate={endDate === "" ? undefined : new Date(endDate)}
+          startDate={startDate === "" ? null : new Date(startDate)}
+          endDate={endDate === "" ? null : new Date(endDate)}
           onChange={(e) => {
             setStartDate(getYMDString(e.startDate));
             setEndDate(getYMDString(e.endDate));
