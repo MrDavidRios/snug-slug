@@ -1,21 +1,13 @@
-import React, { useState } from "react";
-
 interface HeartButtonProps {
-  onChange: (liked: boolean) => void;
+  liked: boolean;
+  onClick: () => void;
 }
 
-export const HeartButton: React.FC<HeartButtonProps> = ({ onChange }) => {
-  const [isLiked, setIsLiked] = useState(false);
-  const heartColor = isLiked ? "#FF0000" : "#BDBDBD";
+export const HeartButton: React.FC<HeartButtonProps> = ({ liked, onClick }) => {
+  const heartColor = liked ? "#FF0000" : "#BDBDBD";
 
   return (
-    <div
-      className="heart"
-      onClick={() => {
-        setIsLiked(!isLiked);
-        onChange(!isLiked);
-      }}
-    >
+    <div className="heart" onClick={onClick}>
       {/* Heart icon */}
       <svg width="40" height="40" viewBox="0 0 55 46" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path

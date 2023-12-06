@@ -13,6 +13,8 @@ export const Marketplace: React.FC = () => {
   const searchStr = useLocation().search;
   const query = new URLSearchParams(searchStr);
 
+  // Stringified JSON of saved listings (or null if no listings have been saved)
+
   const [location, setLocation] = useState(query.get("location") || "");
   const [minPrice, setMinPrice] = useState(query.get("minPrice") || "$0");
   const [maxPrice, setMaxPrice] = useState(query.get("maxPrice") || "$9900");

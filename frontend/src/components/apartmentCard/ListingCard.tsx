@@ -5,14 +5,13 @@ import { HeartButton } from "../button/heart-button/HeartButton";
 import { Card } from "../card/Card";
 
 interface ListingCardProps {
-  listing: Listing;
   locationIndex: number;
+  listing: Listing;
+  liked: boolean;
+  likeUpdate: (listing: Listing, liked: boolean) => void;
 }
 
-export const ListingCard: React.FC<ListingCardProps> = ({
-  listing,
-  locationIndex,
-}) => {
+export const ListingCard: React.FC<ListingCardProps> = ({ locationIndex, listing, liked, likeUpdate }) => {
   const {
     location,
     overview,
@@ -21,7 +20,7 @@ export const ListingCard: React.FC<ListingCardProps> = ({
     rent,
     apartmentImgUrls: [apartmentImg],
   } = listing;
-  const [isLiked, setIsLiked] = useState(false);
+  const [isLiked, setIsLiked] = useState(liked);
 
   return (
     <Card className="listing-card">
@@ -52,7 +51,13 @@ export const ListingCard: React.FC<ListingCardProps> = ({
             <p>${rent}/month</p>
           </div>
           <div>{isLiked}</div>
-          <HeartButton onChange={setIsLiked} />
+          <HeartButton
+            liked={isLiked}
+            onClick={() => {
+              setIsLiked(!isLiked);
+              likeUpdate(listing, !isLiked);
+            }}
+          />
         </div>
       </div>
     </Card>
