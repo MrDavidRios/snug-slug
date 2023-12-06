@@ -1,0 +1,37 @@
+#ChatBoxSublessorContainer{
+
+    display: flex;
+    padding: 20px;
+    border: 2px solid var(--accent-color);
+    border-radius: 20px;
+    align-items: center;
+    justify-content: flex-start;
+    
+    img{
+        margin-left: 30px;
+        border-radius: 50%;
+        width: 100px;
+        height: 100px;
+    }
+
+    #ProfileText{
+        margin-left: 35px;
+        text-align: left;
+
+        #UserName{
+            font-size: var(--font-size-lg);
+        }
+
+        #Email{
+            font-size: var(--font-size-xs);
+            color: var(--secondary-text);
+            margin-bottom: 10px;
+        }
+
+        #Details{
+            font-size: var(--font-size-xs);
+            line-height: 140%;
+        }
+
+    }
+}
