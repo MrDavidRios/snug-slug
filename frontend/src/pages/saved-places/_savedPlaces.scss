@@ -1,2 +1,10 @@
 #savedPlacesPageWrapper {
+  .listings-container {
+    min-width: 50vw;
+
+    #emptyListText {
+      margin-top: 40px;
+      font-size: var(--font-size-md);
+    }
+  }
 }

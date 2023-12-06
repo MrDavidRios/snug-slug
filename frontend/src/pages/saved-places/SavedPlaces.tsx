@@ -15,9 +15,13 @@ export const SavedPlaces: React.FC = () => {
   return (
     <div id="savedPlacesPageWrapper">
       {/* // Need to separate the map and listing cards into two separate containers so that the listings one is scrollable */}
-      <div id="cardsAndMap" className="listings-and-map-page">
+      <div className="listings-and-map-page">
         <div className="listings-container">
-          <ListingsView listings={savedListings} />
+          {savedListings.length > 0 ? (
+            <ListingsView listings={savedListings} />
+          ) : (
+            <p id="emptyListText">It's lonely here. Go find some places!</p>
+          )}
         </div>
         <div className="map-container">
           <div>
