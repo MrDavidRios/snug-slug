@@ -3,11 +3,12 @@
   border-radius: 20px;
   margin: 10px;
   overflow: hidden;
+  overflow-y: auto;
+  height: 85vh;
 
   #chatBoxTabBar {
     display: flex;
     align-items: center;
-    // justify-content: flex-start;
     padding-left: 20px;
     padding-top: 10px;
     padding-bottom: 10px;
@@ -43,11 +44,15 @@
 
     #sublessorInfo {
       margin-top: 30px;
+      margin-bottom: 15px;
     }
 
     #messages {
       padding-top: 50px;
       padding-bottom: 50px;
+
+      height: 25vh;
+      overflow-y: auto;
     }
 
     #input {

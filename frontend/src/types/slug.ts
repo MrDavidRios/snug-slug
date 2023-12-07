@@ -17,8 +17,8 @@ export type Slug = {
   // Associated type object lists
   activeListing: Listing;
   archivedListings: Listing[];
-  savedListings: Listing[];
-  chatListings: Listing[];
+  savedListings: Listing[]; // listings marked with hearts
+  chatListings: Listing[]; // listings with chathistories
 
   archivedUsers: Slug[];
   savedUsers: Slug[];

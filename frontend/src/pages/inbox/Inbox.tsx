@@ -52,7 +52,7 @@ const exampleUserA: Slug = {
   activeListing: sampleListing,
   archivedListings: [],
   savedListings: [],
-  chatListings: [],
+  chatListings: [sampleListing],
   archivedUsers: [],
   savedUsers: [],
   chatUsers: [],
@@ -76,21 +76,28 @@ const exampleUserB: Slug = {
   chatHistory: [],
 };
 
-export const Inbox: React.FC = () => {
+interface InboxProps {
+  user: Slug;
+}
+
+export const Inbox: React.FC = ({user}) => {
   const [lookingForApartment, setLookingForApartment] = useState<boolean>(true);
 
   return (
     <div id="inboxPageWrapper">
       {/* Need to separate the map and listing cards into two separate containers so that the listings one is scrollable */}
-      <div className="listings-and-map-page">
+      {/* <div className="listings-and-map-page"> */}
         <div className="listings-container">
           <div id="inboxActionButtonWrapper">
             <LookingForToggle lookingForApartment={lookingForApartment} onChange={setLookingForApartment} />
             <ArchiveButton />
           </div>
           {lookingForApartment ? <ListingsView listings={[]} /> : <></>}
-          {/* {savedListings.length > 0 ? (
-            <ListingsView listings={savedListings} />
+
+          {/* If looking for apartment, should display listingsView */}
+          {/* Else, should display profile */}
+          {/* {user.chatListings.length > 0 ? (
+            <ListingsView listings={user.chatListings} />
           ) : (
             <p id="emptyListText">It's lonely here. Go find some places!</p>
           )} */}
@@ -99,6 +106,6 @@ export const Inbox: React.FC = () => {
           <ChatBox slugA={exampleUserA} slugB={exampleUserB} findingApartment={lookingForApartment} />
         </div>
       </div>
-    </div>
+    // </div>
   );
 };

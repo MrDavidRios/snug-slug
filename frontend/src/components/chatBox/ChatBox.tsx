@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Listing } from "../../types/listing";
 import { Slug } from "../../types/slug";
 import { sortMessagesByTimestamp } from "../../utils/sortMessages";
@@ -45,6 +45,13 @@ export const ChatBox: React.FC<ChatBoxProps> = ({ slugA, slugB, findingApartment
     return;
   };
 
+  // Logic for automatic bottom scrolling for new messages
+  const messagesEndRef = useRef(null);
+  
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages]);
+
   return (
     <div id="chatBoxContainer">
       <div id="chatBoxTabBar">
@@ -74,6 +81,8 @@ export const ChatBox: React.FC<ChatBoxProps> = ({ slugA, slugB, findingApartment
           {sortedMessages.map((chatMessage, index) => (
             <ChatBubble key={index} message={chatMessage.text} isSender={chatMessage.sender.id === slugA.id} />
           ))}
+          {/* Invisible div for scrolling */}
+          <div ref={messagesEndRef} />
         </div>
 
         <div id="input">

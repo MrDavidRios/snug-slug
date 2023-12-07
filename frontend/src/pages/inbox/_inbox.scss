@@ -1,4 +1,10 @@
 #inboxPageWrapper {
+  display: grid;
+  grid-template-columns: auto 800px;
+  width:100%;
+  height: calc(100vh - var(--navbar-height) - 80px);
+  box-sizing: border-box;
+
   #inboxActionButtonWrapper {
     display: flex;
     justify-content: space-between;
