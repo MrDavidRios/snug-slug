@@ -11,7 +11,9 @@ export const Nav: React.FC = () => {
         <Link to="/faq">
           <Button className="secondary" text="FAQ" />
         </Link>
-        <Button className="secondary" text="Listing" />
+        <Link to="/listing">
+          <Button className="secondary" text="Listing" />
+        </Link>
         <Link to="/inbox">
           <Button className="secondary" text="Chats" />
         </Link>

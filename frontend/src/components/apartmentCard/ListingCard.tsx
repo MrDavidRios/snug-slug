@@ -3,14 +3,14 @@ import { Listing } from "../../types/listing";
 import { HeartButton } from "../button/heart-button/HeartButton";
 import { Card } from "../card/Card";
 
-interface ListingCardProps {
+interface ListingCardProps extends React.HTMLAttributes<HTMLDivElement> {
   locationIndex: number;
   listing: Listing;
-  liked: boolean;
-  likeUpdate: (listing: Listing, liked: boolean) => void;
+  liked?: boolean;
+  likeUpdate?: (listing: Listing, liked: boolean) => void;
 }
 
-export const ListingCard: React.FC<ListingCardProps> = ({ locationIndex, listing, liked, likeUpdate }) => {
+export const ListingCard: React.FC<ListingCardProps> = ({ locationIndex, listing, liked, likeUpdate, onClick }) => {
   const {
     location,
     overview,
@@ -20,7 +20,7 @@ export const ListingCard: React.FC<ListingCardProps> = ({ locationIndex, listing
     apartmentImgUrls: [apartmentImg],
   } = listing;
   return (
-    <Card className="listing-card">
+    <Card className="listing-card" onClick={onClick}>
       <div className="image-container">
         <div className="marker">
           <div className="location-number"> {locationIndex} </div>
@@ -48,12 +48,14 @@ export const ListingCard: React.FC<ListingCardProps> = ({ locationIndex, listing
             <p>${rent}/month</p>
           </div>
           <div>{liked}</div>
-          <HeartButton
-            liked={liked}
-            onClick={() => {
-              likeUpdate(listing, !liked);
-            }}
-          />
+          {liked !== undefined ?? (
+            <HeartButton
+              liked={liked ?? false}
+              onClick={() => {
+                if (likeUpdate) likeUpdate(listing, !liked);
+              }}
+            />
+          )}
         </div>
       </div>
     </Card>

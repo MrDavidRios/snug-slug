@@ -6,6 +6,7 @@ import App from "./App";
 import { Root } from "./pages/Root";
 import { FAQPage } from "./pages/faq/FAQPage";
 import { Inbox } from "./pages/inbox/Inbox";
+import { ListingPage } from "./pages/listing/ListingPage";
 import { Login } from "./pages/login/Login";
 import { Marketplace } from "./pages/marketplace/Marketplace";
 import { SavedPlaces } from "./pages/saved-places/SavedPlaces";
@@ -24,6 +25,7 @@ const router = createBrowserRouter([
       { path: "saved-places", element: <SavedPlaces /> },
       { path: "inbox", element: <Inbox /> },
       { path: "faq", element: <FAQPage /> },
+      { path: "listing", element: <ListingPage /> },
     ],
   },
 ]);
