@@ -1,69 +1,57 @@
-#chatBoxContainer{
+#chatBoxContainer {
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  border-radius: 20px;
+  margin: 10px;
+  overflow: hidden;
+
+  #chatBoxTabBar {
+    display: flex;
+    align-items: center;
+    // justify-content: flex-start;
+    padding-left: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-right: 12.5px;
+
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-    border-radius: 20px;
-    margin: 10px;
-    overflow: hidden;
 
-    #chatBoxTabBar{
-        display: flex;
-        align-items: center;
-        // justify-content: flex-start;
-        padding-left: 20px;
-        padding-top:10px;
-        padding-bottom: 10px;
-        padding-right:12.5px;
+    justify-content: space-between;
 
-        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    #leftSideTabBar {
+      display: flex;
+      align-items: center;
 
-        justify-content: space-between;
+      #heartButton {
+        scale: 60%;
+      }
 
-        #leftSideTabBar{
-            display: flex;
-            align-items: center;
-
-            #heartButton{
-                scale: 60%;
-            }
-
-            #listingLocation{
-                margin-left: 10px;
-            }
-        }
-
-        #actionsDropdown{
-            .dropdown{
-                border: 0px;
-                background-color: var(--surface-secondary);
-                border-radius: 10px;
-            }
-
-            .dropdown-toggle{
-                color:var(--dark-gray)
-            }
-            button{
-                box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.1);
-                font-weight: 400;
-            }
-        }
+      #listingLocation {
+        margin-left: 10px;
+      }
     }
 
-    #mainChatBox{
-        margin-left: 70px;
-        margin-right: 70px;
-
-        #sublessorInfo{
-            margin-top: 30px;
-        }
-
-        #messages{
-            padding-top:50px;
-            padding-bottom: 50px;
-        }
-        
-
-        #input{
-            padding-bottom: 30px;
-        }
-
+    .action-button-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
+  }
+
+  #mainChatBox {
+    margin-left: 70px;
+    margin-right: 70px;
+
+    #sublessorInfo {
+      margin-top: 30px;
+    }
+
+    #messages {
+      padding-top: 50px;
+      padding-bottom: 50px;
+    }
+
+    #input {
+      padding-bottom: 30px;
+    }
+  }
 }

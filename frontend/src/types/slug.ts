@@ -1,29 +1,28 @@
 import { Listing } from "./listing";
 import { MessageHistory } from "./messageHistory";
 
-/** User type for SnugSlug platform */
+/**
+ * User type for SnugSlug platform
+ */
+export type Slug = {
+  // Basic user profile information
+  id: number;
+  name: string;
+  email: string;
+  age: number;
+  school: string;
+  class: number;
+  profilePicUrl: string;
 
-export type Slug = { // User
+  // Associated type object lists
+  activeListing: Listing;
+  archivedListings: Listing[];
+  savedListings: Listing[];
+  chatListings: Listing[];
 
-    // Basic user profile information
-    id: number;
-    name: string;
-    email: string;
-    age: number;
-    school: string;
-    class: number;
-    profilePicUrl: string;
+  archivedUsers: Slug[];
+  savedUsers: Slug[];
+  chatUsers: Slug[];
 
-    // Associated type object lists
-    activeListing: Listing;
-    archivedListings: Listing[];
-    savedListings: Listing[];
-    chatListings: Listing[];
-
-    archivedUsers: Slug[];
-    savedUsers: Slug[];
-    chatUsers: Slug[];
-
-    chatHistory: MessageHistory[];
-  };
-  
+  chatHistory: MessageHistory[];
+};

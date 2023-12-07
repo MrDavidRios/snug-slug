@@ -4,6 +4,7 @@ import ReactDOM from "react-dom/client";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import App from "./App";
 import { Root } from "./pages/Root";
+import { Inbox } from "./pages/inbox/Inbox";
 import { Login } from "./pages/login/Login";
 import { Marketplace } from "./pages/marketplace/Marketplace";
 import { SavedPlaces } from "./pages/saved-places/SavedPlaces";
@@ -20,6 +21,7 @@ const router = createBrowserRouter([
       { path: "test", element: <Test /> },
       { path: "marketplace", element: <Marketplace /> },
       { path: "saved-places", element: <SavedPlaces /> },
+      { path: "inbox", element: <Inbox /> },
     ],
   },
 ]);
