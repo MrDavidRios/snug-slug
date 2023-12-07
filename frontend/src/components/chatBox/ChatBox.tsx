@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Listing } from "../../types/listing";
 import { Slug } from "../../types/slug";
 import { sortMessagesByTimestamp } from "../../utils/sortMessages";
-import { ArchiveButton } from "../button/archive-button/ArchiveButton";
+import { ArchiveIconButton } from "../button/archive-button/ArchiveIconButton";
 import { ConfirmButton } from "../button/confirm-button/ConfirmButton";
 import { HeartButton } from "../button/heart-button/HeartButton";
 import { ChatBoxSublessor } from "../chatBoxSublessor/ChatBoxSublessor";
@@ -60,7 +60,7 @@ export const ChatBox: React.FC<ChatBoxProps> = ({ slugA, slugB, findingApartment
           <div id="listingLocation">{listing.location}</div>
         </div>
         <div className="action-button-wrapper">
-          <ArchiveButton />
+          <ArchiveIconButton />
           {!findingApartment && <ConfirmButton />}
         </div>
       </div>

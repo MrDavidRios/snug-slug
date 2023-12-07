@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { Button } from "../../components/button/Button";
-import { ListingsView } from "../../components/cardList/cardList";
 import { DatePickerDropdown } from "../../components/datePickerDropdown/DatePickerDropdown";
 import { Dropdown } from "../../components/dropdown/Dropdown";
 import { Input } from "../../components/input/Input";
+import { ListingsView } from "../../components/listingsView/listingsView";
 import { MapView } from "../../components/mapView/MapView";
 import { Listing } from "../../types/listing";
 import { getYMDString } from "../../utils/datefunctions";

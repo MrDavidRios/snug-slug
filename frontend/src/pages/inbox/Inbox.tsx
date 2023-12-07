@@ -1,6 +1,8 @@
 import { useState } from "react";
-import { ListingsView } from "../../components/cardList/cardList";
+import { ArchiveButton } from "../../components/button/archive-button/ArchiveButton";
 import { ChatBox } from "../../components/chatBox/ChatBox";
+import { ListingsView } from "../../components/listingsView/listingsView";
+import { LookingForToggle } from "../../components/lookingForToggle/LookingForToggle";
 import { Listing } from "../../types/listing";
 import { Slug } from "../../types/slug";
 
@@ -82,6 +84,10 @@ export const Inbox: React.FC = () => {
       {/* Need to separate the map and listing cards into two separate containers so that the listings one is scrollable */}
       <div className="listings-and-map-page">
         <div className="listings-container">
+          <div id="inboxActionButtonWrapper">
+            <LookingForToggle lookingForApartment={lookingForApartment} onChange={setLookingForApartment} />
+            <ArchiveButton />
+          </div>
           {lookingForApartment ? <ListingsView listings={[]} /> : <></>}
           {/* {savedListings.length > 0 ? (
             <ListingsView listings={savedListings} />
@@ -90,7 +96,7 @@ export const Inbox: React.FC = () => {
           )} */}
         </div>
         <div className="chatbox-container">
-          <ChatBox slugA={exampleUserA} slugB={exampleUserB} findingApartment={false} />
+          <ChatBox slugA={exampleUserA} slugB={exampleUserB} findingApartment={lookingForApartment} />
         </div>
       </div>
     </div>

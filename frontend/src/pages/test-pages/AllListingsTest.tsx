@@ -1,4 +1,4 @@
-import { ListingsView } from "../../components/cardList/cardList";
+import { ListingsView } from "../../components/listingsView/listingsView";
 import { Listing } from "../../types/listing";
 
 export function AllListingsTest() {

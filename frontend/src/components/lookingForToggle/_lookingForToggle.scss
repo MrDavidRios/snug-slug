@@ -1,0 +1,58 @@
+.looking-for-toggle-wrapper {
+  position: relative;
+  border: 1px solid #b0b0b0;
+  border-radius: var(--border-radius-md);
+
+  &,
+  button {
+    display: flex;
+    align-items: center;
+  }
+
+  button {
+    gap: 10px;
+    justify-content: center;
+    box-shadow: none !important;
+    position: static !important;
+
+    img {
+      filter: var(--svg-filter-gray);
+    }
+
+    color: var(--dark-gray);
+    width: 120px;
+
+    &.selected {
+      color: white;
+      font-weight: bold;
+
+      img {
+        filter: var(--svg-filter-white);
+      }
+    }
+  }
+
+  .selected-rectangle-overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 50%;
+    height: 100%;
+    background-color: var(--accent-color);
+    z-index: -1;
+
+    transition: all 0.05s ease-in-out;
+
+    &.left {
+      right: 50%;
+      left: 0;
+    }
+
+    &.right {
+      left: 50%;
+      right: 0;
+    }
+
+    border-radius: var(--border-radius-md);
+  }
+}
