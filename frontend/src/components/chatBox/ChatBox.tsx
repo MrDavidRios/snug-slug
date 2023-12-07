@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Listing } from "../../types/listing";
 import { Slug } from "../../types/slug";
 import { sortMessagesByTimestamp } from "../../utils/sortMessages";
 import { ArchiveButton } from "../button/archive-button/ArchiveButton";
@@ -19,16 +20,15 @@ export const ChatBox: React.FC<ChatBoxProps> = ({ slugA, slugB, findingApartment
   const listing = slugB.activeListing;
   const [liked, setLiked] = useState(false);
 
-  const likeUpdate = (listing, newLikedState) => {
+  const likeUpdate = (listing: Listing, newLikedState: boolean) => {
     setLiked(newLikedState);
   };
 
   // Find the message history between slugA and slugB
   const messageHistory = slugA.chatHistory.find((history) => history.slugB.id === slugB.id);
-
   const [messages, setMessages] = useState([...(messageHistory ? messageHistory.messages : [])]);
 
-  const sortedMessages = messageHistory ? sortMessagesByTimestamp(messageHistory.messages) : [];
+  const sortedMessages = messages ? sortMessagesByTimestamp(messages) : [];
 
   const handleSendMessage = (newMessage: string) => {
     if (newMessage.trim() === "") return;
@@ -44,9 +44,6 @@ export const ChatBox: React.FC<ChatBoxProps> = ({ slugA, slugB, findingApartment
     // TODO: Backend integration
     return;
   };
-
-  // Action bar options
-  const actions = ["Confirm sublease", "Archive chat"];
 
   return (
     <div id="chatBoxContainer">
