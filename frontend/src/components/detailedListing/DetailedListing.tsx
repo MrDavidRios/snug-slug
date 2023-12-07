@@ -5,7 +5,7 @@ import { Modal } from "../modal/Modal";
 
 interface DetailedListingProps {
   listing: Listing;
-  onClose?: () => void;
+  onClose: () => void;
 }
 
 export const DetailedListing: React.FC<DetailedListingProps> = ({ listing, onClose }) => {

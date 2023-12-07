@@ -1,0 +1,14 @@
+#listingPageWrapper {
+  padding: 24px 36px;
+
+  .action-bar {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 26px;
+
+    > div {
+      display: flex;
+      gap: 12px;
+    }
+  }
+}

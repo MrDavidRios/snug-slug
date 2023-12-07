@@ -8,8 +8,12 @@ export const Nav: React.FC = () => {
     <nav>
       <Hero size={Size.Small} redirectToHome={true} />
       <div className="nav-buttons">
-        <Button className="secondary" text="FAQ" />
-        <Button className="secondary" text="Listing" />
+        <Link to="/faq">
+          <Button className="secondary" text="FAQ" />
+        </Link>
+        <Link to="/listing">
+          <Button className="secondary" text="Listing" />
+        </Link>
         <Link to="/inbox">
           <Button className="secondary" text="Chats" />
         </Link>
