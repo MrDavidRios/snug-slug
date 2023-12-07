@@ -1,37 +1,105 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { Slug } from '../../types/slug';
+import { ChatBoxSublessor } from '../chatBoxSublessor/ChatBoxSublessor';
+import { sortMessagesByTimestamp } from '../../utils/sortMessages';
+import { HeartButton } from '../button/heart-button/HeartButton';
+import { ChatBubble } from '../chatBubble/ChatBubble';
+import { ChatInput } from '../chatInput/ChatInput';
+import { Dropdown } from '../dropdown/Dropdown';
 
 interface ChatBoxProps{
-
+    slugA: Slug; // Self
+    slugB: Slug; // Other user
+    findingApartment: boolean; 
+    // if above true, then include sublessor details ChatBoxSublessor component
 }
 
+export const ChatBox: React.FC<ChatBoxProps> = ({slugA, slugB, findingApartment}) => {
 
-// Potential props:
-// Each users' id
-// Their text, their time stamp?
+     const listing= slugB.activeListing;
+     const [liked, setLiked] = useState(false);
 
-// Would also need to create the sender card information
+     const likeUpdate = (listing, newLikedState) => {
+        setLiked(newLikedState);
+     }
 
-// need to know if talking to sublessor or apartment
+     // Find the message history between slugA and slugB
+    const messageHistory = slugA.chatHistory.find(
+        history => history.slugB.id === slugB.id
+    );
 
-// Receives two props - one for sublessor, one for sublessee
-// Each one should contain array of messages that are time stamped
+    const [messages, setMessages] = useState([...(messageHistory ? messageHistory.messages : [])]);
 
+    const sortedMessages = messageHistory ? sortMessagesByTimestamp(messageHistory.messages):[];
 
-export const ChatBoxProps: React.FC<ChatBoxProps> = () => {
+    const handleSendMessage = (newMessage:string) => {
+        if (newMessage.trim() === '') return;
 
-  // This array would be populated with your chat messages
-  const messages = [
-    { id: 1, text: 'Hello! I’m interested in subleasing your apartment.', isSender: false },
-    { id: 2, text: 'Hi! Thanks for reaching out. I’m happy to sublease my apartment to you!', isSender: true }
-  ];
+        const newChatMessage = {
+            sender: slugA,
+            timeStamp: new Date(),
+            text: newMessage,
+        };
 
-  return (
-    <div>
-      {messages.map((msg) => (
-        <ChatBubble key={msg.id} message={msg.text} isSender={msg.isSender} />
-      ))}
-    </div>
+        setMessages(prevMessages => [...prevMessages, newChatMessage]);
+
+        // TODO: Backend integration
+        return;
+    }
+
+    // Action bar options
+    const actions = ["Confirm sublease","Archive chat"];
+
+    return (
+        <div id="chatBoxContainer">
+            <div id="chatBoxTabBar">
+                <div id="leftSideTabBar">
+                    <div id="heartButton">
+                    <HeartButton
+                        liked={liked}
+                        onClick={() => {
+                        likeUpdate(listing, !liked);
+                        }}
+                    />
+                    </div>
+                    <div id="listingLocation">
+                        {listing.location}
+                    </div>
+                </div>
+                <div id="actionsDropdown">  {/* Need to update */}
+                    <Dropdown options={actions} 
+                    placeholder={'Actions'} 
+                    onChange={function (selectedOption: string): void {
+                    throw new Error('Function not implemented.');
+                } }></Dropdown>
+                </div>
+            </div>
+
+            <div id="mainChatBox">
+                <div id="sublessorInfo">
+                    {findingApartment && <ChatBoxSublessor user={slugB} />}
+                </div>
+
+                <div id="messages">
+                    {/* Mapping of chats here */}
+
+                    {sortedMessages.map((chatMessage, index) => (
+                        <ChatBubble
+                        key={index}
+                        message={chatMessage.text}
+                        isSender={chatMessage.sender.id === slugA.id}
+                        />
+                    ))}
+                    
+                </div>
+
+                <div id="input">
+                    <ChatInput onSend={handleSendMessage}/>
+                </div>
+            </div>
+
+            <div>
+            </div>
+        </div>
   );
 };
-
-export default ChatWindowTest;

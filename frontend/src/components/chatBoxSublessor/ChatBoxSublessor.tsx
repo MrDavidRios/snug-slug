@@ -20,14 +20,14 @@ export const ChatBoxSublessor: React.FC<ChatBoxSublessorProps> = ({ user }) => {
       );
       
   return (
-    <div id="ChatBoxSublessorContainer">
-        <div id="ProfileImg">
+    <div id="chatBoxSublessorContainer">
+        <div id="profileImg">
            {profileImage}
         </div>
-        <div id="ProfileText">
-            <div id="UserName">{user.name}</div>
-            <div id="Email">{user.email}</div>
-            <div id="Details">
+        <div id="profileText">
+            <div id="userName">{user.name}</div>
+            <div id="email">{user.email}</div>
+            <div id="details">
                 <div>Age: {user.age}</div>
                 <div>School: {user.school}</div>
                 <div>Class: {user.class}</div>

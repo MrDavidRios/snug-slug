@@ -1,4 +1,4 @@
-#ChatBoxSublessorContainer{
+#chatBoxSublessorContainer{
 
     display: flex;
     padding: 20px;
@@ -6,6 +6,9 @@
     border-radius: 20px;
     align-items: center;
     justify-content: flex-start;
+
+    overflow: hidden;
+    background: white;
     
     img{
         margin-left: 30px;
@@ -14,21 +17,21 @@
         height: 100px;
     }
 
-    #ProfileText{
+    #profileText{
         margin-left: 35px;
         text-align: left;
 
-        #UserName{
+        #userName{
             font-size: var(--font-size-lg);
         }
 
-        #Email{
+        #email{
             font-size: var(--font-size-xs);
             color: var(--secondary-text);
             margin-bottom: 10px;
         }
 
-        #Details{
+        #details{
             font-size: var(--font-size-xs);
             line-height: 140%;
         }

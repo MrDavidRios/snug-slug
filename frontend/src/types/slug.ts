@@ -15,7 +15,8 @@ export type Slug = { // User
     profilePicUrl: string;
 
     // Associated type object lists
-    createdListings: Listing[];
+    activeListing: Listing;
+    archivedListings: Listing[];
     savedListings: Listing[];
     chatListings: Listing[];
 
