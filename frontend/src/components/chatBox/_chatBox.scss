@@ -1,7 +1,8 @@
 #chatBoxContainer {
+  // display: flex;
+  position: relative;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   border-radius: 20px;
-  margin: 10px;
   overflow: hidden;
   overflow-y: auto;
   height: 85vh;
@@ -39,6 +40,7 @@
   }
 
   #mainChatBox {
+    // display: flex;
     margin-left: 70px;
     margin-right: 70px;
 
@@ -50,13 +52,24 @@
     #messages {
       padding-top: 50px;
       padding-bottom: 50px;
-
-      height: 25vh;
       overflow-y: auto;
     }
 
+    .messages-sublessor {
+      height:25vh;
+    }
+
+    .messages-without-sublessor{
+      height:50vh;
+    }
+
     #input {
+      position: absolute;
+      bottom:0;
+      left: 70px;
+      right: 70px;
       padding-bottom: 30px;
+      box-sizing: border-box;
     }
   }
 }

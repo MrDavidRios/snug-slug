@@ -1,39 +1,53 @@
 .personCard {
-  font-weight: 400;
-  flex: 1 1; // sets equal height to both children
+  position:relative;
+  font-weight: var(--font-weight-normal);
+  font-size: var(--font-size-xs);
+  height: 414px;
+  width: 297px;
+  padding: 25px;
+  box-sizing: border-box;
 
-  hr {
-    // divider
-    border-top: 1px solid #bbb;
-    width: 75%;
-  }
+
+  // hr {
+  //   // divider
+  //   border-top: 1px solid #bbb;
+  //   width: 75%;
+  // }
 
   .topOfCard {
-    .side {
+    // padding:25px;
+    display: flex;
+    justify-content: space-between;
+    // align-items: center;
+
+    .left-side {
       display: inline-block;
-      padding: 1rem 1rem;
+      // padding: 1rem 1rem;
       vertical-align: middle;
+      text-align: left;
+      // font-size: var(--font-size-xs);
 
       .name {
-        margin-top: 10px;
-        text-align: left;
+        // margin-top: 10px;
+        font-size: var(--font-size-md);
       }
 
       .email {
+        margin-top: 5px;
         font-style: italic;
         color: grey;
+        font-size: var(--font-size-xs);
       }
 
       .pronouns {
-        text-align: left;
+        font-size: var(--font-size-xs);
+        margin-bottom: 10px;
       }
 
-      .imageContainer {
-        width: 105x;
-        height: 105px;
-        position: relative;
-        overflow: hidden;
+      .image-container {
         border-radius: 50%;
+        width: 90px;
+        height: 90px;
         border: 2px solid black;
 
         img {
@@ -46,27 +60,47 @@
     }
   }
 
-  .aboutMe {
-    margin-top: -25px;
-    padding: 1rem 1rem;
-    text-align: left;
-  }
+
+    .biography {
+      // margin-top: -25px;
+      // padding: 1rem 1rem;
+      padding-top: 10px;
+      text-align: left;
+      max-height: 60px;
+      width: 100%;
+      word-wrap: break-word;
+      // max-height: 200px; /* Adjust height as needed */
+      overflow-y: auto;
+    }
+  // }
 
   .lookingFor {
-    padding: 1rem 1rem;
+    // padding: 1rem 1rem;
+    padding-top:10px;
     text-align: left;
+    // line-height: 2em;
+    padding-bottom: 15px;
   }
 
-  .actions {
+  .actions-messagebox{
+    position: absolute;
     margin-left: auto;
+    right: 25px;
+    bottom: 20px;;
+    width: auto;
+    
+    .actions {
+      display: flex;
+      justify-content: flex-end;
 
-    .heart {
-      display: inline-block;
-      margin-right: 15px;
-    }
-    .archive {
-      display: inline-block;
-      margin-right: 15px;
+      .heart {
+        display: inline-block;
+      }
+
+      .archive {
+        display: inline-block;
+        margin-right: 15px;
+      }
     }
   }
 }

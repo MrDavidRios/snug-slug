@@ -6,9 +6,12 @@ import { ListingCard } from "../apartmentCard/ListingCard";
 
 interface ListingsViewProps {
   listings: Listing[];
+  onSelectListing: (listing:Listing) => void;
+  selectedListing: Listing | null;
+  showArchived: boolean;
 }
 
-export const ListingsView: React.FC<ListingsViewProps> = ({ listings }) => {
+export const ListingsView: React.FC<ListingsViewProps> = ({ listings, onSelectListing, selectedListing, showArchived }) => {
   const savedListingsFromStorage = localStorage.getItem("savedListings");
   const [savedListings, setSavedListings] = useState<Listing[]>(JSON.parse(savedListingsFromStorage || "[]"));
 
@@ -34,16 +37,20 @@ export const ListingsView: React.FC<ListingsViewProps> = ({ listings }) => {
 
   return (
     <>
-      {/* Create a 3-card wide grid */}
       <div className="listingGrid">
-        {listings.map((listing: Listing, index: number) => (
-          <ListingCard
-            listing={listing}
-            liked={_.some(savedListings, listing)}
-            likeUpdate={handleLikeUpdate}
-            locationIndex={index + 1}
-            key={index + 1}
-          />
+        {listings.map((listing, index) => (
+          <div 
+            onClick={() => onSelectListing(listing)} 
+            key={index}
+            className={selectedListing && selectedListing.id === listing.id ? 'selectedCard' : ''}
+          >
+            <ListingCard
+              listing={listing}
+              liked={_.some(savedListings, listing)}
+              likeUpdate={handleLikeUpdate}
+              locationIndex={index + 1}
+            />
+          </div>
         ))}
       </div>
     </>

@@ -5,8 +5,24 @@
   height: calc(100vh - var(--navbar-height) - 80px);
   box-sizing: border-box;
 
-  #inboxActionButtonWrapper {
-    display: flex;
-    justify-content: space-between;
+  .listings-container{
+    margin: 10px;
+
+    #inboxActionButtonWrapper {
+      padding: 30px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    #cardList{
+      padding: 30px;
+      max-height: calc(90vh - var(--navbar-height) - 140px);
+      overflow-y:auto;
+    }
+  }
+
+  .chatbox-container{
+    margin: 10px;
+    padding:20px;
   }
 }

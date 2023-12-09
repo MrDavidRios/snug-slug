@@ -28,7 +28,7 @@ export const ChatBoxSublessor: React.FC<ChatBoxSublessorProps> = ({ user }) => {
         <div id="details">
           <div>Age: {user.age}</div>
           <div>School: {user.school}</div>
-          <div>Class: {user.class}</div>
+          <div>Class: {user.classYear}</div>
         </div>
       </div>
     </div>

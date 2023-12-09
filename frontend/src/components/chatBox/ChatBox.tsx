@@ -8,49 +8,76 @@ import { HeartButton } from "../button/heart-button/HeartButton";
 import { ChatBoxSublessor } from "../chatBoxSublessor/ChatBoxSublessor";
 import { ChatBubble } from "../chatBubble/ChatBubble";
 import { ChatInput } from "../chatInput/ChatInput";
+import { ChatMessage } from "../../types/chatMessage";
+import { MessageHistory } from "../../types/messageHistory";
 
 interface ChatBoxProps {
   slugA: Slug; // Self
-  slugB: Slug; // Other user
+  selectedListing: Listing | null;
+  selectedUser: Slug | null;
   findingApartment: boolean;
   // if above true, then include sublessor details ChatBoxSublessor component
 }
 
-export const ChatBox: React.FC<ChatBoxProps> = ({ slugA, slugB, findingApartment }) => {
-  const listing = slugB.activeListing;
-  const [liked, setLiked] = useState(false);
+export const ChatBox: React.FC<ChatBoxProps> = ({ slugA, selectedUser, selectedListing, findingApartment }) => {
 
-  const likeUpdate = (listing: Listing, newLikedState: boolean) => {
-    setLiked(newLikedState);
-  };
+    // Like states
+    const [liked, setLiked] = useState(false);
 
-  // Find the message history between slugA and slugB
-  const messageHistory = slugA.chatHistory.find((history) => history.slugB.id === slugB.id);
-  const [messages, setMessages] = useState([...(messageHistory ? messageHistory.messages : [])]);
-
-  const sortedMessages = messages ? sortMessagesByTimestamp(messages) : [];
-
-  const handleSendMessage = (newMessage: string) => {
-    if (newMessage.trim() === "") return;
-
-    const newChatMessage = {
-      sender: slugA,
-      timeStamp: new Date(),
-      text: newMessage,
+    const likeUpdate = (listing: Listing, newLikedState: boolean) => {
+        setLiked(newLikedState);
     };
 
-    setMessages((prevMessages) => [...prevMessages, newChatMessage]);
+    // Find the message history
+    let messageHistory: MessageHistory | undefined | null;
+    if (findingApartment && selectedListing) {
+        messageHistory = slugA.chatHistory.find(history => history.slugB.id === selectedListing.owner.id);
+        console.log(messageHistory)
+    } else if (!findingApartment && selectedUser) {
+        messageHistory = slugA.chatHistory.find(history => history.slugB.id === selectedUser.id);
+        console.log(messageHistory)
+    } else {
+        messageHistory = null;
+    }
+    // const messageHistory = selectedUser ? slugA.chatHistory.find(history => history.slugB.id === selectedUser.id) : null;
+    const [messages, setMessages] = useState<ChatMessage[]>([]);
+    
+    useEffect(() => {
+        setMessages(messageHistory ? messageHistory.messages : []);
+    }, [messageHistory]);
 
-    // TODO: Backend integration
-    return;
-  };
+    const sortedMessages = messages ? sortMessagesByTimestamp(messages) : [];
+    const handleSendMessage = (newMessage: string) => {
+        if (newMessage.trim() === "") return;
 
-  // Logic for automatic bottom scrolling for new messages
-  const messagesEndRef = useRef(null);
-  
-  useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages]);
+        const newChatMessage = {
+        sender: slugA,
+        timeStamp: new Date(),
+        text: newMessage,
+        };
+
+        setMessages((prevMessages) => [...prevMessages, newChatMessage]);
+
+        // TODO: Backend integration
+        return;
+    };
+
+    // Logic for automatic bottom scrolling for new messages
+    const messagesEndRef = useRef<HTMLDivElement | null>(null);
+    
+    useEffect(() => {
+        messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    }, [messages]);
+
+    // Display text
+    const listing = selectedUser?.activeListing;
+    const displayText = findingApartment && selectedListing 
+                        ? selectedListing.location 
+                        : !findingApartment && selectedUser 
+                        ? selectedUser.name 
+                        : 'Select a User or Listing';
+
+    const listingOwner = selectedListing?.owner;
 
   return (
     <div id="chatBoxContainer">
@@ -60,11 +87,13 @@ export const ChatBox: React.FC<ChatBoxProps> = ({ slugA, slugB, findingApartment
             <HeartButton
               liked={liked}
               onClick={() => {
-                likeUpdate(listing, !liked);
+                if (listing){
+                    likeUpdate(listing, !liked);
+                }
               }}
             />
           </div>
-          <div id="listingLocation">{listing.location}</div>
+          <div id="listingLocation">{displayText}</div>
         </div>
         <div className="action-button-wrapper">
           <ArchiveIconButton />
@@ -73,9 +102,10 @@ export const ChatBox: React.FC<ChatBoxProps> = ({ slugA, slugB, findingApartment
       </div>
 
       <div id="mainChatBox">
-        <div id="sublessorInfo">{findingApartment && <ChatBoxSublessor user={slugB} />}</div>
+        {selectedListing &&
+        <div id="sublessorInfo">{findingApartment && <ChatBoxSublessor user={listingOwner} />}</div>}
 
-        <div id="messages">
+        <div id="messages" className={findingApartment ? "messages-sublessor":"messages-without-sublessor"}>
           {/* Mapping of chats here */}
 
           {sortedMessages.map((chatMessage, index) => (
@@ -85,12 +115,12 @@ export const ChatBox: React.FC<ChatBoxProps> = ({ slugA, slugB, findingApartment
           <div ref={messagesEndRef} />
         </div>
 
+        {(selectedUser || selectedListing) &&
         <div id="input">
           <ChatInput onSend={handleSendMessage} />
         </div>
+    }
       </div>
-
-      <div></div>
     </div>
   );
 };
