@@ -19,6 +19,7 @@ export const ListingCard: React.FC<ListingCardProps> = ({ locationIndex, listing
     rent,
     apartmentImgUrls: [apartmentImg],
   } = listing;
+
   return (
     <Card className="listing-card" onClick={onClick}>
       <div className="image-container">

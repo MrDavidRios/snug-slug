@@ -8,10 +8,9 @@ interface ListingsViewProps {
   listings: Listing[];
   onSelectListing: (listing:Listing) => void;
   selectedListing: Listing | null;
-  showArchived: boolean;
 }
 
-export const ListingsView: React.FC<ListingsViewProps> = ({ listings, onSelectListing, selectedListing, showArchived }) => {
+export const ListingsView: React.FC<ListingsViewProps> = ({ listings, onSelectListing, selectedListing}) => {
   const savedListingsFromStorage = localStorage.getItem("savedListings");
   const [savedListings, setSavedListings] = useState<Listing[]>(JSON.parse(savedListingsFromStorage || "[]"));
 

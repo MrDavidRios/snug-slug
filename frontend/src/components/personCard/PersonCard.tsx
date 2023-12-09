@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Card } from "../card/Card";
 
 import { Slug } from "../../types/slug";
-import { PersonCardMessageBox } from "../PersonCardMessageBox/PersonCardMessageBox";
+import { PersonCardMessageBox } from "../personCardMessageBox/PersonCardMessageBox";
 
 
 interface PersonCardProps {

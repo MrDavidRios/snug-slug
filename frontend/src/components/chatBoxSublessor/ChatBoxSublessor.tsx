@@ -1,10 +1,14 @@
 import { Slug } from "../../types/slug";
 
 interface ChatBoxSublessorProps {
-  user: Slug;
+  user?: Slug;
 }
 
 export const ChatBoxSublessor: React.FC<ChatBoxSublessorProps> = ({ user }) => {
+
+  if (!user){
+    return <></>
+  }
   // If there is no URL to the profile picture, display a gray circle
   const profileImage = user.profilePicUrl ? (
     <img src={user.profilePicUrl} alt={`${user.name}'s profile picture`} />

@@ -9,18 +9,29 @@ import { ChatBoxSublessor } from "../chatBoxSublessor/ChatBoxSublessor";
 import { ChatBubble } from "../chatBubble/ChatBubble";
 import { ChatInput } from "../chatInput/ChatInput";
 import { ChatMessage } from "../../types/chatMessage";
-import { MessageHistory } from "../../types/messageHistory";
+import { Button } from "../button/Button";
+import { PopUpWindow } from "../popUpWindow/PopUpWindow";
 
 interface ChatBoxProps {
   slugA: Slug; // Self
   selectedListing: Listing | null;
   selectedUser: Slug | null;
   findingApartment: boolean;
+  onArchiveChat: (listingId?:number, userId?:number) => void; 
+  onUnarchiveChat: (listingId?:number, userId?:number) => void; 
   // if above true, then include sublessor details ChatBoxSublessor component
+  inArchiveView: boolean;
+  confirmAction: (userId?:number) => void; // used when confirming sublease
 }
 
-export const ChatBox: React.FC<ChatBoxProps> = ({ slugA, selectedUser, selectedListing, findingApartment }) => {
+export const ChatBox: React.FC<ChatBoxProps> = ({ slugA, selectedUser, selectedListing, findingApartment, onArchiveChat, onUnarchiveChat, inArchiveView, confirmAction}) => {
 
+    const confirmationMessage = (
+        <>
+          <p>Note that by clicking confirm your listing will be no longer be active.</p>
+          <p>To reactivate, go to your profile.</p>
+        </>
+      );
     // Like states
     const [liked, setLiked] = useState(false);
 
@@ -28,17 +39,34 @@ export const ChatBox: React.FC<ChatBoxProps> = ({ slugA, selectedUser, selectedL
         setLiked(newLikedState);
     };
 
-    // Find the message history
-    let messageHistory: MessageHistory | undefined | null;
-    if (findingApartment && selectedListing) {
-        messageHistory = slugA.chatHistory.find(history => history.slugB.id === selectedListing.owner.id);
-        console.log(messageHistory)
-    } else if (!findingApartment && selectedUser) {
-        messageHistory = slugA.chatHistory.find(history => history.slugB.id === selectedUser.id);
-        console.log(messageHistory)
-    } else {
-        messageHistory = null;
-    }
+
+    const [showPopup, setShowPopup] = useState(false);
+
+    const handleConfirmClick = () => {
+        setShowPopup(true);
+    };
+
+    const handleSubleaseConfirmation = () => {
+        confirmAction(selectedUser?.id);
+        setShowPopup(false);
+    };
+
+    const findChatHistory = () => {
+        // Logic to find the correct chat history
+        if (findingApartment && selectedListing) {
+            return slugA.chatHistory.find(history =>
+                (history.slugA.id === selectedListing.owner.id || history.slugB.id === selectedListing.owner.id) &&
+                history.associatedListing?.id === selectedListing.id
+            );
+        } else if (!findingApartment && selectedUser) {
+            return slugA.chatHistory.find(history =>
+                history.slugA.id === selectedUser.id || history.slugB.id === selectedUser.id
+            );
+        }
+        return null;
+    };
+
+    let messageHistory = findChatHistory();
     // const messageHistory = selectedUser ? slugA.chatHistory.find(history => history.slugB.id === selectedUser.id) : null;
     const [messages, setMessages] = useState<ChatMessage[]>([]);
     
@@ -79,8 +107,25 @@ export const ChatBox: React.FC<ChatBoxProps> = ({ slugA, selectedUser, selectedL
 
     const listingOwner = selectedListing?.owner;
 
+    // Handling archive button click
+    const handleArchiveClick = () => {
+        onArchiveChat();
+    }
+
+    const handleUnarchiveClick = () => {
+        onUnarchiveChat();
+    }
+
   return (
     <div id="chatBoxContainer">
+
+{showPopup && 
+        <div id="popup">
+            <PopUpWindow
+                message={ confirmationMessage } 
+                onConfirm={handleSubleaseConfirmation}
+                onClose={()=>setShowPopup(false)}/></div>}
+
       <div id="chatBoxTabBar">
         <div id="leftSideTabBar">
           <div id="heartButton">
@@ -96,8 +141,9 @@ export const ChatBox: React.FC<ChatBoxProps> = ({ slugA, selectedUser, selectedL
           <div id="listingLocation">{displayText}</div>
         </div>
         <div className="action-button-wrapper">
-          <ArchiveIconButton />
-          {!findingApartment && <ConfirmButton />}
+            
+          {inArchiveView ? (<Button onClick = {handleUnarchiveClick} text={"Unarchive"} className="unarchive"/>) : (<ArchiveIconButton onClick={handleArchiveClick}/>)}
+          {selectedUser &&!findingApartment && <ConfirmButton  onClick={handleConfirmClick}/>}
         </div>
       </div>
 

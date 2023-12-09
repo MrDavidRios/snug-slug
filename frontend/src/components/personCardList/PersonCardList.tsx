@@ -1,48 +1,46 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { PersonCard } from "../personCard/PersonCard";
 import { Slug } from "../../types/slug";
-
-import getRecentMessagesForAllChatUsers from "../../utils/getMostRecentMessageForAllChatUsers";
-
 interface PersonCardListProps {
-  currentUser: Slug;
+//   currentUser: Slug;
+  userMessagePairs: UserMessagePair[];
   onSelectUser: (user:Slug) => void;
   selectedUser: Slug | null;
-  showArchived: boolean;
+//   showArchived: boolean;
 }
 
 // user-message pairs
-interface UserMessagePair {
+interface UserMessagePair { 
     otherUser: Slug;
     mostRecentMessage: string;
   }
   
 
-export const PersonCardList: React.FC<PersonCardListProps> = ({ currentUser, onSelectUser, selectedUser, showArchived}) => {
+export const PersonCardList: React.FC<PersonCardListProps> = ({ /*currentUser,*/ userMessagePairs, onSelectUser, selectedUser}) => {
 
 // TODO: Implement backend logic
 
-    const [userMessagePairs, setUserMessagePairs] = useState<UserMessagePair[]>([]);
+    // const [userMessagePairs, setUserMessagePairs] = useState<UserMessagePair[]>([]);
 
     // useEffect(()=>{
     //     const recentMessages = getRecentMessagesForAllChatUsers(currentUser);
     //     setUserMessagePairs(recentMessages);
     // }, [currentUser]); // Runs when user prop changes
 
-    useEffect(() => {
-        // Filter the chat history based on the isArchived flag
-        const filteredChatHistory = currentUser.chatHistory.filter(history => history.isArchived === showArchived);
+    // useEffect(() => {
+    //     // Filter the chat history based on the isArchived flag
+    //     const filteredChatHistory = currentUser.chatHistory.filter(history => history.isArchived === showArchived);
     
-        // Extract userMessagePairs from the filtered chat history
-        const recentMessages = filteredChatHistory.map(history => {
-            const otherUser = history.slugA.id === currentUser.id ? history.slugB : history.slugA;
-            const mostRecentMessage = history.messages.length > 0 ? history.messages[history.messages.length - 1].text : "No messages yet";
+    //     // Extract userMessagePairs from the filtered chat history
+    //     const recentMessages = filteredChatHistory.map(history => {
+    //         const otherUser = history.slugA.id === currentUser.id ? history.slugB : history.slugA;
+    //         const mostRecentMessage = history.messages.length > 0 ? history.messages[history.messages.length - 1].text : "No messages yet";
     
-            return { otherUser, mostRecentMessage };
-        });
+    //         return { otherUser, mostRecentMessage };
+    //     });
     
-        setUserMessagePairs(recentMessages);
-    }, [currentUser, showArchived]); // Also depend on showArchived
+    //     setUserMessagePairs(recentMessages);
+    // }, [currentUser, showArchived]); // Also depend on showArchived
 
     return (
         <>

@@ -23,7 +23,7 @@ export type Slug = {
   activeListing: Listing | null;
   archivedListings: Listing[]; // listings of current user that have been archived
   savedListings: Listing[]; // listings marked with hearts
-  chatListings: Listing[]; // listings with chathistories
+  chatListings: Listing[]; // listings with chathistories; other sublessors current user has contacted
 
   archivedUsers: Slug[];
   savedUsers: Slug[];
