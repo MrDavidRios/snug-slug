@@ -6,11 +6,17 @@ import { ListingCard } from "../apartmentCard/ListingCard";
 
 interface ListingsViewProps {
   listings: Listing[];
-  onSelectListing: (listing:Listing) => void;
+  onSelectListing: (listing: Listing) => void;
   selectedListing: Listing | null;
+  emptyMessage?: string;
 }
 
-export const ListingsView: React.FC<ListingsViewProps> = ({ listings, onSelectListing, selectedListing}) => {
+export const ListingsView: React.FC<ListingsViewProps> = ({
+  listings,
+  onSelectListing,
+  selectedListing,
+  emptyMessage = "",
+}) => {
   const savedListingsFromStorage = localStorage.getItem("savedListings");
   const [savedListings, setSavedListings] = useState<Listing[]>(JSON.parse(savedListingsFromStorage || "[]"));
 
@@ -37,11 +43,12 @@ export const ListingsView: React.FC<ListingsViewProps> = ({ listings, onSelectLi
   return (
     <>
       <div className="listingGrid">
+        {listings.length === 0 && <p>{emptyMessage}</p>}
         {listings.map((listing, index) => (
-          <div 
-            onClick={() => onSelectListing(listing)} 
+          <div
+            onClick={() => onSelectListing(listing)}
             key={index}
-            className={selectedListing && selectedListing.id === listing.id ? 'selectedCard' : ''}
+            className={selectedListing && selectedListing.id === listing.id ? "selectedCard" : ""}
           >
             <ListingCard
               listing={listing}

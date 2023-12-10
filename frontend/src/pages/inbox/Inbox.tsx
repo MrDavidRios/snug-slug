@@ -137,6 +137,7 @@ export const Inbox: React.FC<InboxProps> = ({ currentUser }) => {
               listings={showArchived ? getArchivedListings() : getActiveListings()}
               onSelectListing={(listing) => setSelectedListing(listing)}
               selectedListing={selectedListing}
+              emptyMessage={`No listings ${showArchived ? "archived" : "found"}.`}
             />
           ) : (
             <PersonCardList
@@ -147,6 +148,7 @@ export const Inbox: React.FC<InboxProps> = ({ currentUser }) => {
               onUnarchive={() => archiveChat(selectedListing?.id || null, selectedUser?.id || null, false)}
               displayArchiveButton={true}
               archived={showArchived}
+              emptyMessage="Nobody here."
             />
           )}
         </div>

@@ -11,6 +11,7 @@ interface PersonCardListProps {
   archived?: boolean;
   onArchive: (user: Slug) => void;
   onUnarchive: (user: Slug) => void;
+  emptyMessage?: string;
 }
 
 // user-message pairs
@@ -27,6 +28,7 @@ export const PersonCardList: React.FC<PersonCardListProps> = ({
   archived = false,
   onArchive,
   onUnarchive,
+  emptyMessage = "",
 }) => {
   // TODO: Implement backend logic
 
@@ -55,6 +57,7 @@ export const PersonCardList: React.FC<PersonCardListProps> = ({
   return (
     <>
       <div className="listingGrid">
+        {userMessagePairs.length === 0 && <p>{emptyMessage}</p>}
         {userMessagePairs.map(({ otherUser, mostRecentMessage }, index) => (
           <div
             onClick={() => onSelectUser(otherUser)}
