@@ -6,6 +6,11 @@
   display: flex;
   flex-direction: column;
 
+  &.selected {
+    outline: 3px solid var(--accent-color);
+    border-radius: 20px;
+  }
+
   &:focus {
     outline: 3px solid var(--accent-color);
   }

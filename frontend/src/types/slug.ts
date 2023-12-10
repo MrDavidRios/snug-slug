@@ -1,5 +1,5 @@
+import { ChatMessage } from "./chatMessage";
 import { Listing } from "./listing";
-import { MessageHistory } from "./messageHistory";
 
 /**
  * User type for SnugSlug platform
@@ -16,17 +16,31 @@ export type Slug = {
   profilePicUrl: string;
   bio: string;
 
-  budget: string;  
-  dates: string;  
+  budget: string;
+  dates: string;
 
-  // Associated type object lists
-  activeListing: Listing | null;
-  archivedListings: Listing[]; // listings of current user that have been archived
-  savedListings: Listing[]; // listings marked with hearts
-  chatListings: Listing[]; // listings with chathistories; other sublessors current user has contacted
+  /**
+   * Listing that the user currently has posted
+   */
+  activeListing?: Listing;
 
-  archivedUsers: Slug[];
-  savedUsers: Slug[];
+  /**
+   * Listings that the user has saved
+   */
+  savedListings: Listing[];
 
-  chatHistory: MessageHistory[];
+  /**
+   * Users that the user has archived
+   */
+  archivedUserIDs: number[];
+
+  /**
+   * Listings that the user has archived
+   */
+  archivedListingIDs: number[];
+
+  /**
+   * A user's chat history - used to construct inbox view
+   */
+  chatHistory: ChatMessage[];
 };

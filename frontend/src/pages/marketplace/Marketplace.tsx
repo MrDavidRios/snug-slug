@@ -4,7 +4,7 @@ import { Button } from "../../components/button/Button";
 import { DatePickerDropdown } from "../../components/datePickerDropdown/DatePickerDropdown";
 import { Dropdown } from "../../components/dropdown/Dropdown";
 import { Input } from "../../components/input/Input";
-import { ListingsView } from "../../components/listingsView/listingsView";
+import { ListingsView } from "../../components/listingsView/ListingsView";
 import { MapView } from "../../components/mapView/MapView";
 import { Listing } from "../../types/listing";
 import { getYMDString } from "../../utils/datefunctions";

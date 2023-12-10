@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { ListingsView } from "../../components/listingsView/listingsView";
+import { ListingsView } from "../../components/listingsView/ListingsView";
 import { MapView } from "../../components/mapView/MapView";
 import { Listing } from "../../types/listing";
 import { savedListingsListener } from "../../utils/savedlistingslistener";

@@ -1,16 +1,23 @@
 import marker from "../../assets/Marker.svg";
 import { Listing } from "../../types/listing";
 import { HeartButton } from "../button/heart-button/HeartButton";
-import { Card } from "../card/Card";
+import { Card, CardProps } from "../card/Card";
 
-interface ListingCardProps extends React.HTMLAttributes<HTMLDivElement> {
+interface ListingCardProps extends CardProps {
   locationIndex: number;
   listing: Listing;
   liked?: boolean;
   likeUpdate?: (listing: Listing, liked: boolean) => void;
 }
 
-export const ListingCard: React.FC<ListingCardProps> = ({ locationIndex, listing, liked, likeUpdate, onClick }) => {
+export const ListingCard: React.FC<ListingCardProps> = ({
+  locationIndex,
+  listing,
+  liked,
+  likeUpdate,
+  className,
+  onClick,
+}) => {
   const {
     location,
     overview,
@@ -21,7 +28,7 @@ export const ListingCard: React.FC<ListingCardProps> = ({ locationIndex, listing
   } = listing;
 
   return (
-    <Card className="listing-card" onClick={onClick}>
+    <Card className={`listing-card ${className}`} onClick={onClick}>
       <div className="image-container">
         <div className="marker">
           <div className="location-number"> {locationIndex} </div>

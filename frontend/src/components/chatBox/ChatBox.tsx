@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import { ChatMessage } from "../../types/chatMessage";
-import { Listing } from "../../types/listing";
 import { Slug } from "../../types/slug";
 import { sortMessagesByTimestamp } from "../../utils/sortMessages";
+import { getChatHistory } from "../../utils/userDataHelper";
 import { Button } from "../button/Button";
 import { ArchiveIconButton } from "../button/archive-button/ArchiveIconButton";
 import { ConfirmButton } from "../button/confirm-button/ConfirmButton";
@@ -13,24 +13,25 @@ import { ChatInput } from "../chatInput/ChatInput";
 import { PopUpWindow } from "../popUpWindow/PopUpWindow";
 
 interface ChatBoxProps {
-  slugA: Slug; // Self
-  selectedListing: Listing | null;
-  selectedUser: Slug | null;
+  currentUser: Slug; // Self
+  selectedUser?: Slug;
   findingApartment: boolean;
-  onArchiveChat: (listingId?: number, userId?: number) => void;
-  onUnarchiveChat: (listingId?: number, userId?: number) => void;
-  // if above true, then include sublessor details ChatBoxSublessor component
+  onArchive: (id: number, archivingListing: boolean) => void;
+  onUnarchive: (id: number, unarchivingListing: boolean) => void;
   inArchiveView: boolean;
-  confirmAction: (userId?: number) => void; // used when confirming sublease
+
+  /**
+   * Actions carried out when confirming sublease
+   */
+  confirmAction: (userId?: number) => void;
 }
 
 export const ChatBox: React.FC<ChatBoxProps> = ({
-  slugA,
+  currentUser,
   selectedUser,
-  selectedListing,
   findingApartment,
-  onArchiveChat,
-  onUnarchiveChat,
+  onArchive,
+  onUnarchive,
   inArchiveView,
   confirmAction,
 }) => {
@@ -40,56 +41,25 @@ export const ChatBox: React.FC<ChatBoxProps> = ({
       <p>To reactivate, go to your profile.</p>
     </>
   );
-  // Like states
-  const [liked, setLiked] = useState(false);
-
-  const likeUpdate = (listing: Listing, newLikedState: boolean) => {
-    setLiked(newLikedState);
-  };
 
   const [showPopup, setShowPopup] = useState(false);
-
-  const handleConfirmClick = () => {
-    setShowPopup(true);
-  };
-
-  const handleSubleaseConfirmation = () => {
-    confirmAction(selectedUser?.id);
-    setShowPopup(false);
-  };
-
-  const findChatHistory = () => {
-    // Logic to find the correct chat history
-    if (!findingApartment && selectedUser) {
-      return slugA.chatHistory.find(
-        (history) => history.slugA.id === selectedUser.id || history.slugB.id === selectedUser.id
-      );
-    }
-
-    if (findingApartment && selectedListing) {
-      return slugA.chatHistory.find(
-        (history) =>
-          (history.slugA.id === selectedListing.owner.id || history.slugB.id === selectedListing.owner.id) &&
-          history.associatedListing?.id === selectedListing.id
-      );
-    }
-  };
-
-  const messageHistory = findChatHistory();
-  // const messageHistory = selectedUser ? slugA.chatHistory.find(history => history.slugB.id === selectedUser.id) : null;
   const [messages, setMessages] = useState<ChatMessage[]>([]);
 
   useEffect(() => {
-    setMessages(messageHistory ? messageHistory.messages : []);
-  }, [messageHistory]);
+    const messageHistory = selectedUser ? getChatHistory(currentUser.id, selectedUser?.id) : [];
+    setMessages(messageHistory);
+  }, [currentUser, selectedUser]);
 
   const sortedMessages = messages ? sortMessagesByTimestamp(messages) : [];
   const handleSendMessage = (newMessage: string) => {
+    if (!selectedUser) return;
+
     if (newMessage.trim() === "") return;
 
-    const newChatMessage = {
-      sender: slugA,
-      timeStamp: new Date(),
+    const newChatMessage: ChatMessage = {
+      sender: currentUser,
+      receiver: selectedUser,
+      timestamp: new Date(),
       text: newMessage,
     };
 
@@ -97,6 +67,11 @@ export const ChatBox: React.FC<ChatBoxProps> = ({
 
     // TODO: Backend integration
     return;
+  };
+
+  const handleSubleaseConfirmation = () => {
+    confirmAction(selectedUser?.id);
+    setShowPopup(false);
   };
 
   // Logic for automatic bottom scrolling for new messages
@@ -108,23 +83,9 @@ export const ChatBox: React.FC<ChatBoxProps> = ({
 
   // Display text
   const listing = selectedUser?.activeListing;
-  const displayText =
-    findingApartment && selectedListing
-      ? selectedListing.location
-      : !findingApartment && selectedUser
-      ? selectedUser.name
-      : "Select a User or Listing";
 
-  const listingOwner = selectedListing?.owner;
-
-  // Handling archive button click
-  const handleArchiveClick = () => {
-    onArchiveChat();
-  };
-
-  const handleUnarchiveClick = () => {
-    onUnarchiveChat();
-  };
+  let subject = findingApartment && listing ? listing.location : "Select a User or Listing";
+  if (!findingApartment) subject = selectedUser?.name || "Select a User or Listing";
 
   return (
     <div id="chatBoxContainer">
@@ -141,45 +102,42 @@ export const ChatBox: React.FC<ChatBoxProps> = ({
       <div id="chatBoxTabBar">
         <div id="leftSideTabBar">
           <div id="heartButton">
-            <HeartButton
-              liked={liked}
-              onClick={() => {
-                if (listing) {
-                  likeUpdate(listing, !liked);
-                }
-              }}
-            />
+            <HeartButton liked={false} />
           </div>
-          <div id="listingLocation">{displayText}</div>
+          <div id="listingLocation">{subject}</div>
         </div>
-        {(selectedListing || selectedUser) && (
+        {selectedUser && (
           <div className="action-button-wrapper">
             {inArchiveView ? (
-              <Button onClick={handleUnarchiveClick} text="Unarchive" className="unarchive" />
+              <Button
+                onClick={() => onUnarchive(selectedUser.id, findingApartment)}
+                text="Unarchive"
+                className="unarchive"
+              />
             ) : (
-              <ArchiveIconButton onClick={handleArchiveClick} />
+              <ArchiveIconButton onClick={() => onArchive(selectedUser.id, findingApartment)} />
             )}
-            {selectedUser && !findingApartment && <ConfirmButton onClick={handleConfirmClick} />}
+            {selectedUser && !findingApartment && <ConfirmButton onClick={() => setShowPopup(true)} />}
           </div>
         )}
       </div>
 
       <div id="mainChatBox">
-        {selectedListing && (
-          <div id="sublessorInfo">{findingApartment && <ChatBoxSublessor user={listingOwner} />}</div>
+        {findingApartment && (
+          <div id="sublessorInfo">{findingApartment && <ChatBoxSublessor user={selectedUser} />}</div>
         )}
 
         <div id="messages" className={findingApartment ? "messages-sublessor" : "messages-without-sublessor"}>
           {/* Mapping of chats here */}
 
           {sortedMessages.map((chatMessage, index) => (
-            <ChatBubble key={index} message={chatMessage.text} isSender={chatMessage.sender.id === slugA.id} />
+            <ChatBubble key={index} message={chatMessage.text} isSender={chatMessage.sender.id === currentUser.id} />
           ))}
           {/* Invisible div for scrolling */}
           <div ref={messagesEndRef} />
         </div>
 
-        {(selectedUser || selectedListing) && (
+        {selectedUser && (
           <div id="input">
             <ChatInput onSend={handleSendMessage} />
           </div>

@@ -7,7 +7,7 @@ import { ListingCard } from "../apartmentCard/ListingCard";
 interface ListingsViewProps {
   listings: Listing[];
   onSelectListing: (listing: Listing) => void;
-  selectedListing: Listing | null;
+  selectedListing?: Listing;
   emptyMessage?: string;
 }
 
@@ -41,24 +41,21 @@ export const ListingsView: React.FC<ListingsViewProps> = ({
   };
 
   return (
-    <>
-      <div className="listingGrid">
-        {listings.length === 0 && <p>{emptyMessage}</p>}
-        {listings.map((listing, index) => (
-          <div
-            onClick={() => onSelectListing(listing)}
+    <div className="listingGrid">
+      {listings.length === 0 && <p>{emptyMessage}</p>}
+      {listings.map((listing, index) => {
+        return (
+          <ListingCard
+            listing={listing}
+            liked={_.some(savedListings, listing)}
+            likeUpdate={handleLikeUpdate}
             key={index}
-            className={selectedListing && selectedListing.id === listing.id ? "selectedCard" : ""}
-          >
-            <ListingCard
-              listing={listing}
-              liked={_.some(savedListings, listing)}
-              likeUpdate={handleLikeUpdate}
-              locationIndex={index + 1}
-            />
-          </div>
-        ))}
-      </div>
-    </>
+            locationIndex={index + 1}
+            onClick={() => onSelectListing(listing)}
+            className={selectedListing && selectedListing.id === listing.id ? "selected" : ""}
+          />
+        );
+      })}
+    </div>
   );
 };

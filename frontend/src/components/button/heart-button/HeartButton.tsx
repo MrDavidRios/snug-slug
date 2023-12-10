@@ -1,6 +1,6 @@
 interface HeartButtonProps {
   liked: boolean;
-  onClick: () => void;
+  onClick?: () => void;
 }
 
 export const HeartButton: React.FC<HeartButtonProps> = ({ liked, onClick }) => {

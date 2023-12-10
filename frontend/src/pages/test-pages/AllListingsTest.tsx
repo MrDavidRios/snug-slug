@@ -1,4 +1,4 @@
-import { ListingsView } from "../../components/listingsView/listingsView";
+import { ListingsView } from "../../components/listingsView/ListingsView";
 import { Listing } from "../../types/listing";
 
 export function AllListingsTest() {

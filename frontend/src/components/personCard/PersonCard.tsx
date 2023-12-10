@@ -1,30 +1,33 @@
 import { Slug } from "../../types/slug";
+import { getLastMessage } from "../../utils/chatHelper";
+import { PersonCardMessageBox } from "../PersonCardMessageBox/PersonCardMessageBox";
 import { Button } from "../button/Button";
 import { ArchiveIconButton } from "../button/archive-button/ArchiveIconButton";
-import { Card } from "../card/Card";
-import { PersonCardMessageBox } from "../personCardMessageBox/PersonCardMessageBox";
+import { Card, CardProps } from "../card/Card";
 
-interface PersonCardProps {
-  user: Slug;
-  mostRecentChatMessage: string; // to be used only in inbox
-  displayArchiveButton?: boolean;
+interface PersonCardProps extends CardProps {
+  person: Slug;
+  currentUser: Slug;
   archived: boolean;
-  onArchive: (user: Slug) => void;
-  onUnarchive: (user: Slug) => void;
+  onArchive: (id: number, archivingListing: boolean) => void;
+  onUnarchive: (id: number, unarchivingListing: boolean) => void;
+  inInbox?: boolean;
 }
 
 export const PersonCard: React.FC<PersonCardProps> = ({
-  user,
-  mostRecentChatMessage,
-  displayArchiveButton,
+  person,
+  currentUser,
   archived,
   onArchive,
   onUnarchive,
+  inInbox = false,
+  className,
+  onClick,
 }) => {
-  const { name, email, age, school, classYear, pronouns, profilePicUrl, bio, budget, dates } = user;
+  const { id, name, email, age, school, classYear, pronouns, profilePicUrl, bio, budget, dates } = person;
 
   // If there is no URL to the profile picture, display a gray circle
-  const profileImage = user.profilePicUrl ? (
+  const profileImage = profilePicUrl ? (
     <img src={profilePicUrl} alt={`${name}'s profile picture`} />
   ) : (
     <div
@@ -38,7 +41,7 @@ export const PersonCard: React.FC<PersonCardProps> = ({
   );
 
   return (
-    <Card className="person-card">
+    <Card className={`person-card ${className}`} onClick={onClick}>
       <div className="info">
         <div className="top-of-card">
           <div className="left-side">
@@ -65,15 +68,15 @@ export const PersonCard: React.FC<PersonCardProps> = ({
 
       <div className="actions-messagebox">
         {/* Below only renders in Inbox page */}
-        {mostRecentChatMessage && <PersonCardMessageBox message={mostRecentChatMessage} />}
+        {inInbox && <PersonCardMessageBox message={getLastMessage(currentUser, person).lastMessage} />}
 
         <div className="actions">
-          {displayArchiveButton && (
+          {inInbox && (
             <>
               {archived ? (
-                <Button onClick={() => onUnarchive(user)} text="Unarchive" className="unarchive" />
+                <Button onClick={() => onUnarchive(id, false)} text="Unarchive" className="unarchive" />
               ) : (
-                <ArchiveIconButton style={{ width: 40, height: 40 }} onClick={() => onArchive(user)} />
+                <ArchiveIconButton style={{ width: 40, height: 40 }} onClick={() => onArchive(id, false)} />
               )}
             </>
           )}
