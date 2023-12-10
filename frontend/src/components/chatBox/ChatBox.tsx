@@ -45,20 +45,24 @@ export const ChatBox: React.FC<ChatBoxProps> = ({
   const [showPopup, setShowPopup] = useState(false);
   const [messages, setMessages] = useState<ChatMessage[]>([]);
 
+  // Update chat history if user, selected user, or search preference changes
   useEffect(() => {
-    const messageHistory = selectedUser ? getChatHistory(currentUser.id, selectedUser?.id) : [];
+    const messageHistory = selectedUser ? getChatHistory(currentUser.id, selectedUser?.id, findingApartment) : [];
     setMessages(messageHistory);
-  }, [currentUser, selectedUser]);
+  }, [currentUser, selectedUser, findingApartment]);
 
   const sortedMessages = messages ? sortMessagesByTimestamp(messages) : [];
   const handleSendMessage = (newMessage: string) => {
     if (!selectedUser) return;
+    if (findingApartment && !selectedUser.activeListing) return;
+    if (!findingApartment && !currentUser.activeListing) return;
 
     if (newMessage.trim() === "") return;
 
     const newChatMessage: ChatMessage = {
       sender: currentUser,
       receiver: selectedUser,
+      listingId: findingApartment ? selectedUser?.activeListing!.id : currentUser.activeListing!.id,
       timestamp: new Date(),
       text: newMessage,
     };

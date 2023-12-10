@@ -2,7 +2,6 @@ import { ChatMessage } from "../types/chatMessage";
 import { Listing } from "../types/listing";
 import { Slug } from "../types/slug";
 
-// Example Slug object
 export const exampleUserA: Slug = {
   id: 1,
   name: "A Smith",
@@ -86,84 +85,6 @@ export const exampleUserD: Slug = {
   savedListings: [],
   chatHistory: [],
 };
-
-export const sampleMessageHistory: ChatMessage[] = [
-  {
-    sender: exampleUserA,
-    receiver: exampleUserB,
-    timestamp: new Date("2023-10-01T09:00:00"),
-    text: "Hey, I saw your listing! Is it still available?",
-  },
-  {
-    sender: exampleUserB,
-    receiver: exampleUserA,
-    timestamp: new Date("2023-10-01T09:05:00"),
-    text: "Yes, it is! Would you like to know more?",
-  },
-  {
-    sender: exampleUserA,
-    receiver: exampleUserB,
-    timestamp: new Date("2023-10-01T09:10:00"),
-    text: "Definitely! Can we schedule a visit?",
-  },
-];
-
-export const sampleMessageHistory2: ChatMessage[] = [
-  {
-    sender: exampleUserC,
-    receiver: exampleUserA,
-    timestamp: new Date("2023-10-01T09:00:00"),
-    text: "Hi! How are you? I am interested in your listing",
-  },
-  {
-    sender: exampleUserA,
-    receiver: exampleUserC,
-    timestamp: new Date("2023-10-01T09:05:00"),
-    text: "Hi! Yes, it is available.",
-  },
-  {
-    sender: exampleUserC,
-    receiver: exampleUserA,
-    timestamp: new Date("2023-10-01T09:10:00"),
-    text: "Can I schedule a visit?",
-  },
-];
-
-export const sampleMessageHistory3: ChatMessage[] = [
-  {
-    sender: exampleUserD,
-    receiver: exampleUserA,
-    timestamp: new Date("2023-10-01T09:00:00"),
-    text: "Hi A! Can I stay at your place?",
-  },
-  {
-    sender: exampleUserA,
-    receiver: exampleUserD,
-    timestamp: new Date("2023-10-01T09:05:00"),
-    text: "Hi D! Yes, it is available.",
-  },
-  {
-    sender: exampleUserD,
-    receiver: exampleUserA,
-    timestamp: new Date("2023-10-01T09:10:00"),
-    text: "Can I schedule a visit?",
-  },
-];
-
-export const sampleMessageHistory4: ChatMessage[] = [
-  {
-    sender: exampleUserA,
-    receiver: exampleUserD,
-    timestamp: new Date("2023-10-01T09:00:00"),
-    text: "Hi D!",
-  },
-  {
-    sender: exampleUserD,
-    receiver: exampleUserA,
-    timestamp: new Date("2023-10-01T09:05:00"),
-    text: "Hi A!",
-  },
-];
 
 export const sampleListing: Listing = {
   id: 1,
@@ -264,6 +185,100 @@ export const sampleListing3: Listing = {
   ],
 };
 
+exampleUserA.activeListing = sampleListing2;
+exampleUserB.activeListing = sampleListing;
+exampleUserD.activeListing = sampleListing3;
+
+export const sampleMessageHistory: ChatMessage[] = [
+  {
+    sender: exampleUserA,
+    receiver: exampleUserB,
+    listingId: exampleUserB.activeListing!.id,
+    timestamp: new Date("2023-10-01T09:00:00"),
+    text: "Hey, I saw your listing! Is it still available?",
+  },
+  {
+    sender: exampleUserB,
+    receiver: exampleUserA,
+    listingId: exampleUserB.activeListing!.id,
+    timestamp: new Date("2023-10-01T09:05:00"),
+    text: "Yes, it is! Would you like to know more?",
+  },
+  {
+    sender: exampleUserA,
+    receiver: exampleUserB,
+    listingId: exampleUserB.activeListing!.id,
+    timestamp: new Date("2023-10-01T09:10:00"),
+    text: "Definitely! Can we schedule a visit?",
+  },
+];
+
+export const sampleMessageHistory2: ChatMessage[] = [
+  {
+    sender: exampleUserC,
+    receiver: exampleUserA,
+    listingId: exampleUserA.activeListing!.id,
+    timestamp: new Date("2023-10-01T09:00:00"),
+    text: "Hi! How are you? I am interested in your listing",
+  },
+  {
+    sender: exampleUserA,
+    receiver: exampleUserC,
+    listingId: exampleUserA.activeListing!.id,
+    timestamp: new Date("2023-10-01T09:05:00"),
+    text: "Hi! Yes, it is available.",
+  },
+  {
+    sender: exampleUserC,
+    receiver: exampleUserA,
+    listingId: exampleUserA.activeListing!.id,
+    timestamp: new Date("2023-10-01T09:10:00"),
+    text: "Can I schedule a visit?",
+  },
+];
+
+export const sampleMessageHistory3: ChatMessage[] = [
+  {
+    sender: exampleUserD,
+    receiver: exampleUserA,
+
+    listingId: exampleUserA.activeListing!.id,
+    timestamp: new Date("2023-10-01T09:00:00"),
+    text: "Hi A! Can I stay at your place?",
+  },
+  {
+    sender: exampleUserA,
+    receiver: exampleUserD,
+    listingId: exampleUserA.activeListing!.id,
+    timestamp: new Date("2023-10-01T09:05:00"),
+    text: "Hi D! Yes, it is available.",
+  },
+  {
+    sender: exampleUserD,
+    receiver: exampleUserA,
+    listingId: exampleUserA.activeListing!.id,
+    timestamp: new Date("2023-10-01T09:10:00"),
+    text: "Can I schedule a visit?",
+  },
+];
+
+export const sampleMessageHistory4: ChatMessage[] = [
+  {
+    sender: exampleUserA,
+    receiver: exampleUserD,
+    listingId: exampleUserD.activeListing!.id,
+    timestamp: new Date("2023-10-01T09:00:00"),
+    text: "Hi D!",
+  },
+  {
+    sender: exampleUserD,
+    receiver: exampleUserA,
+    listingId: exampleUserD.activeListing!.id,
+    timestamp: new Date("2023-10-01T09:05:00"),
+    text: "Hi A!",
+  },
+];
+
 // Dummy data -
 // A has a listing (sampleListing)
 // B has a listing （sampleListing)
@@ -286,7 +301,3 @@ exampleUserA.chatHistory = [...exampleUserA.chatHistory, ...sampleMessageHistory
 
 // A-D, A is interested in D, archived
 exampleUserA.chatHistory = [...exampleUserA.chatHistory, ...sampleMessageHistory4];
-
-exampleUserA.activeListing = sampleListing2;
-exampleUserB.activeListing = sampleListing;
-exampleUserD.activeListing = sampleListing3;

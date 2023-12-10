@@ -68,7 +68,7 @@ export const PersonCard: React.FC<PersonCardProps> = ({
 
       <div className="actions-messagebox">
         {/* Below only renders in Inbox page */}
-        {inInbox && <PersonCardMessageBox message={getLastMessage(currentUser, person).lastMessage} />}
+        {inInbox && <PersonCardMessageBox message={getLastMessage(currentUser, person, false).lastMessage} />}
 
         <div className="actions">
           {inInbox && (

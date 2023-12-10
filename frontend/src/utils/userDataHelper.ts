@@ -51,7 +51,11 @@ function getUserData(id: number): Slug | undefined {
 /**
  * Gets all of the messages exchanged between two users
  */
-export function getChatHistory(currentUserId: number, otherUserId: number): ChatMessage[] {
+export function getChatHistory(
+  currentUserId: number,
+  otherUserId: number,
+  currentUserFindingApartment: boolean
+): ChatMessage[] {
   // flask
   // temp: replace this with flask call
   const currentUser = getUserData(currentUserId);
@@ -66,9 +70,13 @@ export function getChatHistory(currentUserId: number, otherUserId: number): Chat
 
   // Returns all of the messages where the other user is involved (since current user is implicitly involved, given
   // that we're using their chat history)
-  return currentUser.chatHistory.filter(
-    (message) => message.sender.id === otherUserId || message.receiver.id === otherUserId
-  );
+  return currentUser.chatHistory.filter((message) => {
+    const otherUserPresent = message.sender.id === otherUserId || message.receiver.id === otherUserId;
+    if (!otherUserPresent) return false;
+
+    const relevantListing = currentUserFindingApartment ? otherUser.activeListing : currentUser.activeListing;
+    return message.listingId === relevantListing?.id;
+  });
 }
 
 export function updateUserData(user: Slug) {
@@ -108,13 +116,19 @@ export function getActiveListings(user: Slug) {
 export function getActivePeople(user: Slug): Slug[] {
   const activePeopleIDs: Set<number> = new Set();
 
+  if (!user.activeListing) return [];
+
   for (let i = 0; i < user.chatHistory.length; i++) {
     const message = user.chatHistory[i];
     const otherUser = message.receiver.id === user.id ? message.sender : message.receiver;
     const correspondingUserID = otherUser.id;
 
     // if the other user has an active listing and it's not archived, it's active
-    if (correspondingUserID && !user.archivedUserIDs.includes(correspondingUserID)) {
+    if (
+      correspondingUserID &&
+      message.listingId === user.activeListing!.id &&
+      !user.archivedUserIDs.includes(correspondingUserID)
+    ) {
       activePeopleIDs.add(correspondingUserID);
     }
   }
