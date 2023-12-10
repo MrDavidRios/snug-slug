@@ -5,4 +5,10 @@
 
   display: flex;
   flex-direction: column;
+
+  &:focus {
+    outline: 3px solid var(--accent-color);
+  }
+
+  padding: 0;
 }

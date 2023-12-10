@@ -37,7 +37,7 @@ export const PersonCardMessageBox: React.FC<PersonCardMessageBoxProps> = ({ mess
         <text
           x="50%"
           y="40%"
-          fontSize="12"
+          fontSize="14"
           fill="black"
           textAnchor="middle"
           dominantBaseline="middle"

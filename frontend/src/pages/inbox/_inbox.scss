@@ -1,11 +1,11 @@
 #inboxPageWrapper {
   display: grid;
   grid-template-columns: auto 800px;
-  width:100%;
-  height: calc(100vh - var(--navbar-height) - 80px);
+  width: 100%;
+  height: calc(100vh - var(--navbar-height));
   box-sizing: border-box;
 
-  .listings-container{
+  .listings-container {
     margin: 10px;
 
     #inboxActionButtonWrapper {
@@ -14,15 +14,15 @@
       justify-content: space-between;
     }
 
-    #cardList{
+    #cardList {
       padding: 30px;
       max-height: calc(90vh - var(--navbar-height) - 140px);
-      overflow-y:auto;
+      overflow-y: auto;
     }
   }
 
-  .chatbox-container{
+  .chatbox-container {
     margin: 10px;
-    padding:20px;
+    padding: 20px;
   }
 }

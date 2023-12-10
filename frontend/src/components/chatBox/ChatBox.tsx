@@ -155,7 +155,7 @@ export const ChatBox: React.FC<ChatBoxProps> = ({
         {(selectedListing || selectedUser) && (
           <div className="action-button-wrapper">
             {inArchiveView ? (
-              <Button onClick={handleUnarchiveClick} text={"Unarchive"} className="unarchive" />
+              <Button onClick={handleUnarchiveClick} text="Unarchive" className="unarchive" />
             ) : (
               <ArchiveIconButton onClick={handleArchiveClick} />
             )}

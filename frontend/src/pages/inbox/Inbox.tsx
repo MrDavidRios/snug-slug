@@ -143,22 +143,24 @@ export const Inbox: React.FC<InboxProps> = ({ currentUser }) => {
               userMessagePairs={getUserMessagePairs(showArchived)}
               onSelectUser={(user) => setSelectedUser(user)}
               selectedUser={selectedUser}
+              onArchive={() => archiveChat(selectedListing?.id || null, selectedUser?.id || null, true)}
+              onUnarchive={() => archiveChat(selectedListing?.id || null, selectedUser?.id || null, false)}
+              displayArchiveButton={true}
+              archived={showArchived}
             />
           )}
         </div>
       </div>
-      <div className="chatbox-container">
-        <ChatBox
-          slugA={currentUser}
-          selectedUser={selectedUser}
-          selectedListing={selectedListing}
-          findingApartment={lookingForApartment}
-          onArchiveChat={() => archiveChat(selectedListing?.id || null, selectedUser?.id || null, true)}
-          onUnarchiveChat={() => archiveChat(selectedListing?.id || null, selectedUser?.id || null, false)}
-          inArchiveView={showArchived}
-          confirmAction={confirmAction}
-        />
-      </div>
+      <ChatBox
+        slugA={currentUser}
+        selectedUser={selectedUser}
+        selectedListing={selectedListing}
+        findingApartment={lookingForApartment}
+        onArchiveChat={() => archiveChat(selectedListing?.id || null, selectedUser?.id || null, true)}
+        onUnarchiveChat={() => archiveChat(selectedListing?.id || null, selectedUser?.id || null, false)}
+        inArchiveView={showArchived}
+        confirmAction={confirmAction}
+      />
     </div>
   );
 };

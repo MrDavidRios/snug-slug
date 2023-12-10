@@ -1,12 +1,15 @@
 #chatBoxContainer {
-  // display: flex;
   position: relative;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   border-radius: 20px;
   overflow: hidden;
   overflow-y: auto;
-  height: 85vh;
-      
+  box-sizing: border-box;
+  margin: 30px;
+
+  display: grid;
+  grid-template-rows: 65px auto;
+
   #popup {
     position: absolute;
     height: 300px;
@@ -14,7 +17,7 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     border-radius: 10px;
     z-index: 10; // Make prop top most element
   }
@@ -49,46 +52,34 @@
       align-items: center;
       gap: 10px;
 
-      .button.unarchive{
-        // button{
-          box-shadow: none;
-          background-color: var(--surface-secondary);
-        // }
+      .button.unarchive {
+        box-shadow: none;
+        background-color: var(--surface-secondary);
       }
     }
   }
 
   #mainChatBox {
-    // display: flex;
-    margin-left: 70px;
-    margin-right: 70px;
+    padding: 40px 40px 20px 40px;
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: column;
+    // screen height - navbar height - chatbox tab bar height - chat box container margin
+    height: calc(100vh - var(--navbar-height) - 65px - 60px);
 
     #sublessorInfo {
-      margin-top: 30px;
-      margin-bottom: 15px;
+      height: 160px;
     }
 
     #messages {
-      padding-top: 50px;
-      padding-bottom: 50px;
+      flex-grow: 1;
       overflow-y: auto;
     }
 
-    .messages-sublessor {
-      height:25vh;
-    }
-
-    .messages-without-sublessor{
-      height:50vh;
-    }
-
     #input {
-      position: absolute;
-      bottom:0;
-      left: 70px;
-      right: 70px;
-      padding-bottom: 30px;
       box-sizing: border-box;
+      height: 60px;
     }
   }
 }
