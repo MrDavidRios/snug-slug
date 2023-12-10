@@ -10,6 +10,7 @@ import { ListingPage } from "./pages/listing/ListingPage";
 import { Login } from "./pages/login/Login";
 import { Marketplace } from "./pages/marketplace/Marketplace";
 import { SavedPlaces } from "./pages/saved-places/SavedPlaces";
+import { InboxTest } from "./pages/test-pages/InboxTest";
 import { Test } from "./pages/test-pages/Test";
 import "./styles/index.scss";
 
@@ -21,6 +22,7 @@ const router = createBrowserRouter([
       { path: "/", element: <App /> },
       { path: "login", element: <Login /> },
       { path: "test", element: <Test /> },
+      { path: "inbox-test", element: <InboxTest /> },
       { path: "marketplace", element: <Marketplace /> },
       { path: "saved-places", element: <SavedPlaces /> },
       { path: "inbox", element: <Inbox /> },
