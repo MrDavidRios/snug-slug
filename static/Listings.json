@@ -1,362 +1,810 @@
 [
-  {
-    "location": "76th Street, Upper West Side",
-    "overview": "1 Bedroom in a 3 Bedroom suite",
-    "details": ["In-unit washer", "Dog friendly"],
-    "tags": ["In-unit washer", "Dog friendly"],
-    "requirements": ["No smoking", "Interview required"],
-    "additionalInfo": ["Pets allowed"],
-    "startDate": "2024-05-15",
-    "endDate": "2024-08-31",
-    "rent": 1500,
-    "apartmentImgUrls": ["images/apartment.png"]
-  },
-  {
-    "location": "Park Avenue, Midtown",
-    "overview": "Studio Apartment",
-    "details": ["City view", "Elevator"],
-    "tags": ["City view", "Elevator"],
-    "requirements": ["Credit check", "No pets"],
-    "additionalInfo": ["Gym access"],
-    "startDate": "2024-06-01",
-    "endDate": "2024-12-31",
-    "rent": 2000,
-    "apartmentImgUrls": ["images/apartment.png"]
-  },
-  {
-    "location": "Brooklyn Heights, Brooklyn",
-    "overview": "2 Bedrooms in a 4 Bedroom apartment",
-    "details": ["Balcony", "Cat friendly"],
-    "tags": ["Balcony", "Cat friendly"],
-    "requirements": ["No smoking", "2 months deposit"],
-    "additionalInfo": ["Shared garden"],
-    "startDate": "2024-07-01",
-    "endDate": "2024-09-30",
-    "rent": 1800,
-    "apartmentImgUrls": ["images/apartment.png"]
-  },
-  {
-    "location": "Harlem, Manhattan",
-    "overview": "1 Bedroom in shared apartment",
-    "details": ["Newly renovated", "Near subway"],
-    "tags": ["Newly renovated", "Near subway"],
-    "requirements": ["Background check", "No smoking"],
-    "additionalInfo": ["Bike storage"],
-    "startDate": "2024-08-15",
-    "endDate": "2025-02-28",
-    "rent": 1600,
-    "apartmentImgUrls": ["images/apartment.png"]
-  },
-  {
-    "location": "Astoria, Queens",
-    "overview": "3 Bedroom Penthouse",
-    "details": ["Rooftop access", "Modern appliances"],
-    "tags": ["Rooftop access", "Modern appliances"],
-    "requirements": ["1 year lease", "No pets"],
-    "additionalInfo": ["Parking available"],
-    "startDate": "2024-09-01",
-    "endDate": "2025-08-31",
-    "rent": 2500,
-    "apartmentImgUrls": ["images/apartment.png"]
-  },
-  {
-    "location": "Greenwich Village, Manhattan",
-    "overview": "2 Bedroom Loft",
-    "details": ["High ceilings", "Open floor plan"],
-    "tags": ["High ceilings", "Spacious"],
-    "requirements": ["No smoking", "Proof of income"],
-    "additionalInfo": ["Near public transportation"],
-    "startDate": "2024-06-01",
-    "endDate": "2025-01-01",
-    "rent": 2200,
-    "apartmentImgUrls": ["images/apartment.png"]
-  },
-  {
-    "location": "Williamsburg, Brooklyn",
-    "overview": "1 Bedroom Studio",
-    "details": ["In-unit washer", "Pet friendly"],
-    "tags": ["In-unit washer", "Pet friendly"],
-    "requirements": ["Credit check", "No smoking"],
-    "additionalInfo": ["Bike storage"],
-    "startDate": "2024-07-15",
-    "endDate": "2024-12-15",
-    "rent": 1700,
-    "apartmentImgUrls": ["images/apartment.png"]
-  },
-  {
-    "location": "East Village, Manhattan",
-    "overview": "3 Bedroom apartment",
-    "details": ["Private backyard", "Hardwood floors"],
-    "tags": ["Private backyard", "Spacious"],
-    "requirements": ["Background check", "No pets"],
-    "additionalInfo": ["Close to parks"],
-    "startDate": "2024-08-01",
-    "endDate": "2025-02-28",
-    "rent": 2400,
-    "apartmentImgUrls": ["images/apartment.png"]
-  },
-  {
-    "location": "SoHo, Manhattan",
-    "overview": "Luxury 2 Bedroom",
-    "details": ["Modern design", "Elevator building"],
-    "tags": ["Modern", "Luxury"],
-    "requirements": ["2 months deposit", "Reference needed"],
-    "additionalInfo": ["Gym access", "Doorman"],
-    "startDate": "2024-10-01",
-    "endDate": "2025-03-31",
-    "rent": 3000,
-    "apartmentImgUrls": ["images/apartment.png"]
-  },
-  {
-    "location": "Chelsea, Manhattan",
-    "overview": "Studio Apartment",
-    "details": ["Fully furnished", "In-unit washer"],
-    "tags": ["Furnished", "In-unit washer"],
-    "requirements": ["No smoking", "Credit check"],
-    "additionalInfo": ["Utilities included"],
-    "startDate": "2024-11-15",
-    "endDate": "2025-05-31",
-    "rent": 2000,
-    "apartmentImgUrls": ["images/apartment.png"]
-  },
-  {
-    "location": "Williamsburg, Brooklyn",
-    "overview": "2 Bedrooms in a shared apartment",
-    "details": ["Near park", "High ceilings"],
-    "tags": ["Near park", "High ceilings"],
-    "requirements": ["No smoking", "1 month deposit"],
-    "additionalInfo": ["Utilities included"],
-    "startDate": "2024-06-01",
-    "endDate": "2024-12-01",
-    "rent": 1700,
-    "apartmentImgUrls": ["images/apartment.png"]
-  },
-  {
-    "location": "Greenwich Village, Manhattan",
-    "overview": "Studio Apartment",
-    "details": ["Hardwood floors", "Elevator"],
-    "tags": ["Hardwood floors", "Elevator"],
-    "requirements": ["Credit check", "No pets"],
-    "additionalInfo": ["Gym access", "Pool access"],
-    "startDate": "2024-05-20",
-    "endDate": "2025-05-19",
-    "rent": 2200,
-    "apartmentImgUrls": ["images/apartment.png"]
-  },
-  {
-    "location": "Astoria, Queens",
-    "overview": "1 Bedroom in a 2 Bedroom apartment",
-    "details": ["Balcony", "Modern appliances"],
-    "tags": ["Balcony", "Modern appliances"],
-    "requirements": ["No smoking", "Background check"],
-    "additionalInfo": ["Pets allowed"],
-    "startDate": "2024-07-15",
-    "endDate": "2024-10-15",
-    "rent": 1800,
-    "apartmentImgUrls": ["images/apartment.png"]
-  },
-  {
-    "location": "Upper East Side, Manhattan",
-    "overview": "Studio in a luxury building",
-    "details": ["Doorman", "Gym access"],
-    "tags": ["Doorman", "Gym access"],
-    "requirements": ["1 year lease", "Credit check"],
-    "additionalInfo": ["Laundry in building"],
-    "startDate": "2024-08-01",
-    "endDate": "2025-07-31",
-    "rent": 2400,
-    "apartmentImgUrls": ["images/apartment.png"]
-  },
-  {
-    "location": "SoHo, Manhattan",
-    "overview": "Loft apartment",
-    "details": ["High ceilings", "Exposed brick"],
-    "tags": ["High ceilings", "Exposed brick"],
-    "requirements": ["No pets", "Interview required"],
-    "additionalInfo": ["Near subway"],
-    "startDate": "2024-09-01",
-    "endDate": "2025-08-31",
-    "rent": 2600,
-    "apartmentImgUrls": ["images/apartment.png"]
-  },
-  {
-    "location": "Chelsea, Manhattan",
-    "overview": "1 Bedroom in a 4 Bedroom apartment",
-    "details": ["Roof access", "Pet-friendly"],
-    "tags": ["Roof access", "Pet-friendly"],
-    "requirements": ["Credit check", "No smoking"],
-    "additionalInfo": ["Bike storage"],
-    "startDate": "2024-10-01",
-    "endDate": "2025-09-30",
-    "rent": 2100,
-    "apartmentImgUrls": ["images/apartment.png"]
-  },
-  {
-    "location": "Bushwick, Brooklyn",
-    "overview": "Studio with open plan",
-    "details": ["Newly renovated", "Near subway"],
-    "tags": ["Newly renovated", "Near subway"],
-    "requirements": ["Background check", "No pets"],
-    "additionalInfo": ["High-speed internet"],
-    "startDate": "2024-11-01",
-    "endDate": "2025-10-31",
-    "rent": 1600,
-    "apartmentImgUrls": ["images/apartment.png"]
-  },
-  {
-    "location": "East Village, Manhattan",
-    "overview": "2 Bedrooms in a 3 Bedroom apartment",
-    "details": ["Balcony", "In-unit washer"],
-    "tags": ["Balcony", "In-unit washer"],
-    "requirements": ["No smoking", "2 months deposit"],
-    "additionalInfo": ["Near nightlife"],
-    "startDate": "2024-12-01",
-    "endDate": "2025-11-30",
-    "rent": 2300,
-    "apartmentImgUrls": ["images/apartment.png"]
-  },
-  {
-    "location": "Tribeca, Manhattan",
-    "overview": "Luxury Studio",
-    "details": ["City view", "Modern kitchen"],
-    "tags": ["City view", "Modern kitchen"],
-    "requirements": ["Credit check", "Reference required"],
-    "additionalInfo": ["Doorman"],
-    "startDate": "2025-01-01",
-    "endDate": "2025-12-31",
-    "rent": 2700,
-    "apartmentImgUrls": ["images/apartment.png"]
-  },
-  {
-    "location": "Battery Park, Manhattan",
-    "overview": "1 Bedroom in a luxury building",
-    "details": ["Waterfront view", "Gym access"],
-    "tags": ["Waterfront view", "Gym access"],
-    "requirements": ["1 year lease", "No pets"],
-    "additionalInfo": ["Close to park"],
-    "startDate": "2025-02-01",
-    "endDate": "2026-01-31",
-    "rent": 2900,
-    "apartmentImgUrls": ["images/apartment.png"]
-  },
-  {
-    "location": "Crown Heights, Brooklyn",
-    "overview": "3 Bedroom apartment",
-    "details": ["Newly renovated", "Private backyard"],
-    "tags": ["Newly renovated", "Private backyard"],
-    "requirements": ["Background check", "Credit check"],
-    "additionalInfo": ["Pet-friendly"],
-    "startDate": "2025-03-01",
-    "endDate": "2026-02-28",
-    "rent": 2200,
-    "apartmentImgUrls": ["images/apartment.png"]
-  },
-  {
-    "location": "Murray Hill, Manhattan",
-    "overview": "2 Bedroom Penthouse",
-    "details": ["Rooftop access", "Modern appliances"],
-    "tags": ["Rooftop access", "Modern appliances"],
-    "requirements": ["No smoking", "Interview required"],
-    "additionalInfo": ["Gym access"],
-    "startDate": "2025-04-01",
-    "endDate": "2026-03-31",
-    "rent": 3100,
-    "apartmentImgUrls": ["images/apartment.png"]
-  },
-  {
-    "location": "Fort Greene, Brooklyn",
-    "overview": "Studio in historic building",
-    "details": ["Hardwood floors", "Fireplace"],
-    "tags": ["Hardwood floors", "Fireplace"],
-    "requirements": ["Credit check", "No pets"],
-    "additionalInfo": ["Near park"],
-    "startDate": "2025-05-01",
-    "endDate": "2026-04-30",
-    "rent": 1900,
-    "apartmentImgUrls": ["images/apartment.png"]
-  },
-  {
-    "location": "Financial District, Manhattan",
-    "overview": "1 Bedroom luxury apartment",
-    "details": ["City view", "Doorman"],
-    "tags": ["City view", "Doorman"],
-    "requirements": ["1 year lease", "Background check"],
-    "additionalInfo": ["In-building gym"],
-    "startDate": "2025-06-01",
-    "endDate": "2026-05-31",
-    "rent": 2800,
-    "apartmentImgUrls": ["images/apartment.png"]
-  },
-  {
-    "location": "Long Island City, Queens",
-    "overview": "2 Bedroom apartment with city view",
-    "details": ["Balcony", "Pet-friendly"],
-    "tags": ["Balcony", "Pet-friendly"],
-    "requirements": ["No smoking", "2 months deposit"],
-    "additionalInfo": ["Near subway"],
-    "startDate": "2025-07-01",
-    "endDate": "2026-06-30",
-    "rent": 2500,
-    "apartmentImgUrls": ["images/apartment.png"]
-  },
-  {
-    "location": "Sunnyside, Queens",
-    "overview": "3 Bedroom family apartment",
-    "details": ["Spacious", "Near schools"],
-    "tags": ["Spacious", "Near schools"],
-    "requirements": ["Background check", "Reference required"],
-    "additionalInfo": ["Pet-friendly"],
-    "startDate": "2025-08-01",
-    "endDate": "2026-07-31",
-    "rent": 2300,
-    "apartmentImgUrls": ["images/apartment.png"]
-  },
-  {
-    "location": "Dumbo, Brooklyn",
-    "overview": "Modern Loft",
-    "details": ["Exposed brick", "Waterfront view"],
-    "tags": ["Exposed brick", "Waterfront view"],
-    "requirements": ["Credit check", "No pets"],
-    "additionalInfo": ["Rooftop access"],
-    "startDate": "2025-09-01",
-    "endDate": "2026-08-31",
-    "rent": 3200,
-    "apartmentImgUrls": ["images/apartment.png"]
-  },
-  {
-    "location": "Hells Kitchen, Manhattan",
-    "overview": "Studio with modern design",
-    "details": ["In-unit washer", "Dishwasher"],
-    "tags": ["In-unit washer", "Dishwasher"],
-    "requirements": ["No smoking", "1 month deposit"],
-    "additionalInfo": ["Close to public transit"],
-    "startDate": "2025-10-01",
-    "endDate": "2026-09-30",
-    "rent": 2100,
-    "apartmentImgUrls": ["images/apartment.png"]
-  },
-  {
-    "location": "Carroll Gardens, Brooklyn",
-    "overview": "2 Bedrooms in a renovated brownstone",
-    "details": ["Private garden", "Fireplace"],
-    "tags": ["Private garden", "Fireplace"],
-    "requirements": ["Reference required", "No pets"],
-    "additionalInfo": ["Quiet neighborhood"],
-    "startDate": "2025-11-01",
-    "endDate": "2026-10-31",
-    "rent": 2600,
-    "apartmentImgUrls": ["images/apartment.png"]
-  },
-  {
-    "location": "Upper West Side, Manhattan",
-    "overview": "1 Bedroom apartment near Central Park",
-    "details": ["Doorman", "Gym access"],
-    "tags": ["Doorman", "Gym access"],
-    "requirements": ["Credit check", "No smoking"],
-    "additionalInfo": ["Park access"],
-    "startDate": "2025-12-01",
-    "endDate": "2026-11-30",
-    "rent": 3000,
-    "apartmentImgUrls": ["images/apartment.png"]
-  }
+    {
+        "id": 1,
+        "location": "76th Street, Upper West Side",
+        "overview": "1 Bedroom in a 3 Bedroom suite",
+        "details": [
+            "In-unit washer",
+            "Dog friendly"
+        ],
+        "tags": [
+            "In-unit washer",
+            "Dog friendly"
+        ],
+        "requirements": [
+            "No smoking",
+            "Interview required"
+        ],
+        "additionalInfo": [
+            "Pets allowed"
+        ],
+        "startDate": "2024-06-19",
+        "endDate": "2024-08-05",
+        "rent": 1500,
+        "apartmentImgUrls": [
+            "images/apartment.png"
+        ]
+    },
+    {
+        "id": 2,
+        "location": "Park Avenue, Midtown",
+        "overview": "Studio Apartment",
+        "details": [
+            "City view",
+            "Elevator"
+        ],
+        "tags": [
+            "City view",
+            "Elevator"
+        ],
+        "requirements": [
+            "Credit check",
+            "No pets"
+        ],
+        "additionalInfo": [
+            "Gym access"
+        ],
+        "startDate": "2024-05-22",
+        "endDate": "2024-09-19",
+        "rent": 2000,
+        "apartmentImgUrls": [
+            "images/apartment.png"
+        ]
+    },
+    {
+        "id": 3,
+        "location": "Brooklyn Heights, Brooklyn",
+        "overview": "2 Bedrooms in a 4 Bedroom apartment",
+        "details": [
+            "Balcony",
+            "Cat friendly"
+        ],
+        "tags": [
+            "Balcony",
+            "Cat friendly"
+        ],
+        "requirements": [
+            "No smoking",
+            "2 months deposit"
+        ],
+        "additionalInfo": [
+            "Shared garden"
+        ],
+        "startDate": "2024-06-05",
+        "endDate": "2024-07-07",
+        "rent": 1800,
+        "apartmentImgUrls": [
+            "images/apartment.png"
+        ]
+    },
+    {
+        "id": 4,
+        "location": "Harlem, Manhattan",
+        "overview": "1 Bedroom in shared apartment",
+        "details": [
+            "Newly renovated",
+            "Near subway"
+        ],
+        "tags": [
+            "Newly renovated",
+            "Near subway"
+        ],
+        "requirements": [
+            "Background check",
+            "No smoking"
+        ],
+        "additionalInfo": [
+            "Bike storage"
+        ],
+        "startDate": "2024-05-16",
+        "endDate": "2024-08-11",
+        "rent": 1600,
+        "apartmentImgUrls": [
+            "images/apartment.png"
+        ]
+    },
+    {
+        "id": 5,
+        "location": "Astoria, Queens",
+        "overview": "3 Bedroom Penthouse",
+        "details": [
+            "Rooftop access",
+            "Modern appliances"
+        ],
+        "tags": [
+            "Rooftop access",
+            "Modern appliances"
+        ],
+        "requirements": [
+            "1 year lease",
+            "No pets"
+        ],
+        "additionalInfo": [
+            "Parking available"
+        ],
+        "startDate": "2024-05-24",
+        "endDate": "2024-09-27",
+        "rent": 2500,
+        "apartmentImgUrls": [
+            "images/apartment.png"
+        ]
+    },
+    {
+        "id": 6,
+        "location": "Greenwich Village, Manhattan",
+        "overview": "2 Bedroom Loft",
+        "details": [
+            "High ceilings",
+            "Open floor plan"
+        ],
+        "tags": [
+            "High ceilings",
+            "Spacious"
+        ],
+        "requirements": [
+            "No smoking",
+            "Proof of income"
+        ],
+        "additionalInfo": [
+            "Near public transportation"
+        ],
+        "startDate": "2024-04-22",
+        "endDate": "2024-08-15",
+        "rent": 2200,
+        "apartmentImgUrls": [
+            "images/apartment.png"
+        ]
+    },
+    {
+        "id": 7,
+        "location": "Williamsburg, Brooklyn",
+        "overview": "1 Bedroom Studio",
+        "details": [
+            "In-unit washer",
+            "Pet friendly"
+        ],
+        "tags": [
+            "In-unit washer",
+            "Pet friendly"
+        ],
+        "requirements": [
+            "Credit check",
+            "No smoking"
+        ],
+        "additionalInfo": [
+            "Bike storage"
+        ],
+        "startDate": "2024-04-02",
+        "endDate": "2024-08-11",
+        "rent": 1700,
+        "apartmentImgUrls": [
+            "images/apartment.png"
+        ]
+    },
+    {
+        "id": 8,
+        "location": "East Village, Manhattan",
+        "overview": "3 Bedroom apartment",
+        "details": [
+            "Private backyard",
+            "Hardwood floors"
+        ],
+        "tags": [
+            "Private backyard",
+            "Spacious"
+        ],
+        "requirements": [
+            "Background check",
+            "No pets"
+        ],
+        "additionalInfo": [
+            "Close to parks"
+        ],
+        "startDate": "2024-06-23",
+        "endDate": "2024-07-22",
+        "rent": 2400,
+        "apartmentImgUrls": [
+            "images/apartment.png"
+        ]
+    },
+    {
+        "id": 9,
+        "location": "SoHo, Manhattan",
+        "overview": "Luxury 2 Bedroom",
+        "details": [
+            "Modern design",
+            "Elevator building"
+        ],
+        "tags": [
+            "Modern",
+            "Luxury"
+        ],
+        "requirements": [
+            "2 months deposit",
+            "Reference needed"
+        ],
+        "additionalInfo": [
+            "Gym access",
+            "Doorman"
+        ],
+        "startDate": "2024-06-21",
+        "endDate": "2024-09-15",
+        "rent": 3000,
+        "apartmentImgUrls": [
+            "images/apartment.png"
+        ]
+    },
+    {
+        "id": 10,
+        "location": "Chelsea, Manhattan",
+        "overview": "Studio Apartment",
+        "details": [
+            "Fully furnished",
+            "In-unit washer"
+        ],
+        "tags": [
+            "Furnished",
+            "In-unit washer"
+        ],
+        "requirements": [
+            "No smoking",
+            "Credit check"
+        ],
+        "additionalInfo": [
+            "Utilities included"
+        ],
+        "startDate": "2024-05-05",
+        "endDate": "2024-08-13",
+        "rent": 2000,
+        "apartmentImgUrls": [
+            "images/apartment.png"
+        ]
+    },
+    {
+        "id": 11,
+        "location": "Williamsburg, Brooklyn",
+        "overview": "2 Bedrooms in a shared apartment",
+        "details": [
+            "Near park",
+            "High ceilings"
+        ],
+        "tags": [
+            "Near park",
+            "High ceilings"
+        ],
+        "requirements": [
+            "No smoking",
+            "1 month deposit"
+        ],
+        "additionalInfo": [
+            "Utilities included"
+        ],
+        "startDate": "2024-05-10",
+        "endDate": "2024-08-28",
+        "rent": 1700,
+        "apartmentImgUrls": [
+            "images/apartment.png"
+        ]
+    },
+    {
+        "id": 12,
+        "location": "Greenwich Village, Manhattan",
+        "overview": "Studio Apartment",
+        "details": [
+            "Hardwood floors",
+            "Elevator"
+        ],
+        "tags": [
+            "Hardwood floors",
+            "Elevator"
+        ],
+        "requirements": [
+            "Credit check",
+            "No pets"
+        ],
+        "additionalInfo": [
+            "Gym access",
+            "Pool access"
+        ],
+        "startDate": "2024-05-24",
+        "endDate": "2024-08-06",
+        "rent": 2200,
+        "apartmentImgUrls": [
+            "images/apartment.png"
+        ]
+    },
+    {
+        "id": 13,
+        "location": "Astoria, Queens",
+        "overview": "1 Bedroom in a 2 Bedroom apartment",
+        "details": [
+            "Balcony",
+            "Modern appliances"
+        ],
+        "tags": [
+            "Balcony",
+            "Modern appliances"
+        ],
+        "requirements": [
+            "No smoking",
+            "Background check"
+        ],
+        "additionalInfo": [
+            "Pets allowed"
+        ],
+        "startDate": "2024-04-27",
+        "endDate": "2024-09-02",
+        "rent": 1800,
+        "apartmentImgUrls": [
+            "images/apartment.png"
+        ]
+    },
+    {
+        "id": 14,
+        "location": "Upper East Side, Manhattan",
+        "overview": "Studio in a luxury building",
+        "details": [
+            "Doorman",
+            "Gym access"
+        ],
+        "tags": [
+            "Doorman",
+            "Gym access"
+        ],
+        "requirements": [
+            "1 year lease",
+            "Credit check"
+        ],
+        "additionalInfo": [
+            "Laundry in building"
+        ],
+        "startDate": "2024-05-06",
+        "endDate": "2024-07-30",
+        "rent": 2400,
+        "apartmentImgUrls": [
+            "images/apartment.png"
+        ]
+    },
+    {
+        "id": 15,
+        "location": "SoHo, Manhattan",
+        "overview": "Loft apartment",
+        "details": [
+            "High ceilings",
+            "Exposed brick"
+        ],
+        "tags": [
+            "High ceilings",
+            "Exposed brick"
+        ],
+        "requirements": [
+            "No pets",
+            "Interview required"
+        ],
+        "additionalInfo": [
+            "Near subway"
+        ],
+        "startDate": "2024-06-17",
+        "endDate": "2024-09-20",
+        "rent": 2600,
+        "apartmentImgUrls": [
+            "images/apartment.png"
+        ]
+    },
+    {
+        "id": 16,
+        "location": "Chelsea, Manhattan",
+        "overview": "1 Bedroom in a 4 Bedroom apartment",
+        "details": [
+            "Roof access",
+            "Pet-friendly"
+        ],
+        "tags": [
+            "Roof access",
+            "Pet-friendly"
+        ],
+        "requirements": [
+            "Credit check",
+            "No smoking"
+        ],
+        "additionalInfo": [
+            "Bike storage"
+        ],
+        "startDate": "2024-06-09",
+        "endDate": "2024-07-16",
+        "rent": 2100,
+        "apartmentImgUrls": [
+            "images/apartment.png"
+        ]
+    },
+    {
+        "id": 17,
+        "location": "Bushwick, Brooklyn",
+        "overview": "Studio with open plan",
+        "details": [
+            "Newly renovated",
+            "Near subway"
+        ],
+        "tags": [
+            "Newly renovated",
+            "Near subway"
+        ],
+        "requirements": [
+            "Background check",
+            "No pets"
+        ],
+        "additionalInfo": [
+            "High-speed internet"
+        ],
+        "startDate": "2024-06-23",
+        "endDate": "2024-07-26",
+        "rent": 1600,
+        "apartmentImgUrls": [
+            "images/apartment.png"
+        ]
+    },
+    {
+        "id": 18,
+        "location": "East Village, Manhattan",
+        "overview": "2 Bedrooms in a 3 Bedroom apartment",
+        "details": [
+            "Balcony",
+            "In-unit washer"
+        ],
+        "tags": [
+            "Balcony",
+            "In-unit washer"
+        ],
+        "requirements": [
+            "No smoking",
+            "2 months deposit"
+        ],
+        "additionalInfo": [
+            "Near nightlife"
+        ],
+        "startDate": "2024-04-19",
+        "endDate": "2024-08-03",
+        "rent": 2300,
+        "apartmentImgUrls": [
+            "images/apartment.png"
+        ]
+    },
+    {
+        "id": 19,
+        "location": "Tribeca, Manhattan",
+        "overview": "Luxury Studio",
+        "details": [
+            "City view",
+            "Modern kitchen"
+        ],
+        "tags": [
+            "City view",
+            "Modern kitchen"
+        ],
+        "requirements": [
+            "Credit check",
+            "Reference required"
+        ],
+        "additionalInfo": [
+            "Doorman"
+        ],
+        "startDate": "2024-05-11",
+        "endDate": "2024-07-03",
+        "rent": 2700,
+        "apartmentImgUrls": [
+            "images/apartment.png"
+        ]
+    },
+    {
+        "id": 20,
+        "location": "Battery Park, Manhattan",
+        "overview": "1 Bedroom in a luxury building",
+        "details": [
+            "Waterfront view",
+            "Gym access"
+        ],
+        "tags": [
+            "Waterfront view",
+            "Gym access"
+        ],
+        "requirements": [
+            "1 year lease",
+            "No pets"
+        ],
+        "additionalInfo": [
+            "Close to park"
+        ],
+        "startDate": "2024-06-27",
+        "endDate": "2024-07-11",
+        "rent": 2900,
+        "apartmentImgUrls": [
+            "images/apartment.png"
+        ]
+    },
+    {
+        "id": 21,
+        "location": "Crown Heights, Brooklyn",
+        "overview": "3 Bedroom apartment",
+        "details": [
+            "Newly renovated",
+            "Private backyard"
+        ],
+        "tags": [
+            "Newly renovated",
+            "Private backyard"
+        ],
+        "requirements": [
+            "Background check",
+            "Credit check"
+        ],
+        "additionalInfo": [
+            "Pet-friendly"
+        ],
+        "startDate": "2024-06-16",
+        "endDate": "2024-08-27",
+        "rent": 2200,
+        "apartmentImgUrls": [
+            "images/apartment.png"
+        ]
+    },
+    {
+        "id": 22,
+        "location": "Murray Hill, Manhattan",
+        "overview": "2 Bedroom Penthouse",
+        "details": [
+            "Rooftop access",
+            "Modern appliances"
+        ],
+        "tags": [
+            "Rooftop access",
+            "Modern appliances"
+        ],
+        "requirements": [
+            "No smoking",
+            "Interview required"
+        ],
+        "additionalInfo": [
+            "Gym access"
+        ],
+        "startDate": "2024-06-18",
+        "endDate": "2024-09-27",
+        "rent": 3100,
+        "apartmentImgUrls": [
+            "images/apartment.png"
+        ]
+    },
+    {
+        "id": 23,
+        "location": "Fort Greene, Brooklyn",
+        "overview": "Studio in historic building",
+        "details": [
+            "Hardwood floors",
+            "Fireplace"
+        ],
+        "tags": [
+            "Hardwood floors",
+            "Fireplace"
+        ],
+        "requirements": [
+            "Credit check",
+            "No pets"
+        ],
+        "additionalInfo": [
+            "Near park"
+        ],
+        "startDate": "2024-06-19",
+        "endDate": "2024-09-24",
+        "rent": 1900,
+        "apartmentImgUrls": [
+            "images/apartment.png"
+        ]
+    },
+    {
+        "id": 24,
+        "location": "Financial District, Manhattan",
+        "overview": "1 Bedroom luxury apartment",
+        "details": [
+            "City view",
+            "Doorman"
+        ],
+        "tags": [
+            "City view",
+            "Doorman"
+        ],
+        "requirements": [
+            "1 year lease",
+            "Background check"
+        ],
+        "additionalInfo": [
+            "In-building gym"
+        ],
+        "startDate": "2024-04-23",
+        "endDate": "2024-07-31",
+        "rent": 2800,
+        "apartmentImgUrls": [
+            "images/apartment.png"
+        ]
+    },
+    {
+        "id": 25,
+        "location": "Long Island City, Queens",
+        "overview": "2 Bedroom apartment with city view",
+        "details": [
+            "Balcony",
+            "Pet-friendly"
+        ],
+        "tags": [
+            "Balcony",
+            "Pet-friendly"
+        ],
+        "requirements": [
+            "No smoking",
+            "2 months deposit"
+        ],
+        "additionalInfo": [
+            "Near subway"
+        ],
+        "startDate": "2024-05-02",
+        "endDate": "2024-08-21",
+        "rent": 2500,
+        "apartmentImgUrls": [
+            "images/apartment.png"
+        ]
+    },
+    {
+        "id": 26,
+        "location": "Sunnyside, Queens",
+        "overview": "3 Bedroom family apartment",
+        "details": [
+            "Spacious",
+            "Near schools"
+        ],
+        "tags": [
+            "Spacious",
+            "Near schools"
+        ],
+        "requirements": [
+            "Background check",
+            "Reference required"
+        ],
+        "additionalInfo": [
+            "Pet-friendly"
+        ],
+        "startDate": "2024-05-09",
+        "endDate": "2024-07-02",
+        "rent": 2300,
+        "apartmentImgUrls": [
+            "images/apartment.png"
+        ]
+    },
+    {
+        "id": 27,
+        "location": "Dumbo, Brooklyn",
+        "overview": "Modern Loft",
+        "details": [
+            "Exposed brick",
+            "Waterfront view"
+        ],
+        "tags": [
+            "Exposed brick",
+            "Waterfront view"
+        ],
+        "requirements": [
+            "Credit check",
+            "No pets"
+        ],
+        "additionalInfo": [
+            "Rooftop access"
+        ],
+        "startDate": "2024-04-16",
+        "endDate": "2024-07-08",
+        "rent": 3200,
+        "apartmentImgUrls": [
+            "images/apartment.png"
+        ]
+    },
+    {
+        "id": 28,
+        "location": "Hells Kitchen, Manhattan",
+        "overview": "Studio with modern design",
+        "details": [
+            "In-unit washer",
+            "Dishwasher"
+        ],
+        "tags": [
+            "In-unit washer",
+            "Dishwasher"
+        ],
+        "requirements": [
+            "No smoking",
+            "1 month deposit"
+        ],
+        "additionalInfo": [
+            "Close to public transit"
+        ],
+        "startDate": "2024-05-05",
+        "endDate": "2024-08-18",
+        "rent": 2100,
+        "apartmentImgUrls": [
+            "images/apartment.png"
+        ]
+    },
+    {
+        "id": 29,
+        "location": "Carroll Gardens, Brooklyn",
+        "overview": "2 Bedrooms in a renovated brownstone",
+        "details": [
+            "Private garden",
+            "Fireplace"
+        ],
+        "tags": [
+            "Private garden",
+            "Fireplace"
+        ],
+        "requirements": [
+            "Reference required",
+            "No pets"
+        ],
+        "additionalInfo": [
+            "Quiet neighborhood"
+        ],
+        "startDate": "2024-05-14",
+        "endDate": "2024-09-09",
+        "rent": 2600,
+        "apartmentImgUrls": [
+            "images/apartment.png"
+        ]
+    },
+    {
+        "id": 30,
+        "location": "Upper West Side, Manhattan",
+        "overview": "1 Bedroom apartment near Central Park",
+        "details": [
+            "Doorman",
+            "Gym access"
+        ],
+        "tags": [
+            "Doorman",
+            "Gym access"
+        ],
+        "requirements": [
+            "Credit check",
+            "No smoking"
+        ],
+        "additionalInfo": [
+            "Park access"
+        ],
+        "startDate": "2024-04-09",
+        "endDate": "2024-07-14",
+        "rent": 3000,
+        "apartmentImgUrls": [
+            "images/apartment.png"
+        ]
+    },
+    {
+        "location": "Chinatown, Manhattan",
+        "overview": "1 Bedroom apartment near Central Park",
+        "details": [
+            "Doorman",
+            "Gym access"
+        ],
+        "tags": [
+            "Doorman",
+            "Gym access"
+        ],
+        "requirements": [
+            "Credit check",
+            "No smoking"
+        ],
+        "additionalInfo": [
+            "Park access"
+        ],
+        "startDate": "2024-04-09",
+        "endDate": "2024-07-14",
+        "rent": 3000,
+        "apartmentImgUrls": [
+            "images/apartment.png"
+        ],
+        "id": 31
+    }
 ]
