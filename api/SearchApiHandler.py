@@ -1,5 +1,5 @@
 from flask import request, jsonify
-from flask_restful import Api, Resource, reqparse
+from flask_restful import Resource
 import json
 from datetime import datetime
 

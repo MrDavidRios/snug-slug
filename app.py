@@ -1,8 +1,8 @@
 from flask import Flask, send_from_directory
 from flask_restful import Api
 from flask_cors import CORS # comment this on deployment
-from api.HelloApiHandler import HelloApiHandler
 from api.SearchApiHandler import SearchApiHandler
+from api.AddApiHandler import AddApiHandler
 
 app = Flask(__name__, static_url_path='', static_folder='frontend/dist')
 CORS(app) # comment this on deployment
@@ -19,3 +19,4 @@ def serve_image(filename):
     return send_from_directory('static/images', filename)
 
 api.add_resource(SearchApiHandler, '/api/search')
+api.add_resource(AddApiHandler, '/api/add')
