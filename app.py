@@ -3,6 +3,7 @@ from flask_restful import Api
 from flask_cors import CORS # comment this on deployment
 from api.SearchApiHandler import SearchApiHandler
 from api.AddApiHandler import AddApiHandler
+from api.DeleteApiHandler import DeleteApiHandler
 
 app = Flask(__name__, static_url_path='', static_folder='frontend/dist')
 CORS(app) # comment this on deployment
@@ -20,3 +21,4 @@ def serve_image(filename):
 
 api.add_resource(SearchApiHandler, '/api/search')
 api.add_resource(AddApiHandler, '/api/add')
+api.add_resource(DeleteApiHandler, '/api/delete/<int:id>')

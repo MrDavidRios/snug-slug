@@ -1,23 +1,10 @@
 from flask import request
 from flask_restful import Resource
-import json
-import os
-
-listings_file_path = "./static/Listings.json"
+from utils import read_json_file, write_json_file\
 
 class AddApiHandler(Resource):
-    def read_jsonfile(self):
-        if os.path.exists(listings_file_path):
-            with open(listings_file_path, "r") as file:
-                return json.load(file)
-        return []
-    
-    def write_json_file(self, data):
-        with open(listings_file_path, 'w') as file:
-            json.dump(data, file, indent=4)
-
     def post(self):
-        listings = self.read_jsonfile()
+        listings = read_json_file()
         data = request.get_json()
 
         # TODO: validate data
@@ -25,7 +12,7 @@ class AddApiHandler(Resource):
             id = len(listings) + 1
             data['id'] = id
             listings.append(data)
-            self.write_json_file(listings)
+            write_json_file(listings)
             return {'message': 'Listing added successfully', 'id': id}, 200
         else:
             return {'message': 'Invalid listing data'}, 400
