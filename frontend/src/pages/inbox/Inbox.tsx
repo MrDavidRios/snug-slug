@@ -3,6 +3,7 @@ import { UserContext, UserContextType } from "../../components/UserContext";
 import { ArchiveButton } from "../../components/button/archive-button/ArchiveButton";
 import { ChatBox } from "../../components/chatBox/ChatBox";
 import { ListingsView } from "../../components/listingsView/ListingsView";
+import { LoadingIndicator } from "../../components/loadingIndicator/loadingIndicator";
 import { LookingForToggle } from "../../components/lookingForToggle/LookingForToggle";
 import { PersonCardList } from "../../components/personCardList/PersonCardList";
 import { Listing } from "../../types/listing";
@@ -114,7 +115,7 @@ export const Inbox: React.FC = () => {
           />
         </>
       ) : (
-        <h3>Loading...</h3>
+        <LoadingIndicator />
       )}
     </div>
   );

@@ -3,7 +3,7 @@ import { Listing } from "../../types/listing";
 import { Slug } from "../../types/slug";
 import { getUserData } from "../../utils/userDataHelper";
 import { Carousel } from "../carousel/Carousel";
-import { LoadingIndicator } from "../loadingIndicator";
+import { LoadingIndicator } from "../loadingIndicator/loadingIndicator";
 import { MapView } from "../mapView/MapView";
 import { Modal } from "../modal/Modal";
 import { PersonCard } from "../personCard/PersonCard";
