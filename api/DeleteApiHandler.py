@@ -1,21 +1,14 @@
 from flask import request
 from flask_restful import Resource
-from utils import read_json_file, write_json_file
+from models import Listing, db
 
 class DeleteApiHandler(Resource):
     def delete(self, id):
-        listings = read_json_file()
-        listing_found = False
-        updated_listings = []
-
-        for listing in listings:
-            if listing['id'] == id:
-                listing_found = True
-            else:
-                updated_listings.append(listing)
-
-        if not listing_found:
-            return {'message': 'Listing not found'}, 404
+        listing = Listing.query.get(id)
         
-        write_json_file(updated_listings)
-        return {'message': 'Listing deleted successfully'}, 200            
+        if not listing:
+            return {'message': 'Apartment not found'}, 404
+        
+        db.session.delete(listing)
+        db.session.commit()
+        return {'message': 'Apartment deleted successfully'}, 200

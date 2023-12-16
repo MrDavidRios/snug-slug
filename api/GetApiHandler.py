@@ -1,13 +1,27 @@
 from flask import request
 from flask_restful import Resource
-from utils import read_json_file, write_json_file
+from datetime import datetime
+from models import Listing, db
 
 class GetApiHandler(Resource):
     def get(self, id):
-        listings = read_json_file()
+        listing = Listing.query.get(id)
+        
+        if not listing:
+            return {'message': 'Listing not found'}, 404
+        
+        listing_json = {
+            'id': listing.id,
+            'location': listing.location,
+            'overview': listing.overview,
+            'details': listing.details,
+            'tags': listing.tags,
+            'requirements': listing.requirements,
+            'additionalInfo': listing.additionalInfo,
+            'startDate': listing.startDate.strftime('%Y-%m-%d'),
+            'endDate': listing.endDate.strftime('%Y-%m-%d'),
+            'rent': listing.rent,
+            'apartmentImgUrls': listing.apartmentImgUrls
+        }
 
-        for listing in listings:
-            if listing['id'] == id:
-                return listing, 200
-
-        return {'message': 'Listing not found'}, 404            
+        return listing_json, 200

@@ -1,43 +1,44 @@
-from flask import request, jsonify
+from flask import request
 from flask_restful import Resource
-import json
 from datetime import datetime
+from models import Listing, db
 
 class SearchApiHandler(Resource):
     def post(self):
-        data = request.get_json()
-        location = data.get('location', '')
-        min_price = data.get('minPrice', '')
-        max_price = data.get('maxPrice', '')
-        start_date = data.get('startDate', '')
-        end_date = data.get('endDate', '')
-        results = self.perform_search(location, min_price, max_price, start_date, end_date)
+        location = request.args.get('location')
+        min_price = int(request.args.get('minPrice')) if request.args.get('minPrice') else None
+        max_price = int(request.args.get('maxPrice')) if request.args.get('maxPrice') else None
+        start_date = datetime.strptime(request.args.get('startDate'), '%Y-%m-%d').date() if request.args.get('startDate') else None
+        end_date = datetime.strptime(request.args.get('endDate'), '%Y-%m-%d').date() if request.args.get('endDate') else None
         
-        response = jsonify(results)
+        query = Listing.query
+        
+        if location:
+            query = query.filter(Listing.location.ilike(f"%{location}%"))
+        if min_price:
+            query = query.filter(Listing.rent >= min_price)
+        if max_price:
+            query = query.filter(Listing.rent <= max_price)
+        if start_date:
+            query = query.filter(Listing.startDate <= start_date)
+        if end_date:
+            query = query.filter(Listing.endDate >= end_date)
 
-        return response
-
-    def perform_search(self, location, min_price, max_price, start_date, end_date):
-        with open("./static/Listings.json", "r") as file:
-            listings = json.load(file)
-
-        location = location.lower()
-        start_date = datetime.strptime(start_date, '%Y-%m-%d').date() if start_date else None
-        end_date = datetime.strptime(end_date, '%Y-%m-%d').date() if end_date else None
-        min_price = int(min_price) if min_price else None
-        max_price = int(max_price) if max_price else None
-
-        results = []
-        for listing in listings:
-            listing_start_date = datetime.strptime(listing['startDate'], '%Y-%m-%d').date() if listing['startDate'] else ""
-            listing_end_date = datetime.strptime(listing['endDate'], '%Y-%m-%d').date() if listing['endDate'] else ""
-
-            if ((not location or location in listing['location'].lower()) and
-                (not min_price or listing['rent'] >= min_price) and 
-                (not max_price or listing['rent'] <= max_price) and
-                (not start_date or listing_start_date <= start_date) and 
-                (not end_date or listing_end_date >= end_date)):
-                results.append(listing)
-
+        listings = query.all()
+        results = [
+            {
+                'id': listing.id,
+                'location': listing.location,
+                'overview': listing.overview,
+                'details': listing.details,
+                'tags': listing.tags,
+                'requirements': listing.requirements,
+                'additionalInfo': listing.additionalInfo,
+                'startDate': listing.startDate.strftime('%Y-%m-%d'),
+                'endDate': listing.endDate.strftime('%Y-%m-%d'),
+                'rent': listing.rent,
+                'apartmentImgUrls': listing.apartmentImgUrls
+            } for listing in listings
+        ]
+        
         return results
-
