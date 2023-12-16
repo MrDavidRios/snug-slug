@@ -4,7 +4,7 @@ from datetime import datetime
 from models import Listing, db
 
 class SearchApiHandler(Resource):
-    def post(self):
+    def get(self):
         location = request.args.get('location')
         min_price = int(request.args.get('minPrice')) if request.args.get('minPrice') else None
         max_price = int(request.args.get('maxPrice')) if request.args.get('maxPrice') else None

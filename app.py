@@ -5,6 +5,7 @@ from api.SearchApiHandler import SearchApiHandler
 from api.CreateApiHandler import CreateApiHandler
 from api.DeleteApiHandler import DeleteApiHandler
 from api.GetApiHandler import GetApiHandler
+from api.UpdateApiHandler import UpdateApiHandler
 from models import db, Listing
 import os
 import json
@@ -62,3 +63,4 @@ api.add_resource(SearchApiHandler, '/api/snugslug/search')
 api.add_resource(CreateApiHandler, '/api/snugslug/create')
 api.add_resource(DeleteApiHandler, '/api/snugslug/delete/<int:id>')
 api.add_resource(GetApiHandler, '/api/snugslug/get/<int:id>')
+api.add_resource(UpdateApiHandler, '/api/snugslug/update/<int:id>')
