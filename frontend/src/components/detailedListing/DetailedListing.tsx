@@ -1,5 +1,9 @@
+import { useEffect, useState } from "react";
 import { Listing } from "../../types/listing";
+import { Slug } from "../../types/slug";
+import { getUserData } from "../../utils/userDataHelper";
 import { Carousel } from "../carousel/Carousel";
+import { LoadingIndicator } from "../loadingIndicator";
 import { MapView } from "../mapView/MapView";
 import { Modal } from "../modal/Modal";
 import { PersonCard } from "../personCard/PersonCard";
@@ -11,6 +15,16 @@ interface DetailedListingProps {
 
 export const DetailedListing: React.FC<DetailedListingProps> = ({ listing, onClose }) => {
   const { location, dates, rent, overview, details, requirements, additionalInfo, apartmentImgUrls } = listing;
+
+  const [owner, setOwner] = useState<Slug | undefined>(undefined);
+
+  useEffect(() => {
+    const getOwner = async () => {
+      setOwner(await getUserData(listing.ownerId));
+    };
+
+    getOwner();
+  });
 
   return (
     <Modal id="detailedListing" onClose={onClose} blurBackdrop={true}>
@@ -59,7 +73,7 @@ export const DetailedListing: React.FC<DetailedListingProps> = ({ listing, onClo
         <Carousel imgUrls={apartmentImgUrls} />
         <div className="sublessor-wrapper">
           <h3>Meet the sublessor!</h3>
-          <PersonCard person={listing.owner} />
+          {owner ? <PersonCard person={owner} /> : <LoadingIndicator />}
         </div>
       </div>
     </Modal>

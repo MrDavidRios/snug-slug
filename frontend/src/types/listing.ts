@@ -1,8 +1,6 @@
-import { Slug } from "./slug";
-
 export type Listing = {
   id: number;
-  owner: Slug;
+  ownerId: number;
   location: string;
   overview: string;
   details: string[];

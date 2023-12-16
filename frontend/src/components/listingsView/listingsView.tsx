@@ -7,14 +7,14 @@ import { ListingCard } from "../apartmentCard/ListingCard";
 interface ListingsViewProps {
   listings: Listing[];
   onSelectListing: (listing: Listing) => void;
-  selectedListing?: Listing;
+  selectedListingPredicate?: (listing: Listing) => boolean;
   emptyMessage?: string;
 }
 
 export const ListingsView: React.FC<ListingsViewProps> = ({
   listings,
   onSelectListing,
-  selectedListing,
+  selectedListingPredicate,
   emptyMessage = "",
 }) => {
   const savedListingsFromStorage = localStorage.getItem("savedListings");
@@ -52,7 +52,7 @@ export const ListingsView: React.FC<ListingsViewProps> = ({
             key={index}
             locationIndex={index + 1}
             onClick={() => onSelectListing(listing)}
-            className={selectedListing && selectedListing.id === listing.id ? "selected" : ""}
+            className={selectedListingPredicate && selectedListingPredicate(listing) ? "selected" : ""}
           />
         );
       })}

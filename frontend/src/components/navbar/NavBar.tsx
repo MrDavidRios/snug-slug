@@ -1,9 +1,13 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { Size } from "../../types/size";
+import { UserContext, UserContextType } from "../UserContext";
 import { Button } from "../button/Button";
 import { Hero } from "../hero/Hero";
 
 export const Nav: React.FC = () => {
+  const { slug } = useContext(UserContext) as UserContextType;
+
   return (
     <nav>
       <Hero size={Size.Small} redirectToHome={true} />
@@ -11,16 +15,27 @@ export const Nav: React.FC = () => {
         <Link to="/faq">
           <Button className="secondary" text="FAQ" />
         </Link>
-        <Link to="/listing">
-          <Button className="secondary" text="Listing" />
-        </Link>
-        <Link to="/inbox">
-          <Button className="secondary" text="Chats" />
-        </Link>
-        <Link to="/saved-places">
-          <Button className="secondary" text="Saved" />
-        </Link>
-        <Button className="action" text="Profile" />
+        {slug && (
+          <>
+            <Link to="/listing">
+              <Button className="secondary" text="Listing" />
+            </Link>
+            <Link to="/inbox">
+              <Button className="secondary" text="Chats" />
+            </Link>
+            <Link to="/saved-places">
+              <Button className="secondary" text="Saved" />
+            </Link>
+            <Button className="action" text="Profile" />
+          </>
+        )}
+        {!slug && (
+          <>
+            <Link to="/login">
+              <Button className="action" text="Login" />
+            </Link>
+          </>
+        )}
       </div>
     </nav>
   );

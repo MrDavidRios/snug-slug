@@ -1,10 +1,11 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { UserContext, UserContextType } from "../../components/UserContext";
 import { ArchiveButton } from "../../components/button/archive-button/ArchiveButton";
 import { ChatBox } from "../../components/chatBox/ChatBox";
 import { ListingsView } from "../../components/listingsView/ListingsView";
 import { LookingForToggle } from "../../components/lookingForToggle/LookingForToggle";
 import { PersonCardList } from "../../components/personCardList/PersonCardList";
+import { Listing } from "../../types/listing";
 import { Slug } from "../../types/slug";
 import { archiveListing, archiveUser } from "../../utils/archiveHelper";
 import { getActiveListings, getActivePeople, getArchivedListings, getArchivedPeople } from "../../utils/userDataHelper";
@@ -13,25 +14,42 @@ export const Inbox: React.FC = () => {
   const { slug } = useContext(UserContext) as UserContextType;
 
   const [lookingForApartment, setLookingForApartment] = useState<boolean>(true);
-  const [selectedUser, setSelectedUser] = useState<Slug>();
+  const [selectedUserId, setSelectedUserId] = useState<number | undefined>();
   const [showArchived, setShowArchived] = useState<boolean>(false);
 
+  const [listings, setListings] = useState<Listing[] | undefined>();
+  const [people, setPeople] = useState<Slug[] | undefined>();
+
+  useEffect(() => {
+    const updateDisplayedInformation = async () => {
+      if (!slug) return;
+
+      const listingsToDisplay = showArchived ? await getArchivedListings(slug) : await getActiveListings(slug);
+      setListings(listingsToDisplay);
+
+      const peopleToDisplay = showArchived ? await getArchivedPeople(slug) : await getActivePeople(slug);
+      setPeople(peopleToDisplay);
+
+      console.log("howdy yall", showArchived ? await getArchivedListings(slug) : await getActiveListings(slug));
+    };
+
+    updateDisplayedInformation();
+  }, [showArchived, slug]);
+
   function resetSelection() {
-    setSelectedUser(undefined);
+    setSelectedUserId(undefined);
   }
 
   const confirmAction = () => {
-    if (slug && selectedUser?.activeListing) {
-      // Clear current slug's active listing
+    console.log("IMPLEMENT: confirm action");
+    // if (slug && selectedUserId?.activeListing) {
+    //   /**
+    //    * Create slug data clone and pass it into setUserData() using Flask
+    //    */
+    //   slug.activeListing = undefined;
 
-      /**
-       * Create slug data clone and pass it into setUserData() using Flask
-       */
-      slug.activeListing = undefined;
-      slug.archivedListingIDs.push(selectedUser.activeListing.id);
-
-      resetSelection();
-    }
+    //   resetSelection();
+    // }
   };
 
   const onArchive = (id: number, archivingListing: boolean) =>
@@ -42,7 +60,7 @@ export const Inbox: React.FC = () => {
 
   return (
     <div id="inboxPageWrapper">
-      {slug !== undefined ? (
+      {slug && listings && people ? (
         <>
           <div className="listings-container">
             <div id="inboxActionButtonWrapper">
@@ -65,17 +83,17 @@ export const Inbox: React.FC = () => {
             <div id="cardList">
               {lookingForApartment ? (
                 <ListingsView
-                  listings={showArchived ? getArchivedListings(slug) : getActiveListings(slug)}
-                  onSelectListing={(listing) => setSelectedUser(listing.owner)}
-                  selectedListing={selectedUser?.activeListing}
+                  listings={listings ?? []}
+                  onSelectListing={(listing) => setSelectedUserId(listing.ownerId)}
+                  selectedListingPredicate={(listing) => listing.ownerId === selectedUserId}
                   emptyMessage={`No listings ${showArchived ? "archived" : "found"}.`}
                 />
               ) : (
                 <PersonCardList
-                  people={showArchived ? getArchivedPeople(slug) : getActivePeople(slug)}
+                  people={people ?? []}
                   currentUser={slug}
-                  onSelectUser={(slug) => setSelectedUser(slug)}
-                  selectedUser={selectedUser}
+                  onSelectUser={(slug) => setSelectedUserId(slug.id)}
+                  selectedUserId={selectedUserId}
                   onArchive={onArchive}
                   onUnarchive={onUnarchive}
                   displayArchiveButton={true}
@@ -87,7 +105,7 @@ export const Inbox: React.FC = () => {
           </div>
           <ChatBox
             currentUser={slug}
-            selectedUser={selectedUser}
+            selectedUserId={selectedUserId}
             findingApartment={lookingForApartment}
             onArchive={onArchive}
             onUnarchive={onUnarchive}

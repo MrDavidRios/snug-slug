@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { Slug } from "../../types/slug";
 import { getLastMessage } from "../../utils/chatHelper";
 import { PersonCardMessageBox } from "../PersonCardMessageBox/PersonCardMessageBox";
@@ -25,6 +26,19 @@ export const PersonCard: React.FC<PersonCardProps> = ({
   onClick,
 }) => {
   const { id, name, email, age, school, classYear, pronouns, profilePicUrl, bio, budget, dates } = person;
+
+  const [lastMessage, setLastMessage] = useState<string | undefined>();
+
+  useEffect(() => {
+    const updateLastMessage = async () => {
+      if (!currentUser || !person) return;
+
+      const lastMessage = await getLastMessage(currentUser, person, false);
+      setLastMessage(lastMessage.message);
+    };
+
+    updateLastMessage();
+  }, [currentUser, person]);
 
   // If there is no URL to the profile picture, display a gray circle
   const profileImage = profilePicUrl ? (
@@ -71,7 +85,7 @@ export const PersonCard: React.FC<PersonCardProps> = ({
 
       <div className="actions-messagebox">
         {/* Below only renders in Inbox page */}
-        {inInbox && <PersonCardMessageBox message={getLastMessage(currentUser!, person, false).lastMessage} />}
+        {inInbox && <PersonCardMessageBox message={lastMessage ?? "Loading most recent message..."} />}
 
         <div className="actions">
           {inInbox && (

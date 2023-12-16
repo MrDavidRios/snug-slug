@@ -1,13 +1,21 @@
-import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
-import React from "react";
+import React, { useContext } from "react";
 import googleIcon from "../../assets/google-logo.svg";
+import { UserContext, UserContextType } from "../../components/UserContext";
 import { Hero } from "../../components/hero/Hero";
+import { exampleUserA } from "../../utils/inboxtestdata";
 
 export const Login: React.FC = () => {
-  const provider = new GoogleAuthProvider();
-  const auth = getAuth();
+  // const provider = new GoogleAuthProvider();
+  // const auth = getAuth();
 
-  const signInWithGoogle = () => signInWithPopup(auth, provider);
+  const { setSlug } = useContext(UserContext) as UserContextType;
+
+  const signInWithGoogle = () => {
+    //signInWithPopup(auth, provider)
+
+    // Log in with example user
+    setSlug(exampleUserA);
+  };
 
   return (
     <div id="loginPageWrapper">

@@ -5,5 +5,5 @@ import { Slug } from "./slug";
  */
 export interface LastMessagePair {
   otherUser: Slug;
-  lastMessage: string;
+  message: string;
 }

@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { ChatMessage } from "../../types/chatMessage";
 import { Slug } from "../../types/slug";
 import { sortMessagesByTimestamp } from "../../utils/sortMessages";
-import { getChatHistory } from "../../utils/userDataHelper";
+import { getChatHistory, getUserData } from "../../utils/userDataHelper";
 import { Button } from "../button/Button";
 import { ArchiveIconButton } from "../button/archive-button/ArchiveIconButton";
 import { ConfirmButton } from "../button/confirm-button/ConfirmButton";
@@ -14,7 +14,7 @@ import { PopUpWindow } from "../popUpWindow/PopUpWindow";
 
 interface ChatBoxProps {
   currentUser: Slug; // Self
-  selectedUser?: Slug;
+  selectedUserId?: number;
   findingApartment: boolean;
   onArchive: (id: number, archivingListing: boolean) => void;
   onUnarchive: (id: number, unarchivingListing: boolean) => void;
@@ -28,7 +28,7 @@ interface ChatBoxProps {
 
 export const ChatBox: React.FC<ChatBoxProps> = ({
   currentUser,
-  selectedUser,
+  selectedUserId,
   findingApartment,
   onArchive,
   onUnarchive,
@@ -42,13 +42,31 @@ export const ChatBox: React.FC<ChatBoxProps> = ({
     </>
   );
 
+  const [selectedUser, setSelectedUser] = useState<Slug | undefined>(undefined); // Selected user to chat with
   const [showPopup, setShowPopup] = useState(false);
   const [messages, setMessages] = useState<ChatMessage[]>([]);
 
+  // Load selected user data
+  useEffect(() => {
+    const getSelectedUser = async () => {
+      if (!selectedUserId) return;
+
+      setSelectedUser(await getUserData(selectedUserId));
+    };
+
+    getSelectedUser();
+  }, [selectedUserId]);
+
   // Update chat history if user, selected user, or search preference changes
   useEffect(() => {
-    const messageHistory = selectedUser ? getChatHistory(currentUser.id, selectedUser?.id, findingApartment) : [];
-    setMessages(messageHistory);
+    const loadMessages = async () => {
+      if (!currentUser || !selectedUser) return;
+
+      const messageHistory = await getChatHistory(currentUser.id, selectedUser.id, findingApartment);
+      setMessages(messageHistory);
+    };
+
+    loadMessages();
   }, [currentUser, selectedUser, findingApartment]);
 
   const sortedMessages = messages ? sortMessagesByTimestamp(messages) : [];
@@ -60,8 +78,8 @@ export const ChatBox: React.FC<ChatBoxProps> = ({
     if (newMessage.trim() === "") return;
 
     const newChatMessage: ChatMessage = {
-      sender: currentUser,
-      receiver: selectedUser,
+      senderId: currentUser.id,
+      receiverId: selectedUser.id,
       listingId: findingApartment ? selectedUser?.activeListing!.id : currentUser.activeListing!.id,
       timestamp: new Date(),
       text: newMessage,
@@ -110,18 +128,18 @@ export const ChatBox: React.FC<ChatBoxProps> = ({
           </div>
           <div id="listingLocation">{subject}</div>
         </div>
-        {selectedUser && (
+        {selectedUserId && (
           <div className="action-button-wrapper">
             {inArchiveView ? (
               <Button
-                onClick={() => onUnarchive(selectedUser.id, findingApartment)}
+                onClick={() => onUnarchive(selectedUserId, findingApartment)}
                 text="Unarchive"
                 className="unarchive"
               />
             ) : (
-              <ArchiveIconButton onClick={() => onArchive(selectedUser.id, findingApartment)} />
+              <ArchiveIconButton onClick={() => onArchive(selectedUserId, findingApartment)} />
             )}
-            {selectedUser && !findingApartment && <ConfirmButton onClick={() => setShowPopup(true)} />}
+            {selectedUserId && !findingApartment && <ConfirmButton onClick={() => setShowPopup(true)} />}
           </div>
         )}
       </div>
@@ -135,7 +153,7 @@ export const ChatBox: React.FC<ChatBoxProps> = ({
           {/* Mapping of chats here */}
 
           {sortedMessages.map((chatMessage, index) => (
-            <ChatBubble key={index} message={chatMessage.text} isSender={chatMessage.sender.id === currentUser.id} />
+            <ChatBubble key={index} message={chatMessage.text} isSender={chatMessage.senderId === currentUser.id} />
           ))}
           {/* Invisible div for scrolling */}
           <div ref={messagesEndRef} />

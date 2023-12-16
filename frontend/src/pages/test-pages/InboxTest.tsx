@@ -1,4 +1,6 @@
 import React from "react";
+import { exampleUserA } from "../../utils/inboxtestdata";
+import { updateUserData } from "../../utils/userDataHelper";
 import { Inbox } from "../inbox/Inbox";
 
 export const InboxTest: React.FC = () => {
@@ -13,6 +15,14 @@ export const InboxTest: React.FC = () => {
       } } selectedListing={null}></ListingsView> */}
       {/* <PersonCardList currentUser={exampleUserA}/> */}
       {/* <PopUpWindow message='Note that by clicking confirm your listing will be no longer be active. To reactivate, go to your profile.'/> */}
+      <button
+        onClick={async () => {
+          const user = await updateUserData(exampleUserA);
+          console.log("User added:", user);
+        }}
+      >
+        Test adding sample user A
+      </button>
     </div>
   );
 };

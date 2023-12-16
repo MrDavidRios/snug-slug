@@ -1,15 +1,7 @@
 import { ChatMessage } from "../types/chatMessage";
 import { Listing } from "../types/listing";
 import { Slug } from "../types/slug";
-import {
-  exampleUserA,
-  exampleUserB,
-  exampleUserC,
-  exampleUserD,
-  sampleListing,
-  sampleListing2,
-  sampleListing3,
-} from "./inboxtestdata";
+import { sampleListing, sampleListing2, sampleListing3 } from "./inboxtestdata";
 
 const listings = [sampleListing, sampleListing2, sampleListing3];
 function getListings(ids: number[]): Listing[] {
@@ -25,12 +17,12 @@ export function getArchivedListings(slug: Slug): Listing[] {
   return getListings(slug.archivedListingIDs);
 }
 
-export function getArchivedPeople(slug: Slug): Slug[] {
+export async function getArchivedPeople(slug: Slug): Promise<Slug[]> {
   // use getListing from Flask to get relevant listings with IDs
 
   const archivedPeople: Slug[] = [];
   for (const id of slug.archivedUserIDs) {
-    const person = getUserData(id);
+    const person = await getUserData(id);
 
     if (!person) {
       console.error(`Person not found - id: ${id}`);
@@ -43,23 +35,28 @@ export function getArchivedPeople(slug: Slug): Slug[] {
   return archivedPeople;
 }
 
-const users = [exampleUserA, exampleUserB, exampleUserC, exampleUserD];
-function getUserData(id: number): Slug | undefined {
-  return users.find((user) => user.id === id);
+export async function getUserData(id: number): Promise<Slug | undefined> {
+  console.error("TRYNA GET USER DATA");
+
+  const response = await fetch(`http://127.0.0.1:8080/api/snugslug/getUser/${id}`);
+
+  console.log(response);
+
+  return (await response.json()) as Slug | undefined;
 }
 
 /**
  * Gets all of the messages exchanged between two users
  */
-export function getChatHistory(
+export async function getChatHistory(
   currentUserId: number,
   otherUserId: number,
   currentUserFindingApartment: boolean
-): ChatMessage[] {
+): Promise<ChatMessage[]> {
   // flask
   // temp: replace this with flask call
-  const currentUser = getUserData(currentUserId);
-  const otherUser = getUserData(otherUserId);
+  const currentUser = await getUserData(currentUserId);
+  const otherUser = await getUserData(otherUserId);
 
   if (!currentUser || !otherUser) {
     if (!currentUser) console.error("Current user not found");
@@ -70,8 +67,9 @@ export function getChatHistory(
 
   // Returns all of the messages where the other user is involved (since current user is implicitly involved, given
   // that we're using their chat history)
-  return currentUser.chatHistory.filter((message) => {
-    const otherUserPresent = message.sender.id === otherUserId || message.receiver.id === otherUserId;
+  const chatHistory = [...currentUser.sentMessages, ...currentUser.receivedMessages];
+  return chatHistory.filter((message) => {
+    const otherUserPresent = message.senderId === otherUserId || message.receiverId === otherUserId;
     if (!otherUserPresent) return false;
 
     const relevantListing = currentUserFindingApartment ? otherUser.activeListing : currentUser.activeListing;
@@ -79,29 +77,43 @@ export function getChatHistory(
   });
 }
 
-export function updateUserData(user: Slug) {
+export async function updateUserData(user: Slug) {
   // flask
-  // temp: replace this with flask call
-  const index = users.findIndex((u) => u.id === user.id);
+  const response = await fetch("http://127.0.0.1:8080/api/snugslug/createUser", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(user),
+  });
 
-  if (index === -1) {
-    console.error("User not found");
+  if (!response.ok) {
+    console.error(`HTTP error! status: ${response.status}`);
     return;
   }
 
-  users[index] = user;
+  const updatedUser = await response.json();
+  return updatedUser;
 }
 
 /**
  * This function returns a list of listings that the user has active chats related to
  * - does not include their own
  */
-export function getActiveListings(user: Slug) {
+export async function getActiveListings(user: Slug): Promise<Listing[]> {
   const activeListingIDs: Set<number> = new Set();
 
-  for (let i = 0; i < user.chatHistory.length; i++) {
-    const message = user.chatHistory[i];
-    const otherUser = message.receiver.id === user.id ? message.sender : message.receiver;
+  for (let i = 0; i < user.sentMessages.length; i++) {
+    const otherUserId = user.sentMessages[i].receiverId;
+
+    // get user active listing ID
+    const otherUser = await getUserData(otherUserId);
+
+    if (!otherUser) {
+      console.error(`Other user not found - id: ${otherUserId}`);
+      continue;
+    }
+
     const correspondingListingID = otherUser.activeListing?.id;
 
     // if the other user has an active listing and it's not archived, it's active
@@ -113,29 +125,25 @@ export function getActiveListings(user: Slug) {
   return getListings([...activeListingIDs]);
 }
 
-export function getActivePeople(user: Slug): Slug[] {
+export async function getActivePeople(user: Slug): Promise<Slug[]> {
   const activePeopleIDs: Set<number> = new Set();
 
   if (!user.activeListing) return [];
 
-  for (let i = 0; i < user.chatHistory.length; i++) {
-    const message = user.chatHistory[i];
-    const otherUser = message.receiver.id === user.id ? message.sender : message.receiver;
-    const correspondingUserID = otherUser.id;
+  for (let i = 0; i < user.sentMessages.length; i++) {
+    const otherUserId = user.sentMessages[i].receiverId;
+
+    if (!otherUserId) continue;
 
     // if the other user has an active listing and it's not archived, it's active
-    if (
-      correspondingUserID &&
-      message.listingId === user.activeListing!.id &&
-      !user.archivedUserIDs.includes(correspondingUserID)
-    ) {
-      activePeopleIDs.add(correspondingUserID);
+    if (!user.archivedUserIDs.includes(otherUserId)) {
+      activePeopleIDs.add(otherUserId);
     }
   }
 
   const activePeople: Slug[] = [];
   for (const personID of activePeopleIDs) {
-    const person = getUserData(personID);
+    const person = await getUserData(personID);
 
     if (!person) {
       console.error(`Person not found - id: ${personID}`);

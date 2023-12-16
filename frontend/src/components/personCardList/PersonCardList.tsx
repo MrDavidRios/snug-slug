@@ -5,7 +5,7 @@ interface PersonCardListProps {
   people: Slug[];
   currentUser: Slug;
   onSelectUser: (user: Slug) => void;
-  selectedUser?: Slug;
+  selectedUserId?: number;
   displayArchiveButton?: boolean;
   archived?: boolean;
   onArchive: (id: number, archivingListing: boolean) => void;
@@ -17,7 +17,7 @@ export const PersonCardList: React.FC<PersonCardListProps> = ({
   people,
   currentUser,
   onSelectUser,
-  selectedUser,
+  selectedUserId,
   archived = false,
   onArchive,
   onUnarchive,
@@ -37,7 +37,7 @@ export const PersonCardList: React.FC<PersonCardListProps> = ({
             onUnarchive={onUnarchive}
             onClick={() => onSelectUser(otherUser)}
             key={index}
-            className={selectedUser && selectedUser.id === otherUser.id ? "selected" : ""}
+            className={selectedUserId && selectedUserId === otherUser.id ? "selected" : ""}
           />
         ))}
       </div>

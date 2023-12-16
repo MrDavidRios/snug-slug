@@ -20,7 +20,8 @@ export const exampleUserA: Slug = {
   archivedUserIDs: [],
 
   savedListings: [],
-  chatHistory: [],
+  sentMessages: [],
+  receivedMessages: [],
 };
 
 export const exampleUserB: Slug = {
@@ -41,7 +42,8 @@ export const exampleUserB: Slug = {
   archivedUserIDs: [],
 
   savedListings: [],
-  chatHistory: [],
+  sentMessages: [],
+  receivedMessages: [],
 };
 
 export const exampleUserC: Slug = {
@@ -62,7 +64,8 @@ export const exampleUserC: Slug = {
   archivedUserIDs: [],
 
   savedListings: [],
-  chatHistory: [],
+  sentMessages: [],
+  receivedMessages: [],
 };
 
 export const exampleUserD: Slug = {
@@ -83,12 +86,13 @@ export const exampleUserD: Slug = {
   archivedUserIDs: [],
 
   savedListings: [],
-  chatHistory: [],
+  sentMessages: [],
+  receivedMessages: [],
 };
 
 export const sampleListing: Listing = {
   id: 1,
-  owner: exampleUserB,
+  ownerId: exampleUserB.id,
   location: "123 Main St, Anytown, USA",
   overview: "1 Bedroom in a 3 Bedroom suite",
   details: [
@@ -121,7 +125,7 @@ export const sampleListing: Listing = {
 
 export const sampleListing2: Listing = {
   id: 2,
-  owner: exampleUserA,
+  ownerId: exampleUserA.id,
   location: "ID 2 St, Anytown, USA",
   overview: "1 Bedroom in a 3 Bedroom suite",
   details: [
@@ -154,7 +158,7 @@ export const sampleListing2: Listing = {
 
 export const sampleListing3: Listing = {
   id: 3,
-  owner: exampleUserD,
+  ownerId: exampleUserD.id,
   location: "ID 3 St, Anytown, USA",
   overview: "1 Bedroom in a 3 Bedroom suite",
   details: [
@@ -189,90 +193,89 @@ exampleUserA.activeListing = sampleListing2;
 exampleUserB.activeListing = sampleListing;
 exampleUserD.activeListing = sampleListing3;
 
-export const sampleMessageHistory: ChatMessage[] = [
+export const sampleUserASentMessages: ChatMessage[] = [
   {
-    sender: exampleUserA,
-    receiver: exampleUserB,
+    senderId: exampleUserA.id,
+    receiverId: exampleUserB.id,
     listingId: exampleUserB.activeListing!.id,
     timestamp: new Date("2023-10-01T09:00:00"),
     text: "Hey, I saw your listing! Is it still available?",
   },
   {
-    sender: exampleUserB,
-    receiver: exampleUserA,
-    listingId: exampleUserB.activeListing!.id,
-    timestamp: new Date("2023-10-01T09:05:00"),
-    text: "Yes, it is! Would you like to know more?",
-  },
-  {
-    sender: exampleUserA,
-    receiver: exampleUserB,
+    senderId: exampleUserA.id,
+    receiverId: exampleUserB.id,
     listingId: exampleUserB.activeListing!.id,
     timestamp: new Date("2023-10-01T09:10:00"),
     text: "Definitely! Can we schedule a visit?",
   },
+  {
+    senderId: exampleUserA.id,
+    receiverId: exampleUserC.id,
+    listingId: exampleUserA.activeListing!.id,
+    timestamp: new Date("2023-10-01T09:00:00"),
+    text: "Hi! Yes, it is available.",
+  },
+  {
+    senderId: exampleUserA.id,
+    receiverId: exampleUserC.id,
+    listingId: exampleUserA.activeListing!.id,
+    timestamp: new Date("2023-10-01T09:10:00"),
+    text: "Can I schedule a visit?",
+  },
+  {
+    senderId: exampleUserA.id,
+    receiverId: exampleUserD.id,
+    listingId: exampleUserD.activeListing!.id,
+    timestamp: new Date("2023-10-01T09:00:00"),
+    text: "Hi D!",
+  },
 ];
 
-export const sampleMessageHistory2: ChatMessage[] = [
+export const sampleUserBSentMessages: ChatMessage[] = [
   {
-    sender: exampleUserC,
-    receiver: exampleUserA,
+    senderId: exampleUserB.id,
+    receiverId: exampleUserA.id,
+    listingId: exampleUserB.activeListing!.id,
+    timestamp: new Date("2023-10-01T09:05:00"),
+    text: "Yes, it is! Would you like to know more?",
+  },
+];
+
+export const sampleUserCSentMessages: ChatMessage[] = [
+  {
+    senderId: exampleUserC.id,
+    receiverId: exampleUserA.id,
     listingId: exampleUserA.activeListing!.id,
     timestamp: new Date("2023-10-01T09:00:00"),
     text: "Hi! How are you? I am interested in your listing",
   },
   {
-    sender: exampleUserA,
-    receiver: exampleUserC,
-    listingId: exampleUserA.activeListing!.id,
-    timestamp: new Date("2023-10-01T09:05:00"),
-    text: "Hi! Yes, it is available.",
-  },
-  {
-    sender: exampleUserC,
-    receiver: exampleUserA,
+    senderId: exampleUserC.id,
+    receiverId: exampleUserA.id,
     listingId: exampleUserA.activeListing!.id,
     timestamp: new Date("2023-10-01T09:10:00"),
     text: "Can I schedule a visit?",
   },
 ];
 
-export const sampleMessageHistory3: ChatMessage[] = [
+export const sampleUserDSentMessages: ChatMessage[] = [
   {
-    sender: exampleUserD,
-    receiver: exampleUserA,
-
+    senderId: exampleUserD.id,
+    receiverId: exampleUserA.id,
     listingId: exampleUserA.activeListing!.id,
     timestamp: new Date("2023-10-01T09:00:00"),
     text: "Hi A! Can I stay at your place?",
   },
   {
-    sender: exampleUserA,
-    receiver: exampleUserD,
-    listingId: exampleUserA.activeListing!.id,
-    timestamp: new Date("2023-10-01T09:05:00"),
-    text: "Hi D! Yes, it is available.",
-  },
-  {
-    sender: exampleUserD,
-    receiver: exampleUserA,
+    senderId: exampleUserD.id,
+    receiverId: exampleUserA.id,
     listingId: exampleUserA.activeListing!.id,
     timestamp: new Date("2023-10-01T09:10:00"),
     text: "Can I schedule a visit?",
   },
-];
-
-export const sampleMessageHistory4: ChatMessage[] = [
   {
-    sender: exampleUserA,
-    receiver: exampleUserD,
-    listingId: exampleUserD.activeListing!.id,
-    timestamp: new Date("2023-10-01T09:00:00"),
-    text: "Hi D!",
-  },
-  {
-    sender: exampleUserD,
-    receiver: exampleUserA,
+    senderId: exampleUserD.id,
+    receiverId: exampleUserA.id,
     listingId: exampleUserD.activeListing!.id,
     timestamp: new Date("2023-10-01T09:05:00"),
     text: "Hi A!",
@@ -291,13 +294,3 @@ export const sampleMessageHistory4: ChatMessage[] = [
 // Should see B's listing
 // Should see C in people (not archived) and D in people (archived)
 // A-B, A is interested in B (archived chat)
-exampleUserA.chatHistory = [...exampleUserA.chatHistory, ...sampleMessageHistory];
-
-// A-C, C is interested in A, not archived
-exampleUserA.chatHistory = [...exampleUserA.chatHistory, ...sampleMessageHistory2];
-
-// A-D, D is interested in A, archived
-exampleUserA.chatHistory = [...exampleUserA.chatHistory, ...sampleMessageHistory3];
-
-// A-D, A is interested in D, archived
-exampleUserA.chatHistory = [...exampleUserA.chatHistory, ...sampleMessageHistory4];
