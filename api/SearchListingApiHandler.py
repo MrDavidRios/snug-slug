@@ -3,7 +3,7 @@ from flask_restful import Resource
 from datetime import datetime
 from models import Listing, db
 
-class SearchApiHandler(Resource):
+class SearchListingApiHandler(Resource):
     def get(self):
         location = request.args.get('location')
         min_price = int(request.args.get('minPrice')) if request.args.get('minPrice') else None

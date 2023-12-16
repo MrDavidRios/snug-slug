@@ -3,7 +3,7 @@ from flask_restful import Resource
 from datetime import datetime
 from models import Listing, db
 
-class CreateApiHandler(Resource):
+class CreateListingApiHandler(Resource):
     def post(self):
         data = request.json
         if not data:

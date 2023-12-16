@@ -2,7 +2,7 @@ from flask import request
 from flask_restful import Resource
 from models import Listing, db
 
-class DeleteApiHandler(Resource):
+class DeleteListingApiHandler(Resource):
     def delete(self, id):
         listing = Listing.query.get(id)
         

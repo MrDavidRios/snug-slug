@@ -3,7 +3,7 @@ from flask_restful import Resource
 from datetime import datetime
 from models import Listing, db
 
-class UpdateApiHandler(Resource):
+class UpdateListingApiHandler(Resource):
     def put(self, id):
         listing = Listing.query.get(id)
         if not listing:

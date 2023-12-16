@@ -1,11 +1,11 @@
 from flask import Flask, send_from_directory
 from flask_restful import Api
 from flask_cors import CORS # comment this on deployment
-from api.SearchApiHandler import SearchApiHandler
-from api.CreateApiHandler import CreateApiHandler
-from api.DeleteApiHandler import DeleteApiHandler
-from api.GetApiHandler import GetApiHandler
-from api.UpdateApiHandler import UpdateApiHandler
+from api.SearchListingApiHandler import SearchListingApiHandler
+from api.CreateListingApiHandler import CreateListingApiHandler
+from api.DeleteListingApiHandler import DeleteListingApiHandler
+from api.GetListingApiHandler import GetListingApiHandler
+from api.UpdateListingApiHandler import UpdateListingApiHandler
 from models import db, Listing
 import os
 import json
@@ -59,8 +59,8 @@ def serve(path):
 def serve_image(filename):
     return send_from_directory('static/images', filename)
 
-api.add_resource(SearchApiHandler, '/api/snugslug/search')
-api.add_resource(CreateApiHandler, '/api/snugslug/create')
-api.add_resource(DeleteApiHandler, '/api/snugslug/delete/<int:id>')
-api.add_resource(GetApiHandler, '/api/snugslug/get/<int:id>')
-api.add_resource(UpdateApiHandler, '/api/snugslug/update/<int:id>')
+api.add_resource(SearchListingApiHandler, '/api/snugslug/searchListing')
+api.add_resource(CreateListingApiHandler, '/api/snugslug/createListing')
+api.add_resource(DeleteListingApiHandler, '/api/snugslug/deleteListing/<int:id>')
+api.add_resource(GetListingApiHandler, '/api/snugslug/getListing/<int:id>')
+api.add_resource(UpdateListingApiHandler, '/api/snugslug/updateListing/<int:id>')
