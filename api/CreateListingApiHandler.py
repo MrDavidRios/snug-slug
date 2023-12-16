@@ -19,11 +19,11 @@ class CreateListingApiHandler(Resource):
             details=data.get('details'),
             tags=data.get('tags'),
             requirements=data.get('requirements'),
-            additionalInfo=data.get('additionalInfo'),
-            startDate=datetime.strptime(data.get('startDate', ''), '%Y-%m-%d').date(),
-            endDate=datetime.strptime(data.get('endDate', ''), '%Y-%m-%d').date(),
+            additional_info=data.get('additionalInfo'),
+            start_date=datetime.strptime(data.get('startDate', ''), '%Y-%m-%d').date(),
+            end_date=datetime.strptime(data.get('endDate', ''), '%Y-%m-%d').date(),
             rent=data.get('rent'),
-            apartmentImgUrls=data.get('apartmentImgUrls')
+            apartment_img_urls=data.get('apartmentImgUrls')
         )
         
         db.session.add(new_listing)

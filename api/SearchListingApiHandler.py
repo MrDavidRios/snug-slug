@@ -20,9 +20,9 @@ class SearchListingApiHandler(Resource):
         if max_price:
             query = query.filter(Listing.rent <= max_price)
         if start_date:
-            query = query.filter(Listing.startDate <= start_date)
+            query = query.filter(Listing.start_date <= start_date)
         if end_date:
-            query = query.filter(Listing.endDate >= end_date)
+            query = query.filter(Listing.end_date >= end_date)
 
         listings = query.all()
         results = [
@@ -33,11 +33,11 @@ class SearchListingApiHandler(Resource):
                 'details': listing.details,
                 'tags': listing.tags,
                 'requirements': listing.requirements,
-                'additionalInfo': listing.additionalInfo,
-                'startDate': listing.startDate.strftime('%Y-%m-%d'),
-                'endDate': listing.endDate.strftime('%Y-%m-%d'),
+                'additionalInfo': listing.additional_info,
+                'startDate': listing.start_date.strftime('%Y-%m-%d'),
+                'endDate': listing.end_date.strftime('%Y-%m-%d'),
                 'rent': listing.rent,
-                'apartmentImgUrls': listing.apartmentImgUrls
+                'apartmentImgUrls': listing.apartment_img_urls
             } for listing in listings
         ]
         

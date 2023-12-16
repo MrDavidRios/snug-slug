@@ -20,12 +20,18 @@ CORS(app) # comment this on deployment
 api = Api(app)
 
 listings_file_path = "./static/Listings.json"
+users_file_path = "./static/Users.json"
 
 db.init_app(app)
 initial_listing = []
+initial_users = []
 if os.path.exists(listings_file_path):
     with open(listings_file_path, "r") as file:
         initial_listing = json.load(file)
+
+if os.path.exists(users_file_path):
+    with open(users_file_path, "r") as file:
+        initial_users = json.load(file)
 
 with app.app_context():
     db.create_all()
@@ -35,7 +41,6 @@ with app.app_context():
     db.session.query(User).delete()
     db.session.commit()
 
-        
     for listing_data in initial_listing:
         listing = Listing(
             location=listing_data['location'],
@@ -43,14 +48,32 @@ with app.app_context():
             details=listing_data['details'],
             tags=listing_data['tags'],
             requirements=listing_data['requirements'],
-            additionalInfo=listing_data['additionalInfo'],
-            startDate=datetime.strptime(listing_data['startDate'], '%Y-%m-%d').date(),
-            endDate=datetime.strptime(listing_data['endDate'], '%Y-%m-%d').date(),
+            additional_info=listing_data['additionalInfo'],
+            start_date=datetime.strptime(listing_data['startDate'], '%Y-%m-%d').date(),
+            end_date=datetime.strptime(listing_data['endDate'], '%Y-%m-%d').date(),
             rent=listing_data['rent'],
-            apartmentImgUrls=listing_data['apartmentImgUrls']
+            apartment_img_urls=listing_data['apartmentImgUrls']
         )
         db.session.add(listing)
-    db.session.commit()    
+    db.session.commit()
+
+    for user_data in initial_users:
+        user = User(
+            name=user_data['name'],
+            email=user_data['email'],
+            age=user_data['age'],
+            school=user_data['school'],
+            class_year=user_data['classYear'],
+            pronouns=user_data['pronouns'],
+            profile_pic_url=user_data['profilePicUrl'],
+            bio=user_data['bio'],
+            budget=user_data['budget'],
+            start_date=datetime.strptime(user_data['startDate'], '%Y-%m-%d').date(),
+            end_date=datetime.strptime(user_data['endDate'], '%Y-%m-%d').date(),
+            active_listing_id=user_data['activeListingId']
+        )
+        db.session.add(user)
+    db.session.commit()
 
 @app.route('/', defaults={'path': ''})
 @app.route("/<string:path>")

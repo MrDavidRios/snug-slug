@@ -136,12 +136,14 @@ DELETE http://127.0.0.1:8080/api/snugslug/deleteListing/31
 - `email` (string): Email address of the user.
 - `age` (integer): Age of the user.
 - `school` (string): School or university the user attends.
-- `class_year` (integer): Graduation year of the user.
+- `classYear` (integer): Graduation year of the user.
 - `pronouns` (string): Pronouns of the user.
-- `profile_pic_url` (string): URL to the user's profile picture.
+- `profilePicUrl` (string): URL to the user's profile picture.
 - `bio`(string): Short biography of the user.
 - `budget` (string): Budget range of the user.
-- `dates` (string): Date range of interest for the user.
+- `startDate` (date): The start date of interest (format: YYYY-MM-DD).
+- `endDate` (date): The end date of interest (format: YYYY-MM-DD).
+- `activeListingId` (integer): Posted listing of the user, 0 if user looking for listing.
 
 ### Example Request
 
@@ -152,17 +154,18 @@ Content-Type: application/json
 
 ```json
 {
-  "id": 1,
-  "name": "John Doe",
-  "email": "john@example.com",
-  "age": 30,
-  "school": "University",
-  "class_year": 2022,
-  "pronouns": "He/Him",
-  "profile_pic_url": "http://example.com/pic.jpg",
-  "bio": "A short bio",
-  "budget": "500",
-  "dates": "2023-2024"
+  "name": "Emily Smith",
+  "email": "emily1@columbia.edu",
+  "age": 22,
+  "school": "Columbia University",
+  "classYear": 2024,
+  "pronouns": "She/Her",
+  "profilePicUrl": "images/profile.png",
+  "bio": "Senior at Columbia, majoring in Political Science. Looking for a summer sublet. I'm organized, respectful of shared spaces, and love to bake.",
+  "budget": "1300",
+  "startDate": "2024-06-01",
+  "endDate": "2024-08-30",
+  "activeListingId": 0
 }
 ```
 
