@@ -15,7 +15,7 @@ export const Login: React.FC = () => {
   const signInWithGoogle = () => {
     //signInWithPopup(auth, provider)
 
-    // Log in with example user
+    // TODO: get random user from database and log in using that user
     setSlug(exampleUserA);
   };
 
