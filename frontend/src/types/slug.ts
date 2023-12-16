@@ -42,5 +42,6 @@ export type Slug = {
   /**
    * A user's chat history - used to construct inbox view
    */
-  chatHistory: ChatMessage[];
+  sentMessages: ChatMessage[];
+  receivedMessages: ChatMessage[];
 };
