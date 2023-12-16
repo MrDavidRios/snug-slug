@@ -28,6 +28,7 @@ class SearchListingApiHandler(Resource):
         results = [
             {
                 'id': listing.id,
+                'ownerId': listing.owner.id if listing.owner else None,
                 'location': listing.location,
                 'overview': listing.overview,
                 'details': listing.details,
