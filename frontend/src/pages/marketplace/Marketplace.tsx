@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useSearchParams } from "react-router-dom";
 import { Button } from "../../components/button/Button";
 import { DatePickerDropdown } from "../../components/datePickerDropdown/DatePickerDropdown";
 import { DetailedListing } from "../../components/detailedListing/DetailedListing";
@@ -14,22 +14,56 @@ export const Marketplace: React.FC = () => {
   const searchStr = useLocation().search;
   const query = new URLSearchParams(searchStr);
 
-  // Stringified JSON of saved listings (or null if no listings have been saved)
+  // if min price doesn't have $, add it (prevents bug where dropdown doesn't show dollar sign on load)
+  let queryMinPrice = query.get("minPrice");
+  let queryMaxPrice = query.get("maxPrice");
+
+  if (queryMinPrice && !queryMinPrice.startsWith("$")) {
+    queryMinPrice = `$${queryMinPrice}`;
+  }
+
+  if (queryMaxPrice && !queryMaxPrice.startsWith("$")) {
+    queryMaxPrice = `$${queryMaxPrice}`;
+  }
 
   const [location, setLocation] = useState(query.get("location") || "");
-  const [minPrice, setMinPrice] = useState(query.get("minPrice") || "$0");
-  const [maxPrice, setMaxPrice] = useState(query.get("maxPrice") || "$9900");
+  const [minPrice, setMinPrice] = useState(queryMinPrice || "$0");
+  const [maxPrice, setMaxPrice] = useState(queryMaxPrice || "$9900");
   const [startDate, setStartDate] = useState(query.get("startDate") || "");
   const [endDate, setEndDate] = useState(query.get("endDate") || "");
 
   const [listings, setListings] = useState<Listing[]>([]);
   const [selectedListing, setSelectedListing] = useState<Listing | undefined>(undefined);
 
+  const [searchParams, setSearchParams] = useSearchParams();
+
   // Only fetch listings based on query parameters on page load
   useEffect(() => {
-    fetchSearchResults(location, minPrice, maxPrice, startDate, endDate).then((data) => setListings(data));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    const loadFromQueryParams = async () => {
+      const params = new URLSearchParams(window.location.search);
+      const location = params.get("location");
+      const minPrice = params.get("minPrice");
+      const maxPrice = params.get("maxPrice");
+      const startDate = params.get("startDate");
+      const endDate = params.get("endDate");
+
+      const parsedMinPrice = minPrice?.replace("$", "") || 0;
+      const parsedMaxPrice = maxPrice?.replace("$", "") || 9900;
+
+      const response = await fetch(
+        `http://127.0.0.1:8080/api/snugslug/searchListing?location=${location}&minPrice=${parsedMinPrice}&maxPrice=${parsedMaxPrice}&startDate=${startDate}&endDate=${endDate}`
+      );
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      setListings(data);
+    };
+
+    loadFromQueryParams();
+  }, [searchParams]);
 
   const generatePriceOptions = () => {
     const options = [];
@@ -53,37 +87,15 @@ export const Marketplace: React.FC = () => {
     setMaxPrice(selectedOption);
   };
 
-  async function fetchSearchResults(
-    location: string,
-    minPrice: string,
-    maxPrice: string,
-    startDate: string,
-    endDate: string
-  ) {
-    try {
-      const response = await fetch(`http://localhost:8080/api/search`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          location: location,
-          minPrice: minPrice.slice(1),
-          maxPrice: maxPrice.slice(1),
-          startDate: startDate,
-          endDate: endDate,
-        }),
-      });
-      if (!response.ok) {
-        throw new Error(`Error: ${response.status}`);
-      }
-      const data = await response.json();
-      return data;
-    } catch (error) {
-      console.error("Fetching search results failed:", error);
-      return [];
-    }
-  }
+  const handleSearch = () => {
+    searchParams.set("location", location);
+    searchParams.set("minPrice", minPrice);
+    searchParams.set("maxPrice", maxPrice);
+    searchParams.set("startDate", startDate);
+    searchParams.set("endDate", endDate);
+
+    setSearchParams(searchParams);
+  };
 
   return (
     <div id="marketplacePageWrapper">
@@ -112,13 +124,7 @@ export const Marketplace: React.FC = () => {
             setEndDate(getYMDString(e.endDate));
           }}
         />
-        <Button
-          onClick={() =>
-            fetchSearchResults(location, minPrice, maxPrice, startDate, endDate).then((data) => setListings(data))
-          }
-          text="Search"
-          className="action"
-        />
+        <Button onClick={handleSearch} text="Search" className="action" />
         <div id="advancedSearch">Advanced search</div>
       </div>
       <div className="listings-and-map-page">

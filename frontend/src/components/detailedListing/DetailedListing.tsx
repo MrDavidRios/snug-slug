@@ -24,7 +24,7 @@ export const DetailedListing: React.FC<DetailedListingProps> = ({ listing, onClo
     };
 
     getOwner();
-  });
+  }, [listing.ownerId]);
 
   return (
     <Modal id="detailedListing" onClose={onClose} blurBackdrop={true}>

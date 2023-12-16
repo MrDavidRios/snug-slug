@@ -38,11 +38,11 @@ export const Homepage: React.FC = () => {
   };
 
   const handleMinPriceChange = (selectedOption: string) => {
-    setMinPrice(selectedOption);
+    setMinPrice(selectedOption.replace("$", ""));
   };
 
   const handleMaxPriceChange = (selectedOption: string) => {
-    setMaxPrice(selectedOption);
+    setMaxPrice(selectedOption.replace("$", ""));
   };
 
   const navigate = useNavigate();
@@ -62,24 +62,12 @@ export const Homepage: React.FC = () => {
       </p>
       <div id="homepageSearch">
         <div id="searchWrapper">
-          <Input
-            value={location}
-            onChange={handleInputChange}
-            placeholder="Search location..."
-          />
+          <Input value={location} onChange={handleInputChange} placeholder="Search location..." />
           <Button onClick={handleSearch} text="Search" />
         </div>
         <div id="searchOptions">
-          <Dropdown
-            options={priceOptions}
-            placeholder="Min Price"
-            onChange={handleMinPriceChange}
-          />
-          <Dropdown
-            options={priceOptions}
-            placeholder="Max Price"
-            onChange={handleMaxPriceChange}
-          />
+          <Dropdown options={priceOptions} placeholder="Min Price" onChange={handleMinPriceChange} />
+          <Dropdown options={priceOptions} placeholder="Max Price" onChange={handleMaxPriceChange} />
 
           <DatePickerDropdown
             startDate={startDate === "" ? null : new Date(startDate)}
