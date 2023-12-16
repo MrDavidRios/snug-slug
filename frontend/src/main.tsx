@@ -10,6 +10,7 @@ import { Inbox } from "./pages/inbox/Inbox";
 import { ListingPage } from "./pages/listing/ListingPage";
 import { Login } from "./pages/login/Login";
 import { Marketplace } from "./pages/marketplace/Marketplace";
+import { ProfilePage } from "./pages/profile/ProfilePage";
 import { SavedPlaces } from "./pages/saved-places/SavedPlaces";
 import { InboxTest } from "./pages/test-pages/InboxTest";
 import { Test } from "./pages/test-pages/Test";
@@ -29,6 +30,7 @@ const router = createBrowserRouter([
       { path: "inbox", element: <Inbox /> },
       { path: "faq", element: <FAQPage /> },
       { path: "listing", element: <ListingPage /> },
+      { path: "profile", element: <ProfilePage /> },
     ],
   },
 ]);

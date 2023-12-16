@@ -26,7 +26,9 @@ export const Nav: React.FC = () => {
             <Link to="/saved-places">
               <Button className="secondary" text="Saved" />
             </Link>
-            <Button className="action" text="Profile" />
+            <Link to="/profile">
+              <Button className="action" text="Profile" />
+            </Link>
           </>
         )}
         {!slug && (
