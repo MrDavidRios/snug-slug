@@ -2,6 +2,7 @@ import { Listing } from "../../types/listing";
 import { Carousel } from "../carousel/Carousel";
 import { MapView } from "../mapView/MapView";
 import { Modal } from "../modal/Modal";
+import { PersonCard } from "../personCard/PersonCard";
 
 interface DetailedListingProps {
   listing: Listing;
@@ -12,41 +13,53 @@ export const DetailedListing: React.FC<DetailedListingProps> = ({ listing, onClo
   const { location, dates, rent, overview, details, requirements, additionalInfo, apartmentImgUrls } = listing;
 
   return (
-    <Modal title={location} id="detailedListing" onClose={onClose} blurBackdrop={true}>
+    <Modal id="detailedListing" onClose={onClose} blurBackdrop={true}>
       <div className="left">
-        <h2>{dates}</h2>
-        <div style={{ display: "flex", alignItems: "center" }}>
-          <h2>{`$${rent}`}</h2>
-          <h2 style={{ color: "var(--dark-gray)", marginBottom: 2 }}>/month</h2>
+        <div>
+          <h1 className="location">{location}</h1>
+          <h2 className="dates">{dates}</h2>
+          <div style={{ display: "flex", alignItems: "center" }}>
+            <h2>{`$${rent}`}</h2>
+            <h2 style={{ color: "var(--dark-gray)", marginBottom: 2 }}>/month</h2>
+          </div>
+          <p className="overview">{overview}</p>
         </div>
-        <p>{overview}</p>
         <hr />
-        <h3>Details</h3>
-        <ul>
-          {details.map((detail, idx) => (
-            <li key={idx}>{detail}</li>
-          ))}
-        </ul>
-        <h3>Requirements</h3>
-        <ul>
-          {requirements.map((requirement, idx) => (
-            <li key={idx}>{requirement}</li>
-          ))}
-        </ul>
-        <h3>Additional Information</h3>
-        <ul>
-          {additionalInfo.map((infoPoint, idx) => (
-            <li key={idx}>{infoPoint}</li>
-          ))}
-        </ul>
-        <h3>Location</h3>
-        <MapView />
+        <div>
+          <h3>Details</h3>
+          <ul>
+            {details.map((detail, idx) => (
+              <li key={idx}>{detail}</li>
+            ))}
+          </ul>
+        </div>
+        <div>
+          <h3>Requirements</h3>
+          <ul>
+            {requirements.map((requirement, idx) => (
+              <li key={idx}>{requirement}</li>
+            ))}
+          </ul>
+        </div>
+        <div>
+          <h3>Additional Information</h3>
+          <ul>
+            {additionalInfo.map((infoPoint, idx) => (
+              <li key={idx}>{infoPoint}</li>
+            ))}
+          </ul>
+        </div>
+        <div>
+          <h3>Location</h3>
+          <p>Exact location to be shared after agreement.</p>
+          <MapView />
+        </div>
       </div>
       <div className="right">
         <Carousel imgUrls={apartmentImgUrls} />
-        <div>
+        <div className="sublessor-wrapper">
           <h3>Meet the sublessor!</h3>
-          {/* <PersonCard /> */}
+          <PersonCard person={listing.owner} />
         </div>
       </div>
     </Modal>

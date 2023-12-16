@@ -23,17 +23,45 @@
 
     overflow-y: auto;
 
+    h1,
+    h2,
+    h3 {
+      font-weight: var(--font-weight-semibold);
+    }
+
+    .location {
+      padding-bottom: 12px;
+    }
+
+    .dates {
+      color: var(--accent-color);
+    }
+
+    .overview {
+      color: var(--dark-gray);
+    }
+
     ul {
       list-style: initial;
     }
 
     .left {
       text-align: left;
-      padding-right: 16px;
-      gap: 6px;
+      padding-right: 40px;
+      gap: 12px;
+
+      > div {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
 
       h3 {
         color: var(--dark-gray);
+      }
+
+      hr {
+        margin: 12px 0;
       }
 
       .map-view {
@@ -44,11 +72,21 @@
     }
 
     .right {
-      gap: 16px;
+      gap: 32px;
+
+      .sublessor-wrapper {
+        h3 {
+          color: var(--dark-gray);
+        }
+
+        align-items: center;
+        gap: 16px;
+      }
     }
 
     .left,
-    .right {
+    .right,
+    .sublessor-wrapper {
       display: flex;
       flex-direction: column;
     }

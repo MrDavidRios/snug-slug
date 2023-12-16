@@ -7,10 +7,10 @@ import { Card, CardProps } from "../card/Card";
 
 interface PersonCardProps extends CardProps {
   person: Slug;
-  currentUser: Slug;
-  archived: boolean;
-  onArchive: (id: number, archivingListing: boolean) => void;
-  onUnarchive: (id: number, unarchivingListing: boolean) => void;
+  currentUser?: Slug;
+  archived?: boolean;
+  onArchive?: (id: number, archivingListing: boolean) => void;
+  onUnarchive?: (id: number, unarchivingListing: boolean) => void;
   inInbox?: boolean;
 }
 
@@ -40,6 +40,9 @@ export const PersonCard: React.FC<PersonCardProps> = ({
     />
   );
 
+  if (inInbox && !currentUser) throw new Error("Cannot be in inbox without a current user");
+  if (inInbox && (!onArchive || !onUnarchive)) throw new Error("Cannot be in inbox without archive functionality");
+
   return (
     <Card className={`person-card ${className}`} onClick={onClick}>
       <div className="info">
@@ -68,15 +71,15 @@ export const PersonCard: React.FC<PersonCardProps> = ({
 
       <div className="actions-messagebox">
         {/* Below only renders in Inbox page */}
-        {inInbox && <PersonCardMessageBox message={getLastMessage(currentUser, person, false).lastMessage} />}
+        {inInbox && <PersonCardMessageBox message={getLastMessage(currentUser!, person, false).lastMessage} />}
 
         <div className="actions">
           {inInbox && (
             <>
               {archived ? (
-                <Button onClick={() => onUnarchive(id, false)} text="Unarchive" className="unarchive" />
+                <Button onClick={() => onUnarchive!(id, false)} text="Unarchive" className="unarchive" />
               ) : (
-                <ArchiveIconButton style={{ width: 40, height: 40 }} onClick={() => onArchive(id, false)} />
+                <ArchiveIconButton style={{ width: 40, height: 40 }} onClick={() => onArchive!(id, false)} />
               )}
             </>
           )}

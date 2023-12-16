@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { Button } from "../../components/button/Button";
 import { DatePickerDropdown } from "../../components/datePickerDropdown/DatePickerDropdown";
+import { DetailedListing } from "../../components/detailedListing/DetailedListing";
 import { Dropdown } from "../../components/dropdown/Dropdown";
 import { Input } from "../../components/input/Input";
 import { ListingsView } from "../../components/listingsView/ListingsView";
@@ -22,6 +23,7 @@ export const Marketplace: React.FC = () => {
   const [endDate, setEndDate] = useState(query.get("endDate") || "");
 
   const [listings, setListings] = useState<Listing[]>([]);
+  const [selectedListing, setSelectedListing] = useState<Listing | undefined>(undefined);
 
   // Only fetch listings based on query parameters on page load
   useEffect(() => {
@@ -121,7 +123,7 @@ export const Marketplace: React.FC = () => {
       </div>
       <div className="listings-and-map-page">
         <div className="listings-container">
-          <ListingsView listings={listings} />
+          <ListingsView listings={listings} onSelectListing={(listing) => setSelectedListing(listing)} />
         </div>
         <div className="map-container">
           <div>
@@ -129,6 +131,7 @@ export const Marketplace: React.FC = () => {
           </div>
         </div>
       </div>
+      {selectedListing && <DetailedListing listing={selectedListing} onClose={() => setSelectedListing(undefined)} />}
     </div>
   );
 };

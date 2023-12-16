@@ -1,5 +1,4 @@
 import React from "react";
-import { exampleUserA } from "../../utils/inboxtestdata";
 import { Inbox } from "../inbox/Inbox";
 
 export const InboxTest: React.FC = () => {
@@ -8,7 +7,7 @@ export const InboxTest: React.FC = () => {
       {/* Pass the exampleUser object as a prop to ChatBoxSublessor */}
       {/* <ChatBoxSublessor user={exampleUser} /> */}
       {/* <ChatBox slugA={exampleUserA} slugB={exampleUserB} findingApartment={true}></ChatBox> */}
-      <Inbox currentUser={exampleUserA} />
+      <Inbox />
       {/* <ListingsView listings={[sampleListing]} onSelectListing={function (listing: Listing): void {
         throw new Error('Function not implemented.');
       } } selectedListing={null}></ListingsView> */}

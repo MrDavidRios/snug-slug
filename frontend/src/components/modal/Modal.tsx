@@ -3,7 +3,7 @@ import ReactFocusLock from "react-focus-lock";
 import LeftArrow from "../../assets/left-arrow.svg";
 
 interface ModalProps extends React.HTMLAttributes<HTMLDivElement> {
-  title: string;
+  title?: string;
   children: React.ReactNode;
   onClose?: () => void;
   blurBackdrop?: boolean;
