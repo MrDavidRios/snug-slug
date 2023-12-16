@@ -28,7 +28,10 @@
   gap: 10px;
   width: 100%;
   cursor: pointer;
-  color: var(--secondary-text);
+
+  &.placeholder {
+    color: var(--secondary-text);
+  }
 
   white-space: nowrap;
 }
