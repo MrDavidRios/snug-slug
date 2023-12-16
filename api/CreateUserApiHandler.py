@@ -20,8 +20,7 @@ class CreateUserApiHandler(Resource):
             bio=data.get('bio'),
             budget=data.get('budget'),
             start_date=datetime.strptime(data.get('startDate', ''), '%Y-%m-%d').date(),
-            end_date=datetime.strptime(data.get('endDate', ''), '%Y-%m-%d').date(),
-            active_listing_id=data.get('activeListingId')
+            end_date=datetime.strptime(data.get('endDate', ''), '%Y-%m-%d').date()
         )
         
         db.session.add(new_user)
