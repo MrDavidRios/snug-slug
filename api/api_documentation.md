@@ -143,7 +143,6 @@ DELETE http://127.0.0.1:8080/api/snugslug/deleteListing/31
 - `budget` (string): Budget range of the user.
 - `startDate` (date): The start date of interest (format: YYYY-MM-DD).
 - `endDate` (date): The end date of interest (format: YYYY-MM-DD).
-- `activeListingId` (integer): Posted listing of the user, 0 if user looking for listing.
 
 ### Example Request
 
@@ -164,8 +163,7 @@ Content-Type: application/json
   "bio": "Senior at Columbia, majoring in Political Science. Looking for a summer sublet. I'm organized, respectful of shared spaces, and love to bake.",
   "budget": "1300",
   "startDate": "2024-06-01",
-  "endDate": "2024-08-30",
-  "activeListingId": 0
+  "endDate": "2024-08-30"
 }
 ```
 
