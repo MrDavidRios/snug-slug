@@ -12,11 +12,13 @@ class Listing(db.Model):
     details = db.Column(JSON)
     tags = db.Column(JSON)
     requirements = db.Column(JSON)
-    additionalInfo = db.Column(JSON, name='additional_info')
-    startDate = db.Column(db.Date, name='start_date')
-    endDate = db.Column(db.Date, name='end_date')
+    additional_info = db.Column(JSON, name='additional_info')
+    start_date = db.Column(db.Date, name='start_date')
+    end_date = db.Column(db.Date, name='end_date')
     rent = db.Column(db.Integer)
-    apartmentImgUrls = db.Column(JSON, name='apartment_img_urls')
+    apartment_img_urls = db.Column(JSON, name='apartment_img_urls')
+
+    owner = db.relationship('User', back_populates='active_listing', uselist=False)
 
     def __repr__(self):
         return f'<Listing {self.id}>'
@@ -44,17 +46,17 @@ class User(db.Model):
     email = db.Column(db.String(100), nullable=False, unique=True)
     age = db.Column(db.Integer)
     school = db.Column(db.String(100))
-    class_year = db.Column(db.Integer, name='classYear')
+    class_year = db.Column(db.Integer)
     pronouns = db.Column(db.String(50))
-    profile_pic_url = db.Column(db.String(255), name='profilePicUrl')
+    profile_pic_url = db.Column(db.String(255))
     bio = db.Column(db.Text)
     budget = db.Column(db.String(100))
-    dates = db.Column(db.String(100))
+    start_date = db.Column(db.Date, name='start_date')
+    end_date = db.Column(db.Date, name='end_date')
+    active_listing_id = db.Column(db.Integer, db.ForeignKey('listings.id'), name='active_listing_id')
 
     # Relationships
-    active_listing_id = db.Column(db.Integer, db.ForeignKey('listings.id'))
-    active_listing = db.relationship('Listing', backref='owner', lazy=True, foreign_keys=[active_listing_id])
-
+    active_listing = db.relationship('Listing', back_populates='owner', uselist=False)
     saved_listings = db.relationship('Listing', secondary='user_saved_listings', backref='saved_by_users', lazy='dynamic')
     archived_users = db.relationship('User', secondary='user_archived_users', primaryjoin=(user_archived_users.c.archiver_id == id), secondaryjoin=(user_archived_users.c.archived_user_id == id), backref='archived_by_users', lazy='dynamic')
     archived_listings = db.relationship('Listing', secondary='user_archived_listings', backref='archived_by_user', lazy='dynamic')

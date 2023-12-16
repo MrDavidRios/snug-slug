@@ -19,11 +19,11 @@ class UpdateListingApiHandler(Resource):
         listing.details = data.get('details', listing.details)
         listing.tags = data.get('tags', listing.tags)
         listing.requirements = data.get('requirements', listing.requirements)
-        listing.additionalInfo = data.get('additionalInfo', listing.additionalInfo)
-        listing.startDate = data.get('startDate', listing.startDate)
-        listing.endDate = data.get('endDate', listing.endDate)
+        listing.additional_info = data.get('additionalInfo', listing.additional_info)
+        listing.start_date = data.get('startDate', listing.start_date)
+        listing.end_date = data.get('endDate', listing.end_date)
         listing.rent = data.get('rent', listing.rent)
-        listing.apartmentImgUrls = data.get('apartmentImgUrls', listing.apartmentImgUrls)
+        listing.apartment_img_urls = data.get('apartmentImgUrls', listing.apartment_img_urls)
 
         db.session.commit()
 
