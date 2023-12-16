@@ -1,5 +1,6 @@
-import { useEffect, useState } from "react";
-import { useLocation, useSearchParams } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
+import { Link, useLocation, useSearchParams } from "react-router-dom";
+import { UserContext, UserContextType } from "../../components/UserContext";
 import { Button } from "../../components/button/Button";
 import { DatePickerDropdown } from "../../components/datePickerDropdown/DatePickerDropdown";
 import { DetailedListing } from "../../components/detailedListing/DetailedListing";
@@ -7,6 +8,7 @@ import { Dropdown } from "../../components/dropdown/Dropdown";
 import { Input } from "../../components/input/Input";
 import { ListingsView } from "../../components/listingsView/ListingsView";
 import { MapView } from "../../components/mapView/MapView";
+import { Modal } from "../../components/modal/Modal";
 import { Listing } from "../../types/listing";
 import { getYMDString } from "../../utils/datefunctions";
 
@@ -25,6 +27,8 @@ export const Marketplace: React.FC = () => {
   if (queryMaxPrice && !queryMaxPrice.startsWith("$")) {
     queryMaxPrice = `$${queryMaxPrice}`;
   }
+
+  const { slug } = useContext(UserContext) as UserContextType;
 
   const [location, setLocation] = useState(query.get("location") || "");
   const [minPrice, setMinPrice] = useState(queryMinPrice || "$0");
@@ -137,7 +141,22 @@ export const Marketplace: React.FC = () => {
           </div>
         </div>
       </div>
-      {selectedListing && <DetailedListing listing={selectedListing} onClose={() => setSelectedListing(undefined)} />}
+      {selectedListing && (
+        <>
+          {slug ? (
+            <DetailedListing listing={selectedListing} onClose={() => setSelectedListing(undefined)} />
+          ) : (
+            <Modal style={{ padding: "0 40px 40px 40px" }} onClose={() => setSelectedListing(undefined)}>
+              <h3>Log in to view</h3>
+              <br />
+              <p>Log in to save a listing or view listing in more detail!</p>
+              <Link to="/login">
+                <Button text="Log in" className="action" style={{ marginTop: 32 }} />
+              </Link>
+            </Modal>
+          )}
+        </>
+      )}
     </div>
   );
 };

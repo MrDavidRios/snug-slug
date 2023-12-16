@@ -9,7 +9,7 @@ interface ModalProps extends React.HTMLAttributes<HTMLDivElement> {
   blurBackdrop?: boolean;
 }
 
-export const Modal: React.FC<ModalProps> = ({ title, children, id, onClose, blurBackdrop = false }) => {
+export const Modal: React.FC<ModalProps> = ({ title, children, id, onClose, style, blurBackdrop = false }) => {
   return (
     <ReactFocusLock>
       <div className={`modal-backdrop ${blurBackdrop ? "blur" : ""}`} />
@@ -20,7 +20,9 @@ export const Modal: React.FC<ModalProps> = ({ title, children, id, onClose, blur
           </button>
           <h2>{title}</h2>
         </div>
-        <div className="modal-content">{children}</div>
+        <div className="modal-content" style={style}>
+          {children}
+        </div>
       </div>
     </ReactFocusLock>
   );
