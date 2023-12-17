@@ -148,7 +148,11 @@ export const Marketplace: React.FC = () => {
       {selectedListing && (
         <>
           {slug ? (
-            <DetailedListing listing={selectedListing} onClose={() => setSelectedListing(undefined)} />
+            <DetailedListing
+              listing={selectedListing}
+              onClose={() => setSelectedListing(undefined)}
+              inMarketplace={true}
+            />
           ) : (
             <Modal style={{ padding: "0 40px 40px 40px" }} onClose={() => setSelectedListing(undefined)}>
               <h3>Log in to view</h3>

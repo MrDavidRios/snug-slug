@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import { ChatMessage } from "../../types/chatMessage";
+import { Listing } from "../../types/listing";
 import { Slug } from "../../types/slug";
+import { getListing } from "../../utils/listingDataHelper";
 import { sortMessagesByTimestamp } from "../../utils/sortMessages";
 import { getChatHistory, getUserData } from "../../utils/userDataHelper";
 import { Button } from "../button/Button";
@@ -46,15 +48,27 @@ export const ChatBox: React.FC<ChatBoxProps> = ({
   const [showPopup, setShowPopup] = useState(false);
   const [messages, setMessages] = useState<ChatMessage[]>([]);
 
+  const [listing, setListing] = useState<Listing | undefined>(undefined);
+
   // Load selected user data
   useEffect(() => {
     const getSelectedUser = async () => {
-      if (!selectedUserId) return;
-
-      setSelectedUser(await getUserData(selectedUserId));
+      setSelectedUser(await getUserData(selectedUserId!));
     };
 
+    const getCorrespondingListing = async () => {
+      const listing = await getListing(selectedUserId!);
+      setListing(listing);
+    };
+
+    if (!selectedUserId) {
+      setSelectedUser(undefined);
+      setListing(undefined);
+      return;
+    }
+
     getSelectedUser();
+    getCorrespondingListing();
   }, [selectedUserId]);
 
   // Update chat history if user, selected user, or search preference changes
@@ -104,8 +118,6 @@ export const ChatBox: React.FC<ChatBoxProps> = ({
   }, [messages]);
 
   // Display text
-  const listing = selectedUser?.activeListing;
-
   let subject = findingApartment && listing ? listing.location : "Select a User or Listing";
   if (!findingApartment) subject = selectedUser?.name || "Select a User or Listing";
 

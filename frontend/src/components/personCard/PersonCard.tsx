@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { Slug } from "../../types/slug";
 import { getLastMessage } from "../../utils/chatHelper";
 import { PersonCardMessageBox } from "../PersonCardMessageBox/PersonCardMessageBox";
@@ -10,6 +11,7 @@ interface PersonCardProps extends CardProps {
   person: Partial<Slug> | Slug;
   currentUser?: Slug;
   archived?: boolean;
+  displayMeetButton?: boolean;
   onArchive?: (id: number, archivingListing: boolean) => void;
   onUnarchive?: (id: number, unarchivingListing: boolean) => void;
   inInbox?: boolean;
@@ -22,6 +24,7 @@ export const PersonCard: React.FC<PersonCardProps> = ({
   onArchive,
   onUnarchive,
   inInbox = false,
+  displayMeetButton = false,
   className,
   onClick,
 }) => {
@@ -78,7 +81,7 @@ export const PersonCard: React.FC<PersonCardProps> = ({
         </div>
 
         <div className="looking-for">
-          {budget && <p>Budget: {budget}</p>}
+          {budget && <p>{`Budget: $${budget}`}</p>}
           {startDate && endDate && <p>{`Dates: ${startDate} - ${endDate}`}</p>}
         </div>
       </div>
@@ -86,8 +89,12 @@ export const PersonCard: React.FC<PersonCardProps> = ({
       <div className="actions-messagebox">
         {/* Below only renders in Inbox page */}
         {inInbox && <PersonCardMessageBox message={lastMessage ?? "Loading most recent message..."} />}
-
         <div className="actions">
+          {displayMeetButton && (
+            <Link to="/inbox" style={{ margin: "auto" }}>
+              <Button text="Message sublessor" className="action" />
+            </Link>
+          )}
           {inInbox && (
             <>
               {archived ? (
