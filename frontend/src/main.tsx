@@ -7,6 +7,7 @@ import { UserProvider } from "./components/UserContext";
 import { Root } from "./pages/Root";
 import { FAQPage } from "./pages/faq/FAQPage";
 import { Inbox } from "./pages/inbox/Inbox";
+import { ListingCreationPage } from "./pages/listing-creation/ListingCreationPage";
 import { ListingPage } from "./pages/listing/ListingPage";
 import { Login } from "./pages/login/Login";
 import { Marketplace } from "./pages/marketplace/Marketplace";
@@ -30,6 +31,7 @@ const router = createBrowserRouter([
       { path: "inbox", element: <Inbox /> },
       { path: "faq", element: <FAQPage /> },
       { path: "listing", element: <ListingPage /> },
+      { path: "listing-creation", element: <ListingCreationPage /> },
       { path: "profile", element: <ProfilePage /> },
     ],
   },

@@ -7,7 +7,17 @@ export type Listing = {
   requirements: string[];
   additionalInfo: string[];
   tags: string[];
-  dates: string;
+
+  /**
+   * Start date; format is "YYYY-MM-DD"
+   */
+  startDate: string;
+
+  /**
+   * End date; format is "YYYY-MM-DD"
+   */
+  endDate: string;
+
   rent: number;
   apartmentImgUrls: string[];
 };

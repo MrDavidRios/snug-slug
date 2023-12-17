@@ -14,7 +14,8 @@ interface DetailedListingProps {
 }
 
 export const DetailedListing: React.FC<DetailedListingProps> = ({ listing, onClose }) => {
-  const { location, dates, rent, overview, details, requirements, additionalInfo, apartmentImgUrls } = listing;
+  const { location, startDate, endDate, rent, overview, details, requirements, additionalInfo, apartmentImgUrls } =
+    listing;
 
   const [owner, setOwner] = useState<Slug | undefined>(undefined);
 
@@ -31,7 +32,7 @@ export const DetailedListing: React.FC<DetailedListingProps> = ({ listing, onClo
       <div className="left">
         <div>
           <h1 className="location">{location}</h1>
-          <h2 className="dates">{dates}</h2>
+          <h2 className="dates">{`${startDate} to ${endDate}`}</h2>
           <div style={{ display: "flex", alignItems: "center" }}>
             <h2>{`$${rent}`}</h2>
             <h2 style={{ color: "var(--dark-gray)", marginBottom: 2 }}>/month</h2>

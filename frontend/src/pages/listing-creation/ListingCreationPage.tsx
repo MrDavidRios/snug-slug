@@ -4,6 +4,7 @@ import { DatePickerDropdown } from "../../components/datePickerDropdown/DatePick
 import { Dropdown } from "../../components/dropdown/Dropdown";
 import { Input } from "../../components/input/Input";
 import { TextArea } from "../../components/textArea/TextArea";
+import { Listing } from "../../types/listing";
 import { getYMDString } from "../../utils/datefunctions";
 
 export const ListingCreationPage: React.FC = () => {
@@ -154,7 +155,22 @@ export const ListingCreationPage: React.FC = () => {
   };
 
   // post - TO-DO!
-  const handleSearch = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const listing: Listing = {
+      id: number;
+      ownerId: number;
+      location: string;
+      overview: string;
+      details: string[];
+      requirements: string[];
+      additionalInfo: additional
+      // tags: 
+      startDate: startDate,
+      endDate: endDate,
+      rent: parseInt(price.replace("$", "")),
+      // apartmentImgUrls: ;
+    };
+
     e.preventDefault();
   };
 
@@ -299,7 +315,7 @@ export const ListingCreationPage: React.FC = () => {
       </div>
 
       <Button
-        onClick={handleSearch}
+        onClick={handleSubmit}
         text="All done! Share my listing."
         style={{ marginTop: "10px", backgroundColor: "lightblue" }}
       />
