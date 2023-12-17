@@ -232,5 +232,55 @@ GET http://127.0.0.1:8080/api/snugslug/getSavedListings/1
 ### Example Request
 
 ```
-DELETE http://127.0.0.1:8080/api/snugslug/addSavedListing?userId=1&listingId=1
+DELETE http://127.0.0.1:8080/api/snugslug/deleteSavedListing?userId=1&listingId=1
+```
+
+## Archive Listing to User
+
+**POST** `/addArchivedListing`
+
+- Archive given listing id and user id.
+
+### Parameters
+
+- `userId` (integer): The id of the user.
+- `listingId` (integer): The id of the listing.
+
+### Example Request
+
+```
+POST http://127.0.0.1:8080/api/snugslug/addArchivedListing?userId=1&listingId=1
+```
+
+## Get Archived Listings from User
+
+**GET** `/getArchivedListings/{userId}`
+
+- Retrieve all archived listings from a given user id.
+
+### Path Parameters
+
+- `userId` (integer): The id of the user.
+
+### Example Request
+
+```
+GET http://127.0.0.1:8080/api/snugslug/getArchivedListings/1
+```
+
+## Remove Archived Listing from User
+
+**Delete** `/deleteArchivedListing`
+
+- Remove archived listing given listing id and user id.
+
+### Parameters
+
+- `userId` (integer): The id of the user.
+- `listingId` (integer): The id of the listing.
+
+### Example Request
+
+```
+DELETE http://127.0.0.1:8080/api/snugslug/deleteArchivedListing?userId=1&listingId=1
 ```

@@ -11,6 +11,9 @@ from api.GetUserApiHandler import GetUserApiHandler
 from api.AddSavedListingApiHandler import AddSavedListingApiHandler
 from api.DeleteSavedListingApiHandler import DeleteSavedListingApiHandler
 from api.GetSavedListingsApiHandler import GetSavedListingsApiHandler
+from api.AddArchivedListingApiHandler import AddArchivedListingApiHandler
+from api.DeleteArchivedListingApiHandler import DeleteArchivedListingApiHandler
+from api.GetArchivedListingsApiHandler import GetArchivedListingsApiHandler
 from models import db, Listing, User, user_saved_listings
 import os
 import json
@@ -99,3 +102,6 @@ api.add_resource(GetUserApiHandler, '/api/snugslug/getUser/<int:id>')
 api.add_resource(AddSavedListingApiHandler, '/api/snugslug/addSavedListing')
 api.add_resource(DeleteSavedListingApiHandler, '/api/snugslug/deleteSavedListing')
 api.add_resource(GetSavedListingsApiHandler, '/api/snugslug/getSavedListings/<int:id>')
+api.add_resource(AddArchivedListingApiHandler, '/api/snugslug/addArchivedListing')
+api.add_resource(DeleteArchivedListingApiHandler, '/api/snugslug/deleteArchivedListing')
+api.add_resource(GetArchivedListingsApiHandler, '/api/snugslug/getArchivedListings/<int:id>')
