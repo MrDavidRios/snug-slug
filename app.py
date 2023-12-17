@@ -14,7 +14,10 @@ from api.GetSavedListingsApiHandler import GetSavedListingsApiHandler
 from api.AddArchivedListingApiHandler import AddArchivedListingApiHandler
 from api.DeleteArchivedListingApiHandler import DeleteArchivedListingApiHandler
 from api.GetArchivedListingsApiHandler import GetArchivedListingsApiHandler
-from models import db, Listing, User, user_saved_listings
+from api.AddArchivedUserApiHandler import AddArchivedUserApiHandler
+from api.DeleteArchivedUserApiHandler import DeleteArchivedUserApiHandler
+from api.GetArchivedUsersApiHandler import GetArchivedUsersApiHandler
+from models import db, Listing, User, user_saved_listings, user_archived_listings, user_archived_users
 import os
 import json
 from datetime import datetime
@@ -46,6 +49,8 @@ with app.app_context():
     db.session.query(Listing).delete()
     db.session.query(User).delete()
     db.session.execute(user_saved_listings.delete())
+    db.session.execute(user_archived_listings.delete())
+    db.session.execute(user_archived_users.delete())
     db.session.commit()
 
     for listing_data in initial_listing:
@@ -105,3 +110,6 @@ api.add_resource(GetSavedListingsApiHandler, '/api/snugslug/getSavedListings/<in
 api.add_resource(AddArchivedListingApiHandler, '/api/snugslug/addArchivedListing')
 api.add_resource(DeleteArchivedListingApiHandler, '/api/snugslug/deleteArchivedListing')
 api.add_resource(GetArchivedListingsApiHandler, '/api/snugslug/getArchivedListings/<int:id>')
+api.add_resource(AddArchivedUserApiHandler, '/api/snugslug/addArchivedUser')
+api.add_resource(DeleteArchivedUserApiHandler, '/api/snugslug/deleteArchivedUser')
+api.add_resource(GetArchivedUsersApiHandler, '/api/snugslug/getArchivedUsers/<int:id>')
