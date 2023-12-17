@@ -1,4 +1,5 @@
 import { useContext, useState } from "react";
+import { Link } from "react-router-dom";
 import { UserContext, UserContextType } from "../../components/UserContext";
 import { Button } from "../../components/button/Button";
 import { DatePickerDropdown } from "../../components/datePickerDropdown/DatePickerDropdown";
@@ -172,7 +173,7 @@ export const ListingCreationPage: React.FC = () => {
       details: [apartmentType, shared, furnished, utilitiesIncluded],
       requirements: requirements,
       additionalInfo: additionalInfo,
-      tags: [pet, laundry, gym],
+      tags: [furnished, gym],
       startDate: startDate,
       endDate: endDate,
       rent: parseInt(price.replace("$", "")),
@@ -360,7 +361,9 @@ export const ListingCreationPage: React.FC = () => {
         </div>
       </div>
       <br />
-      <Button onClick={handleSubmit} text="All done! Share my listing." className="action" />
+      <Link to={"/listing"}>
+        <Button onClick={handleSubmit} text="All done! Share my listing." className="action" />
+      </Link>
     </div>
   );
 };

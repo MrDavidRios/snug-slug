@@ -1,8 +1,3 @@
-html {
-  height: 100%;
-  margin-bottom: 20px;
-}
-
 #listingCreationPageWrapper {
   margin-left: 2%;
   margin-right: 50%;
@@ -48,10 +43,6 @@ html {
         &::placeholder {
           color: var(--secondary-text);
         }
-      }
-
-      div.react-datepicker__input-container {
-        width: 30%;
       }
 
       textarea {

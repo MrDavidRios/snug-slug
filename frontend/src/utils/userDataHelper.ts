@@ -36,8 +36,6 @@ export async function getArchivedPeople(slug: Slug): Promise<Slug[]> {
 }
 
 export async function getUserData(id: number): Promise<Slug | undefined> {
-  console.error("TRYNA GET USER DATA");
-
   const response = await fetch(`http://127.0.0.1:8080/api/snugslug/getUser/${id}`);
 
   console.log(response);
@@ -154,4 +152,21 @@ export async function getActivePeople(user: Slug): Promise<Slug[]> {
   }
 
   return activePeople;
+}
+
+export async function createUser(user: Partial<Slug>) {
+  const response = await fetch("http://127.0.0.1:8080/api/snugslug/createUser", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(user),
+  });
+
+  if (!response.ok) {
+    throw new Error(`HTTP error! status: ${response.status}`);
+  }
+
+  const data = await response.json();
+  return data;
 }

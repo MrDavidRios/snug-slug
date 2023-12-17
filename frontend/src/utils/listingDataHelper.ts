@@ -21,3 +21,25 @@ export async function createListing(listing: NewListing) {
   const data = await response.json();
   return data;
 }
+
+export async function getListing(id: number): Promise<Listing> {
+  const response = await fetch(`http://127.0.0.1:8080/api/snugslug/getListing/${id}`);
+
+  if (!response.ok) {
+    throw new Error(`HTTP error! status: ${response.status}`);
+  }
+
+  const data = await response.json();
+  return data;
+}
+
+export async function getActiveListing(ownerId: number): Promise<Listing> {
+  const response = await fetch(`http://127.0.0.1:8080/api/snugslug/getActiveListing/${ownerId}`);
+
+  if (!response.ok) {
+    throw new Error(`HTTP error! status: ${response.status}`);
+  }
+
+  const data = await response.json();
+  return data;
+}

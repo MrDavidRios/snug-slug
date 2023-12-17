@@ -1,13 +1,23 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import marker from "../../assets/addProfilePic.svg";
 import Jenny from "../../assets/testprofile.svg";
+import { UserContext, UserContextType } from "../../components/UserContext";
 import { Button } from "../../components/button/Button";
 import { Input } from "../../components/input/Input";
+import { LoadingIndicator } from "../../components/loadingIndicator/loadingIndicator";
+import { Modal } from "../../components/modal/Modal";
 import { PersonCard } from "../../components/personCard/PersonCard";
 import { TextArea } from "../../components/textArea/TextArea";
 import { Slug } from "../../types/slug";
+import { createUser } from "../../utils/userDataHelper";
 
 export const ProfileCreationPage: React.FC = () => {
+  const { setSlug } = useContext(UserContext) as UserContextType;
+  const navigate = useNavigate();
+
+  const [loading, setLoading] = useState(false);
+
   // firstName
   const [firstName, setFirstName] = useState("");
   const handleFirstNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -51,8 +61,43 @@ export const ProfileCreationPage: React.FC = () => {
   };
 
   // post - TO-DO!
-  const handlePost = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
+  const handlePost = async () => {
+    console.log("we here");
+    setLoading(true);
+
+    constructedUser.startDate = "2024-06-01";
+    constructedUser.endDate = "2024-08-30";
+    constructedUser.email = `sample${Math.round(Math.random() * 1000)}@email.com`;
+
+    const newUserData = (await createUser(constructedUser)) as { message: string; user_id: number };
+
+    console.log("User created! Result: ", newUserData);
+    constructedUser.id = newUserData.user_id;
+
+    const fullUser: Slug = {
+      name: constructedUser.name!,
+      pronouns: constructedUser.pronouns!,
+      age: constructedUser.age!,
+      school: constructedUser.school!,
+      classYear: constructedUser.classYear!,
+      bio: constructedUser.bio!,
+      profilePicUrl: constructedUser.profilePicUrl!,
+      startDate: constructedUser.startDate,
+      endDate: constructedUser.endDate,
+      email: constructedUser.email,
+      id: newUserData.user_id,
+      budget: "$1300",
+      savedListings: [],
+      archivedUserIDs: [],
+      archivedListingIDs: [],
+      sentMessages: [],
+      receivedMessages: [],
+    };
+
+    setLoading(false);
+    setSlug(fullUser);
+
+    navigate("/new-user");
   };
 
   const constructedUser: Partial<Slug> = {
@@ -109,6 +154,16 @@ export const ProfileCreationPage: React.FC = () => {
         <h3>This is what your profile card looks like!</h3>
         <PersonCard person={constructedUser} />
       </div>
+      {loading && (
+        <Modal
+          title="Creating Profile"
+          style={{ padding: 32, display: "flex", flexDirection: "column", alignItems: "center", gap: 16 }}
+          showCloseButton={false}
+        >
+          <p>Getting everything ready for you...</p>
+          <LoadingIndicator />
+        </Modal>
+      )}
     </div>
   );
 };

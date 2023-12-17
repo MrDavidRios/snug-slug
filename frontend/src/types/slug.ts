@@ -17,7 +17,8 @@ export type Slug = {
   bio: string;
 
   budget: string;
-  dates: string;
+  startDate: string;
+  endDate: string;
 
   /**
    * Listing that the user currently has posted

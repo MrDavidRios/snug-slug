@@ -25,7 +25,7 @@ export const PersonCard: React.FC<PersonCardProps> = ({
   className,
   onClick,
 }) => {
-  const { id, name, email, age, school, classYear, pronouns, profilePicUrl, bio, budget, dates } = person;
+  const { id, name, email, age, school, classYear, pronouns, profilePicUrl, bio, budget, startDate, endDate } = person;
 
   const [lastMessage, setLastMessage] = useState<string | undefined>();
 
@@ -79,7 +79,7 @@ export const PersonCard: React.FC<PersonCardProps> = ({
 
         <div className="looking-for">
           {budget && <p>Budget: {budget}</p>}
-          {dates && <p>Dates: {dates}</p>}
+          {startDate && endDate && <p>{`Dates: ${startDate} - ${endDate}`}</p>}
         </div>
       </div>
 

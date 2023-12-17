@@ -1,6 +1,7 @@
 from flask import Flask, send_from_directory
 from flask_restful import Api
-from flask_cors import CORS # comment this on deployment
+from flask_cors import CORS
+from api.GetActiveListingApiHandler import GetActiveListingApiHandler # comment this on deployment
 from api.SearchListingApiHandler import SearchListingApiHandler
 from api.CreateListingApiHandler import CreateListingApiHandler
 from api.DeleteListingApiHandler import DeleteListingApiHandler
@@ -104,6 +105,7 @@ api.add_resource(SearchListingApiHandler, '/api/snugslug/searchListing')
 api.add_resource(CreateListingApiHandler, '/api/snugslug/createListing')
 api.add_resource(DeleteListingApiHandler, '/api/snugslug/deleteListing/<int:id>')
 api.add_resource(GetListingApiHandler, '/api/snugslug/getListing/<int:id>')
+api.add_resource(GetActiveListingApiHandler, '/api/snugslug/getActiveListing/<int:id>')
 api.add_resource(UpdateListingApiHandler, '/api/snugslug/updateListing/<int:id>')
 api.add_resource(CreateUserApiHandler, '/api/snugslug/createUser')
 api.add_resource(GetUserApiHandler, '/api/snugslug/getUser/<int:id>')

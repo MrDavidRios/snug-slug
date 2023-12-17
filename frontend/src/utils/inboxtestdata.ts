@@ -14,7 +14,8 @@ export const exampleUserA: Slug = {
   bio: "",
 
   budget: "$1500",
-  dates: "",
+  startDate: "2024-06-01",
+  endDate: "2024-08-30",
 
   archivedListingIDs: [],
   archivedUserIDs: [],
@@ -36,7 +37,8 @@ export const exampleUserB: Slug = {
   bio: "",
 
   budget: "$1500",
-  dates: "",
+  startDate: "2024-06-01",
+  endDate: "2024-08-30",
 
   archivedListingIDs: [],
   archivedUserIDs: [],
@@ -58,7 +60,8 @@ export const exampleUserC: Slug = {
   bio: "",
 
   budget: "$1500",
-  dates: "",
+  startDate: "2024-06-01",
+  endDate: "2024-08-30",
 
   archivedListingIDs: [],
   archivedUserIDs: [],
@@ -80,7 +83,8 @@ export const exampleUserD: Slug = {
   bio: "",
 
   budget: "$1500",
-  dates: "",
+  startDate: "2024-06-01",
+  endDate: "2024-08-30",
 
   archivedListingIDs: [],
   archivedUserIDs: [],
