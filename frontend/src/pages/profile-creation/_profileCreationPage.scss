@@ -126,3 +126,18 @@
     }
   }
 }
+
+#newUserChoicePageWrapper {
+  padding: 36px;
+
+  h1 {
+    padding: 20px;
+  }
+
+  .action-buttons {
+    width: 100%;
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+  }
+}

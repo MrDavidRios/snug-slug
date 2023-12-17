@@ -12,9 +12,10 @@ import { PersonCard } from "../personCard/PersonCard";
 interface DetailedListingProps {
   listing: Listing;
   onClose: () => void;
+  inMarketplace?: boolean;
 }
 
-export const DetailedListing: React.FC<DetailedListingProps> = ({ listing, onClose }) => {
+export const DetailedListing: React.FC<DetailedListingProps> = ({ listing, onClose, inMarketplace = false }) => {
   const { location, startDate, endDate, rent, overview, details, requirements, additionalInfo, apartmentImgUrls } =
     listing;
 
@@ -78,7 +79,7 @@ export const DetailedListing: React.FC<DetailedListingProps> = ({ listing, onClo
         <Carousel imgUrls={apartmentImgUrls} />
         <div className="sublessor-wrapper">
           <h3>Meet the sublessor!</h3>
-          {owner ? <PersonCard person={owner} /> : <LoadingIndicator />}
+          {owner ? <PersonCard person={owner} displayMeetButton={inMarketplace} /> : <LoadingIndicator />}
         </div>
       </div>
     </Modal>

@@ -6,12 +6,15 @@ export const NewUserChoicePage: React.FC = () => {
     <div id="newUserChoicePageWrapper">
       <h1>Let's get started!</h1>
       <p>Would you like to:</p>
-      <Link to="/">
-        <Button text="Find an apartment" className="action" />
-      </Link>
-      <Link to="/listing-creation">
-        <Button text="Make a listing" className="action" />
-      </Link>
+      <br />
+      <div className="action-buttons">
+        <Link to="/">
+          <Button text="Find an apartment" className="action" />
+        </Link>
+        <Link to="/listing-creation">
+          <Button text="Make a listing" className="action" />
+        </Link>
+      </div>
     </div>
   );
 };

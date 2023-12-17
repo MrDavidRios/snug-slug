@@ -1,12 +1,14 @@
 import React, { useEffect, useRef, useState } from "react";
 import { ChatMessage } from "../../types/chatMessage";
+import { Listing } from "../../types/listing";
 import { Slug } from "../../types/slug";
+import { sendChatMessage } from "../../utils/chatHelper";
+import { getListing } from "../../utils/listingDataHelper";
 import { sortMessagesByTimestamp } from "../../utils/sortMessages";
 import { getChatHistory, getUserData } from "../../utils/userDataHelper";
 import { Button } from "../button/Button";
 import { ArchiveIconButton } from "../button/archive-button/ArchiveIconButton";
 import { ConfirmButton } from "../button/confirm-button/ConfirmButton";
-import { HeartButton } from "../button/heart-button/HeartButton";
 import { ChatBoxSublessor } from "../chatBoxSublessor/ChatBoxSublessor";
 import { ChatBubble } from "../chatBubble/ChatBubble";
 import { ChatInput } from "../chatInput/ChatInput";
@@ -46,48 +48,54 @@ export const ChatBox: React.FC<ChatBoxProps> = ({
   const [showPopup, setShowPopup] = useState(false);
   const [messages, setMessages] = useState<ChatMessage[]>([]);
 
+  const [listing, setListing] = useState<Listing | undefined>(undefined);
+
   // Load selected user data
   useEffect(() => {
     const getSelectedUser = async () => {
-      if (!selectedUserId) return;
-
-      setSelectedUser(await getUserData(selectedUserId));
+      setSelectedUser(await getUserData(selectedUserId!));
     };
 
-    getSelectedUser();
-  }, [selectedUserId]);
+    const getCorrespondingListing = async () => {
+      const listing = findingApartment ? await getListing(selectedUserId!) : await getListing(currentUser.id);
+      setListing(listing);
+    };
 
-  // Update chat history if user, selected user, or search preference changes
-  useEffect(() => {
+    if (!selectedUserId) {
+      setSelectedUser(undefined);
+      setListing(undefined);
+      setMessages([]);
+      return;
+    }
+
     const loadMessages = async () => {
-      if (!currentUser || !selectedUser) return;
+      if (!currentUser.id || !selectedUserId || !listing?.id) return;
 
-      const messageHistory = await getChatHistory(currentUser.id, selectedUser.id, findingApartment);
+      const messageHistory = await getChatHistory(currentUser.id, selectedUserId, listing?.id);
       setMessages(messageHistory);
     };
 
+    getSelectedUser();
+    getCorrespondingListing();
     loadMessages();
-  }, [currentUser, selectedUser, findingApartment]);
+  }, [selectedUserId, currentUser.id, findingApartment, listing?.id]);
 
   const sortedMessages = messages ? sortMessagesByTimestamp(messages) : [];
   const handleSendMessage = (newMessage: string) => {
-    if (!selectedUser) return;
-    if (findingApartment && !selectedUser.activeListing) return;
-    if (!findingApartment && !currentUser.activeListing) return;
-
+    if (!selectedUser || !listing) return;
     if (newMessage.trim() === "") return;
 
     const newChatMessage: ChatMessage = {
       senderId: currentUser.id,
-      receiverId: selectedUser.id,
-      listingId: findingApartment ? selectedUser?.activeListing!.id : currentUser.activeListing!.id,
+      recipientId: selectedUser.id,
+      listingId: listing?.id,
       timestamp: new Date(),
       text: newMessage,
     };
 
     setMessages((prevMessages) => [...prevMessages, newChatMessage]);
 
-    // TODO: Backend integration
+    sendChatMessage(newChatMessage);
     return;
   };
 
@@ -104,8 +112,6 @@ export const ChatBox: React.FC<ChatBoxProps> = ({
   }, [messages]);
 
   // Display text
-  const listing = selectedUser?.activeListing;
-
   let subject = findingApartment && listing ? listing.location : "Select a User or Listing";
   if (!findingApartment) subject = selectedUser?.name || "Select a User or Listing";
 
@@ -123,9 +129,6 @@ export const ChatBox: React.FC<ChatBoxProps> = ({
 
       <div id="chatBoxTabBar">
         <div id="leftSideTabBar">
-          <div id="heartButton">
-            <HeartButton liked={false} />
-          </div>
           <div id="listingLocation">{subject}</div>
         </div>
         {selectedUserId && (

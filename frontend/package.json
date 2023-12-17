@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "firebase": "^10.6.0",
+    "lodash": "^4.17.21",
     "node-sass": "^9.0.0",
     "react": "^18.2.0",
     "react-date-range": "^1.4.0",
@@ -26,6 +27,7 @@
     "swiper": "^11.0.4"
   },
   "devDependencies": {
+    "@types/lodash": "^4.14.202",
     "@types/react": "^18.2.15",
     "@types/react-datepicker": "^4.19.3",
     "@types/react-dom": "^18.2.7",

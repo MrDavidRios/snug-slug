@@ -9,6 +9,7 @@ import { PersonCardList } from "../../components/personCardList/PersonCardList";
 import { Listing } from "../../types/listing";
 import { Slug } from "../../types/slug";
 import { archiveListing, archiveUser } from "../../utils/archiveHelper";
+import { getListing } from "../../utils/listingDataHelper";
 import { getActiveListings, getActivePeople, getArchivedListings, getArchivedPeople } from "../../utils/userDataHelper";
 
 export const Inbox: React.FC = () => {
@@ -25,8 +26,10 @@ export const Inbox: React.FC = () => {
     const updateDisplayedInformation = async () => {
       if (!slug) return;
 
-      const listingsToDisplay = showArchived ? await getArchivedListings(slug) : await getActiveListings(slug);
-      setListings(listingsToDisplay);
+      // const listingsToDisplay = showArchived ? await getArchivedListings(slug) : await getActiveListings(slug);
+
+      // Brian Lee's listing :)
+      setListings([await getListing(14)]);
 
       const peopleToDisplay = showArchived ? await getArchivedPeople(slug) : await getActivePeople(slug);
       setPeople(peopleToDisplay);
