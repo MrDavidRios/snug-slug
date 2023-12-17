@@ -1,18 +1,8 @@
 import React from "react";
 
-interface InputProps {
-  value: string;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  placeholder: string;
-  style?: React.CSSProperties;
-}
+interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {}
 
-export const Input: React.FC<InputProps> = ({
-  value,
-  onChange,
-  placeholder,
-  style, 
-}) => {
+export const Input: React.FC<InputProps> = ({ value, onChange, placeholder, style }) => {
   return (
     <input
       className="input-box"
@@ -20,7 +10,7 @@ export const Input: React.FC<InputProps> = ({
       value={value}
       onChange={onChange}
       placeholder={placeholder}
-      style={style} // Apply the style here
-    ></input>
+      style={style}
+    />
   );
 };

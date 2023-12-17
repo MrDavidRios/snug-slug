@@ -5,11 +5,11 @@ interface DatePickerDropdownProps {
   startDate: Date | null;
   endDate: Date | null;
   onChange: (range: { startDate: Date | null; endDate: Date | null }) => void;
-  placeholderText: string;
+  placeholder: string;
 }
 
 export const DatePickerDropdown: React.FC<DatePickerDropdownProps> = (props) => {
-  const { startDate: initialStartDate, endDate: initialEndDate, onChange, placeholderText } = props;
+  const { startDate: initialStartDate, endDate: initialEndDate, onChange, placeholder } = props;
 
   // States
   const [startDate, setStartDate] = useState(initialStartDate);
@@ -33,7 +33,7 @@ export const DatePickerDropdown: React.FC<DatePickerDropdownProps> = (props) => 
         }}
         startDate={startDate}
         endDate={endDate}
-        placeholderText={placeholderText}
+        placeholderText={placeholder}
         selectsRange
       />
     </div>

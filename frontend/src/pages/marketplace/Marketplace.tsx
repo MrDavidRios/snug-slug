@@ -123,6 +123,7 @@ export const Marketplace: React.FC = () => {
         <DatePickerDropdown
           startDate={startDate === "" ? null : new Date(startDate)}
           endDate={endDate === "" ? null : new Date(endDate)}
+          placeholder="Select Dates"
           onChange={(e) => {
             setStartDate(getYMDString(e.startDate));
             setEndDate(getYMDString(e.endDate));
