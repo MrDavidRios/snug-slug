@@ -7,6 +7,8 @@
 @import "../pages/faq/faqPage";
 @import "../pages/listing/listingPage";
 @import "../pages/profile/profilePage";
+@import "../pages/profile-creation/profileCreationPage";
+@import "../pages/listing-creation/listingCreationPage";  
 
 // Components
 @import "../components/hero/hero";
@@ -28,6 +30,7 @@
 @import "../components/lookingForToggle/lookingForToggle";
 @import "../components/personCard/personCard";
 @import "../components/loadingIndicator/loadingIndicator";
+@import "../components/textArea/textArea"; 
 
 // Buttons
 @import "../components/button/button";
