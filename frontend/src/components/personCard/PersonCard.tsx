@@ -31,6 +31,8 @@ export const PersonCard: React.FC<PersonCardProps> = ({
 }) => {
   const { id, name, email, age, school, classYear, pronouns, profilePicUrl, bio, budget, startDate, endDate } = person;
 
+  console.log("profile pic url", profilePicUrl);
+
   const [lastMessage, setLastMessage] = useState<string | undefined>();
 
   useEffect(() => {

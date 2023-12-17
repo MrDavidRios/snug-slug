@@ -39,9 +39,60 @@ export async function getArchivedPeople(slug: Slug): Promise<Slug[]> {
 export async function getUserData(id: number): Promise<Slug | undefined> {
   const response = await fetch(`http://127.0.0.1:8080/api/snugslug/getUser/${id}`);
 
-  console.log(response);
+  const loadedUser = (await response.json()) as {
+    id: number;
+    active_listing: number;
+    age: number;
+    bio: string;
+    budget: string;
+    class_year: number;
+    email: string;
+    start_date: string;
+    end_date: string;
+    name: string;
+    profile_pic_url: string;
+    pronouns: string;
+    school: string;
+  };
 
-  return (await response.json()) as Slug | undefined;
+  console.log("user loaded:", loadedUser);
+
+  const {
+    id: loadedUserId,
+    age,
+    bio,
+    budget,
+    class_year,
+    email,
+    start_date,
+    end_date,
+    name,
+    profile_pic_url,
+    pronouns,
+    school,
+  } = loadedUser;
+
+  const convertedUser: Slug = {
+    age,
+    bio,
+    budget,
+    classYear: class_year,
+    email,
+    startDate: start_date,
+    endDate: end_date,
+    id: loadedUserId,
+    name,
+    profilePicUrl: profile_pic_url,
+    pronouns,
+    school,
+    sentMessages: [],
+    receivedMessages: [],
+    archivedListingIDs: [],
+    archivedUserIDs: [],
+    savedListings: [],
+  };
+
+  return convertedUser;
 }
 
 /**
@@ -60,8 +111,6 @@ export async function getChatHistory(
   // that we're using their chat history)
   const filteredChatHistory = chatHistory.filter((message) => {
     const otherUserPresent = message.senderId === otherUserId || message.recipientId === otherUserId;
-
-    console.log("haha goin through the messages. he here? ", otherUserPresent, message);
 
     if (!otherUserPresent) return false;
 

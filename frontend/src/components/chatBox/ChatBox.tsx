@@ -4,7 +4,6 @@ import { Listing } from "../../types/listing";
 import { Slug } from "../../types/slug";
 import { sendChatMessage } from "../../utils/chatHelper";
 import { getListing } from "../../utils/listingDataHelper";
-import { sortMessagesByTimestamp } from "../../utils/sortMessages";
 import { getChatHistory, getUserData } from "../../utils/userDataHelper";
 import { Button } from "../button/Button";
 import { ArchiveIconButton } from "../button/archive-button/ArchiveIconButton";
@@ -80,7 +79,6 @@ export const ChatBox: React.FC<ChatBoxProps> = ({
     loadMessages();
   }, [selectedUserId, currentUser.id, findingApartment, listing?.id]);
 
-  const sortedMessages = messages ? sortMessagesByTimestamp(messages) : [];
   const handleSendMessage = (newMessage: string) => {
     if (!selectedUser || !listing) return;
     if (newMessage.trim() === "") return;
@@ -155,7 +153,7 @@ export const ChatBox: React.FC<ChatBoxProps> = ({
         <div id="messages" className={findingApartment ? "messages-sublessor" : "messages-without-sublessor"}>
           {/* Mapping of chats here */}
 
-          {sortedMessages.map((chatMessage, index) => (
+          {messages.map((chatMessage, index) => (
             <ChatBubble key={index} message={chatMessage.text} isSender={chatMessage.senderId === currentUser.id} />
           ))}
           {/* Invisible div for scrolling */}

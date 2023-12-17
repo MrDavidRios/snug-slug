@@ -10,7 +10,7 @@ import { Listing } from "../../types/listing";
 import { Slug } from "../../types/slug";
 import { archiveListing, archiveUser } from "../../utils/archiveHelper";
 import { getListing } from "../../utils/listingDataHelper";
-import { getActiveListings, getActivePeople, getArchivedListings, getArchivedPeople } from "../../utils/userDataHelper";
+import { getActivePeople, getArchivedPeople } from "../../utils/userDataHelper";
 
 export const Inbox: React.FC = () => {
   const { slug } = useContext(UserContext) as UserContextType;
@@ -33,8 +33,6 @@ export const Inbox: React.FC = () => {
 
       const peopleToDisplay = showArchived ? await getArchivedPeople(slug) : await getActivePeople(slug);
       setPeople(peopleToDisplay);
-
-      console.log("howdy yall", showArchived ? await getArchivedListings(slug) : await getActiveListings(slug));
     };
 
     updateDisplayedInformation();
@@ -44,16 +42,9 @@ export const Inbox: React.FC = () => {
     setSelectedUserId(undefined);
   }
 
+  // TODO: implement this
   const confirmAction = () => {
     console.log("IMPLEMENT: confirm action");
-    // if (slug && selectedUserId?.activeListing) {
-    //   /**
-    //    * Create slug data clone and pass it into setUserData() using Flask
-    //    */
-    //   slug.activeListing = undefined;
-
-    //   resetSelection();
-    // }
   };
 
   const onArchive = (id: number, archivingListing: boolean) =>
