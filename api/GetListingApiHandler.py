@@ -12,7 +12,7 @@ class GetListingApiHandler(Resource):
         
         listing_json = {
             'id': listing.id,
-            'ownerId': listing.owner.id if listing.owner else None,
+            'ownerId': listing.owner_id,
             'location': listing.location,
             'overview': listing.overview,
             'details': listing.details,

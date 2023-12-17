@@ -43,6 +43,7 @@ with app.app_context():
 
     for listing_data in initial_listing:
         listing = Listing(
+            owner_id=listing_data['ownerId'],
             location=listing_data['location'],
             overview=listing_data['overview'],
             details=listing_data['details'],
@@ -69,8 +70,7 @@ with app.app_context():
             bio=user_data['bio'],
             budget=user_data['budget'],
             start_date=datetime.strptime(user_data['startDate'], '%Y-%m-%d').date(),
-            end_date=datetime.strptime(user_data['endDate'], '%Y-%m-%d').date(),
-            active_listing_id=user_data['activeListingId']
+            end_date=datetime.strptime(user_data['endDate'], '%Y-%m-%d').date()
         )
         db.session.add(user)
     db.session.commit()

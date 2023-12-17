@@ -9,7 +9,8 @@
     "startDate": "2024-06-19",
     "endDate": "2024-08-05",
     "rent": 1500,
-    "apartmentImgUrls": ["images/apartment.png"]
+    "apartmentImgUrls": ["images/apartment.png"],
+    "ownerId": 1
   },
   {
     "location": "Park Avenue, Midtown",
@@ -21,7 +22,8 @@
     "startDate": "2024-05-22",
     "endDate": "2024-09-19",
     "rent": 2000,
-    "apartmentImgUrls": ["images/apartment.png"]
+    "apartmentImgUrls": ["images/apartment.png"],
+    "ownerId": 2
   },
   {
     "location": "Brooklyn Heights, Brooklyn",
@@ -33,7 +35,8 @@
     "startDate": "2024-06-05",
     "endDate": "2024-07-07",
     "rent": 1800,
-    "apartmentImgUrls": ["images/apartment.png"]
+    "apartmentImgUrls": ["images/apartment.png"],
+    "ownerId": 3
   },
   {
     "location": "Harlem, Manhattan",
@@ -45,7 +48,8 @@
     "startDate": "2024-05-16",
     "endDate": "2024-08-11",
     "rent": 1600,
-    "apartmentImgUrls": ["images/apartment.png"]
+    "apartmentImgUrls": ["images/apartment.png"],
+    "ownerId": 4
   },
   {
     "location": "Astoria, Queens",
@@ -57,7 +61,8 @@
     "startDate": "2024-05-24",
     "endDate": "2024-09-27",
     "rent": 2500,
-    "apartmentImgUrls": ["images/apartment.png"]
+    "apartmentImgUrls": ["images/apartment.png"],
+    "ownerId": 5
   },
   {
     "location": "Greenwich Village, Manhattan",
@@ -69,7 +74,8 @@
     "startDate": "2024-04-22",
     "endDate": "2024-08-15",
     "rent": 2200,
-    "apartmentImgUrls": ["images/apartment.png"]
+    "apartmentImgUrls": ["images/apartment.png"],
+    "ownerId": 6
   },
   {
     "location": "Williamsburg, Brooklyn",
@@ -81,7 +87,8 @@
     "startDate": "2024-04-02",
     "endDate": "2024-08-11",
     "rent": 1700,
-    "apartmentImgUrls": ["images/apartment.png"]
+    "apartmentImgUrls": ["images/apartment.png"],
+    "ownerId": 7
   },
   {
     "location": "East Village, Manhattan",
@@ -93,7 +100,8 @@
     "startDate": "2024-06-23",
     "endDate": "2024-07-22",
     "rent": 2400,
-    "apartmentImgUrls": ["images/apartment.png"]
+    "apartmentImgUrls": ["images/apartment.png"],
+    "ownerId": 8
   },
   {
     "location": "SoHo, Manhattan",
@@ -105,7 +113,8 @@
     "startDate": "2024-06-21",
     "endDate": "2024-09-15",
     "rent": 3000,
-    "apartmentImgUrls": ["images/apartment.png"]
+    "apartmentImgUrls": ["images/apartment.png"],
+    "ownerId": 9
   },
   {
     "location": "Chelsea, Manhattan",
@@ -117,7 +126,8 @@
     "startDate": "2024-05-05",
     "endDate": "2024-08-13",
     "rent": 2000,
-    "apartmentImgUrls": ["images/apartment.png"]
+    "apartmentImgUrls": ["images/apartment.png"],
+    "ownerId": 10
   },
   {
     "location": "Williamsburg, Brooklyn",
@@ -129,7 +139,8 @@
     "startDate": "2024-05-10",
     "endDate": "2024-08-28",
     "rent": 1700,
-    "apartmentImgUrls": ["images/apartment.png"]
+    "apartmentImgUrls": ["images/apartment.png"],
+    "ownerId": 11
   },
   {
     "location": "Greenwich Village, Manhattan",
@@ -141,7 +152,8 @@
     "startDate": "2024-05-24",
     "endDate": "2024-08-06",
     "rent": 2200,
-    "apartmentImgUrls": ["images/apartment.png"]
+    "apartmentImgUrls": ["images/apartment.png"],
+    "ownerId": 12
   },
   {
     "location": "Astoria, Queens",
@@ -153,7 +165,8 @@
     "startDate": "2024-04-27",
     "endDate": "2024-09-02",
     "rent": 1800,
-    "apartmentImgUrls": ["images/apartment.png"]
+    "apartmentImgUrls": ["images/apartment.png"],
+    "ownerId": 13
   },
   {
     "location": "Upper East Side, Manhattan",
@@ -165,7 +178,8 @@
     "startDate": "2024-05-06",
     "endDate": "2024-07-30",
     "rent": 2400,
-    "apartmentImgUrls": ["images/apartment.png"]
+    "apartmentImgUrls": ["images/apartment.png"],
+    "ownerId": 14
   },
   {
     "location": "SoHo, Manhattan",
@@ -177,7 +191,8 @@
     "startDate": "2024-06-17",
     "endDate": "2024-09-20",
     "rent": 2600,
-    "apartmentImgUrls": ["images/apartment.png"]
+    "apartmentImgUrls": ["images/apartment.png"],
+    "ownerId": 15
   },
   {
     "location": "Chelsea, Manhattan",
@@ -189,7 +204,8 @@
     "startDate": "2024-06-09",
     "endDate": "2024-07-16",
     "rent": 2100,
-    "apartmentImgUrls": ["images/apartment.png"]
+    "apartmentImgUrls": ["images/apartment.png"],
+    "ownerId": 16
   },
   {
     "location": "Bushwick, Brooklyn",
@@ -201,7 +217,8 @@
     "startDate": "2024-06-23",
     "endDate": "2024-07-26",
     "rent": 1600,
-    "apartmentImgUrls": ["images/apartment.png"]
+    "apartmentImgUrls": ["images/apartment.png"],
+    "ownerId": 17
   },
   {
     "location": "East Village, Manhattan",
@@ -213,7 +230,8 @@
     "startDate": "2024-04-19",
     "endDate": "2024-08-03",
     "rent": 2300,
-    "apartmentImgUrls": ["images/apartment.png"]
+    "apartmentImgUrls": ["images/apartment.png"],
+    "ownerId": 18
   },
   {
     "location": "Tribeca, Manhattan",
@@ -225,7 +243,8 @@
     "startDate": "2024-05-11",
     "endDate": "2024-07-03",
     "rent": 2700,
-    "apartmentImgUrls": ["images/apartment.png"]
+    "apartmentImgUrls": ["images/apartment.png"],
+    "ownerId": 19
   },
   {
     "location": "Battery Park, Manhattan",
@@ -237,7 +256,8 @@
     "startDate": "2024-06-27",
     "endDate": "2024-07-11",
     "rent": 2900,
-    "apartmentImgUrls": ["images/apartment.png"]
+    "apartmentImgUrls": ["images/apartment.png"],
+    "ownerId": 20
   },
   {
     "location": "Crown Heights, Brooklyn",
@@ -249,7 +269,8 @@
     "startDate": "2024-06-16",
     "endDate": "2024-08-27",
     "rent": 2200,
-    "apartmentImgUrls": ["images/apartment.png"]
+    "apartmentImgUrls": ["images/apartment.png"],
+    "ownerId": 21
   },
   {
     "location": "Murray Hill, Manhattan",
@@ -261,7 +282,8 @@
     "startDate": "2024-06-18",
     "endDate": "2024-09-27",
     "rent": 3100,
-    "apartmentImgUrls": ["images/apartment.png"]
+    "apartmentImgUrls": ["images/apartment.png"],
+    "ownerId": 22
   },
   {
     "location": "Fort Greene, Brooklyn",
@@ -273,7 +295,8 @@
     "startDate": "2024-06-19",
     "endDate": "2024-09-24",
     "rent": 1900,
-    "apartmentImgUrls": ["images/apartment.png"]
+    "apartmentImgUrls": ["images/apartment.png"],
+    "ownerId": 23
   },
   {
     "location": "Financial District, Manhattan",
@@ -285,7 +308,8 @@
     "startDate": "2024-04-23",
     "endDate": "2024-07-31",
     "rent": 2800,
-    "apartmentImgUrls": ["images/apartment.png"]
+    "apartmentImgUrls": ["images/apartment.png"],
+    "ownerId": 24
   },
   {
     "location": "Long Island City, Queens",
@@ -297,7 +321,8 @@
     "startDate": "2024-05-02",
     "endDate": "2024-08-21",
     "rent": 2500,
-    "apartmentImgUrls": ["images/apartment.png"]
+    "apartmentImgUrls": ["images/apartment.png"],
+    "ownerId": 25
   },
   {
     "location": "Sunnyside, Queens",
@@ -309,7 +334,8 @@
     "startDate": "2024-05-09",
     "endDate": "2024-07-02",
     "rent": 2300,
-    "apartmentImgUrls": ["images/apartment.png"]
+    "apartmentImgUrls": ["images/apartment.png"],
+    "ownerId": 26
   },
   {
     "location": "Dumbo, Brooklyn",
@@ -321,7 +347,8 @@
     "startDate": "2024-04-16",
     "endDate": "2024-07-08",
     "rent": 3200,
-    "apartmentImgUrls": ["images/apartment.png"]
+    "apartmentImgUrls": ["images/apartment.png"],
+    "ownerId": 27
   },
   {
     "location": "Hells Kitchen, Manhattan",
@@ -333,7 +360,8 @@
     "startDate": "2024-05-05",
     "endDate": "2024-08-18",
     "rent": 2100,
-    "apartmentImgUrls": ["images/apartment.png"]
+    "apartmentImgUrls": ["images/apartment.png"],
+    "ownerId": 28
   },
   {
     "location": "Carroll Gardens, Brooklyn",
@@ -345,7 +373,8 @@
     "startDate": "2024-05-14",
     "endDate": "2024-09-09",
     "rent": 2600,
-    "apartmentImgUrls": ["images/apartment.png"]
+    "apartmentImgUrls": ["images/apartment.png"],
+    "ownerId": 29
   },
   {
     "location": "Upper West Side, Manhattan",
@@ -357,6 +386,7 @@
     "startDate": "2024-04-09",
     "endDate": "2024-07-14",
     "rent": 3000,
-    "apartmentImgUrls": ["images/apartment.png"]
+    "apartmentImgUrls": ["images/apartment.png"],
+    "ownerId": 30
   }
 ]

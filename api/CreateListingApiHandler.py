@@ -14,6 +14,7 @@ class CreateListingApiHandler(Resource):
             return {'message': 'Invalid listing data'}, 400            
         
         new_listing = Listing(
+            owner_id=data.get('ownerId'),
             location=data.get('location'),
             overview=data.get('overview'),
             details=data.get('details'),

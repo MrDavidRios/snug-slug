@@ -15,6 +15,7 @@ class UpdateListingApiHandler(Resource):
 
         # TODO: validate data
         listing.location = data.get('location', listing.location)
+        listing.owner_id = data.get('ownerId', listing.owner_id)
         listing.overview = data.get('overview', listing.overview)
         listing.details = data.get('details', listing.details)
         listing.tags = data.get('tags', listing.tags)
