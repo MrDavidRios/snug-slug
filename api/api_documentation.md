@@ -32,6 +32,7 @@ GET http://127.0.0.1:8080/api/snugslug/searchListing?location=Upper%20West&minPr
 
 ### Request Body
 
+- `ownerId` (integer): Ownder id of the listing.
 - `location` (string): Location of the apartment.
 - `overview` (string): Brief description of the apartment.
 - `details` (array of strings): Array containing features of the apartment.
@@ -52,6 +53,7 @@ Content-Type: application/json
 
 ```json
 {
+  "ownerId": 31,
   "location": "Chinatown, Manhattan",
   "overview": "1 Bedroom apartment near Central Park",
   "details": ["Doorman", "Gym access"],
@@ -181,4 +183,54 @@ Content-Type: application/json
 
 ```
 GET http://127.0.0.1:8080/api/snugslug/getUser/1
+```
+
+## Save Listing to User
+
+**POST** `/addSavedListing`
+
+- Save given listing id and user id.
+
+### Parameters
+
+- `userId` (integer): The id of the user.
+- `listingId` (integer): The id of the listing.
+
+### Example Request
+
+```
+POST http://127.0.0.1:8080/api/snugslug/addSavedListing?userId=1&listingId=1
+```
+
+## Get Saved Listings from User
+
+**GET** `/getSavedListings/{userId}`
+
+- Retrieve all saved listings from a given user id.
+
+### Path Parameters
+
+- `userId` (integer): The id of the user.
+
+### Example Request
+
+```
+GET http://127.0.0.1:8080/api/snugslug/getSavedListings/1
+```
+
+## Remove Saved Listing from User
+
+**Delete** `/deleteSavedListing`
+
+- Remove saved listing given listing id and user id.
+
+### Parameters
+
+- `userId` (integer): The id of the user.
+- `listingId` (integer): The id of the listing.
+
+### Example Request
+
+```
+DELETE http://127.0.0.1:8080/api/snugslug/addSavedListing?userId=1&listingId=1
 ```

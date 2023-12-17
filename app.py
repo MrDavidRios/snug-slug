@@ -8,7 +8,10 @@ from api.GetListingApiHandler import GetListingApiHandler
 from api.UpdateListingApiHandler import UpdateListingApiHandler
 from api.CreateUserApiHandler import CreateUserApiHandler
 from api.GetUserApiHandler import GetUserApiHandler
-from models import db, Listing, User
+from api.AddSavedListingApiHandler import AddSavedListingApiHandler
+from api.DeleteSavedListingApiHandler import DeleteSavedListingApiHandler
+from api.GetSavedListingsApiHandler import GetSavedListingsApiHandler
+from models import db, Listing, User, user_saved_listings
 import os
 import json
 from datetime import datetime
@@ -39,6 +42,7 @@ with app.app_context():
     # start from fresh database
     db.session.query(Listing).delete()
     db.session.query(User).delete()
+    db.session.execute(user_saved_listings.delete())
     db.session.commit()
 
     for listing_data in initial_listing:
@@ -92,3 +96,6 @@ api.add_resource(GetListingApiHandler, '/api/snugslug/getListing/<int:id>')
 api.add_resource(UpdateListingApiHandler, '/api/snugslug/updateListing/<int:id>')
 api.add_resource(CreateUserApiHandler, '/api/snugslug/createUser')
 api.add_resource(GetUserApiHandler, '/api/snugslug/getUser/<int:id>')
+api.add_resource(AddSavedListingApiHandler, '/api/snugslug/addSavedListing')
+api.add_resource(DeleteSavedListingApiHandler, '/api/snugslug/deleteSavedListing')
+api.add_resource(GetSavedListingsApiHandler, '/api/snugslug/getSavedListings/<int:id>')
