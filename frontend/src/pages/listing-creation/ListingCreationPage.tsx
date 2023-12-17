@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { UserContext, UserContextType } from "../../components/UserContext";
 import { Button } from "../../components/button/Button";
 import { DatePickerDropdown } from "../../components/datePickerDropdown/DatePickerDropdown";
@@ -11,6 +11,7 @@ import { NewListing, createListing } from "../../utils/listingDataHelper";
 
 export const ListingCreationPage: React.FC = () => {
   const { slug } = useContext(UserContext) as UserContextType;
+  const navigate = useNavigate();
 
   // price
   const [price, setPrice] = useState("");
@@ -158,7 +159,7 @@ export const ListingCreationPage: React.FC = () => {
     setOtherAmenities(e.target.value);
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (!slug) {
       console.error("Can't submit a listing without being logged in!");
     }
@@ -180,7 +181,9 @@ export const ListingCreationPage: React.FC = () => {
       apartmentImgUrls: ["images/apartment.png"], // Placeholder
     };
 
-    createListing(listing);
+    await createListing(listing);
+
+    navigate("/listing");
   };
 
   return (
@@ -361,9 +364,7 @@ export const ListingCreationPage: React.FC = () => {
         </div>
       </div>
       <br />
-      <Link to={"/listing"}>
-        <Button onClick={handleSubmit} text="All done! Share my listing." className="action" />
-      </Link>
+      <Button onClick={handleSubmit} text="All done! Share my listing." className="action" />
     </div>
   );
 };
