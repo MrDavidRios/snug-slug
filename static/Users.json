@@ -10,8 +10,7 @@
     "bio": "Senior at Columbia, majoring in Political Science. Looking for a summer sublet. I'm organized, respectful of shared spaces, and love to bake.",
     "budget": "1300",
     "startDate": "2024-06-01",
-    "endDate": "2024-08-30",
-    "activeListingId": 0
+    "endDate": "2024-08-30"
   },
   {
     "name": "Alex Johnson",
@@ -24,8 +23,7 @@
     "bio": "Grad student in Environmental Science. Looking for a quiet place to stay. Non-smoker, no pets, and I spend most of my time in the lab.",
     "budget": "1600",
     "startDate": "2024-05-15",
-    "endDate": "2024-08-15",
-    "activeListingId": 0
+    "endDate": "2024-08-15"
   },
   {
     "name": "Sophia Lee",
@@ -38,8 +36,7 @@
     "bio": "Sophomore year undergrad in Biochemistry. Searching for a summer apartment close to campus. Friendly, tidy, and I play the violin.",
     "budget": "1400",
     "startDate": "2024-06-10",
-    "endDate": "2024-09-10",
-    "activeListingId": 0
+    "endDate": "2024-09-10"
   },
   {
     "name": "Daniel Martinez",
@@ -52,8 +49,7 @@
     "bio": "Graduate student in Journalism. Looking for a quiet place, preferably with a workspace. I'm a freelance writer and spend most of my time writing.",
     "budget": "1600",
     "startDate": "2024-06-05",
-    "endDate": "2024-08-25",
-    "activeListingId": 0
+    "endDate": "2024-08-25"
   },
   {
     "name": "Laura Brown",
@@ -66,8 +62,7 @@
     "bio": "Finishing my Master's in Architecture. Looking for a well-lit room for my drafting work. Non-smoker and very organized.",
     "budget": "1700",
     "startDate": "2024-05-20",
-    "endDate": "2024-08-20",
-    "activeListingId": 0
+    "endDate": "2024-08-20"
   },
   {
     "name": "Kevin Thompson",
@@ -80,8 +75,7 @@
     "bio": "Undergrad in Economics. Looking for a place near campus as I'll be taking summer courses. I'm a social person but respect others' space.",
     "budget": "1200",
     "startDate": "2024-06-01",
-    "endDate": "2024-09-01",
-    "activeListingId": 0
+    "endDate": "2024-09-01"
   },
   {
     "name": "Rachel Green",
@@ -94,8 +88,7 @@
     "bio": "Senior in Anthropology. I'm a quiet and studious person. Looking for a peaceful place to finish my thesis.",
     "budget": "1300",
     "startDate": "2024-05-15",
-    "endDate": "2024-08-15",
-    "activeListingId": 0
+    "endDate": "2024-08-15"
   },
   {
     "name": "Omar Hassan",
@@ -108,8 +101,7 @@
     "bio": "Junior studying Political Science. Interning in the city over the summer. I'm outgoing, enjoy exploring the city, and love cooking.",
     "budget": "1500",
     "startDate": "2024-06-10",
-    "endDate": "2024-09-10",
-    "activeListingId": 0
+    "endDate": "2024-09-10"
   },
   {
     "name": "Aisha Patel",
@@ -122,8 +114,7 @@
     "bio": "Grad student in Public Health. I'm a vegan, environmentally conscious, and enjoy yoga. Looking for like-minded roommates.",
     "budget": "1400",
     "startDate": "2024-05-25",
-    "endDate": "2024-08-25",
-    "activeListingId": 0
+    "endDate": "2024-08-25"
   },
   {
     "name": "Michael Nguyen",
@@ -136,8 +127,7 @@
     "bio": "Sophomore in Mechanical Engineering. Enthusiastic about robotics. Looking for a quiet place to focus on my studies.",
     "budget": "1300",
     "startDate": "2024-06-05",
-    "endDate": "2024-09-05",
-    "activeListingId": 0
+    "endDate": "2024-09-05"
   },
   {
     "name": "Tina Johnson",
@@ -150,8 +140,7 @@
     "bio": "I'm subletting my room while I'm away for an internship. It's a cozy space near campus, perfect for a summer student.",
     "budget": "1500",
     "startDate": "2024-05-01",
-    "endDate": "2024-08-31",
-    "activeListingId": 1
+    "endDate": "2024-08-31"
   },
   {
     "name": "Jack Wilson",
@@ -164,8 +153,7 @@
     "bio": "Offering a spacious room for sublet this summer. Fully furnished and close to public transit.",
     "budget": "1600",
     "startDate": "2024-06-01",
-    "endDate": "2024-08-30",
-    "activeListingId": 2
+    "endDate": "2024-08-30"
   },
   {
     "name": "Sarah Chen",
@@ -178,8 +166,7 @@
     "bio": "Looking to sublet my apartment for the summer. It's a quiet, clean space with a great view of the city.",
     "budget": "1700",
     "startDate": "2024-05-15",
-    "endDate": "2024-09-01",
-    "activeListingId": 3
+    "endDate": "2024-09-01"
   },
   {
     "name": "Brian Lee",
@@ -192,8 +179,7 @@
     "bio": "Subletting a single room in a shared apartment. Great location and friendly roommates.",
     "budget": "1300",
     "startDate": "2024-05-20",
-    "endDate": "2024-08-20",
-    "activeListingId": 4
+    "endDate": "2024-08-20"
   },
   {
     "name": "Olivia Martinez",
@@ -206,8 +192,7 @@
     "bio": "My apartment is available for sublet during the summer months. Fully equipped kitchen and close to campus.",
     "budget": "1400",
     "startDate": "2024-06-05",
-    "endDate": "2024-08-25",
-    "activeListingId": 5
+    "endDate": "2024-08-25"
   },
   {
     "name": "Ethan Rodriguez",
@@ -220,8 +205,7 @@
     "bio": "Subletting my room for the summer. It's a large space with great natural light, ideal for someone who needs to study.",
     "budget": "1350",
     "startDate": "2024-05-25",
-    "endDate": "2024-09-05",
-    "activeListingId": 6
+    "endDate": "2024-09-05"
   },
   {
     "name": "Zoe Kim",
@@ -234,8 +218,7 @@
     "bio": "I'm traveling abroad and am subletting my studio apartment. It's in a great location and has all the amenities.",
     "budget": "1450",
     "startDate": "2024-06-10",
-    "endDate": "2024-09-10",
-    "activeListingId": 7
+    "endDate": "2024-09-10"
   },
   {
     "name": "Kyle Patel",
@@ -248,8 +231,7 @@
     "bio": "Offering my furnished apartment for sublet. It's a calm and comfortable place, ideal for a graduate student.",
     "budget": "1500",
     "startDate": "2024-05-30",
-    "endDate": "2024-08-30",
-    "activeListingId": 8
+    "endDate": "2024-08-30"
   },
   {
     "name": "Sofia Nguyen",
@@ -262,8 +244,7 @@
     "bio": "Subletting a lovely room in a shared apartment with friendly roommates. Near lots of cafes and shops.",
     "budget": "1200",
     "startDate": "2024-06-01",
-    "endDate": "2024-09-01",
-    "activeListingId": 9
+    "endDate": "2024-09-01"
   },
   {
     "name": "Liam Thompson",
@@ -276,8 +257,7 @@
     "bio": "Subletting my one-bedroom apartment, fully furnished with a modern kitchen. Great for anyone looking for a quiet place.",
     "budget": "1600",
     "startDate": "2024-05-20",
-    "endDate": "2024-08-20",
-    "activeListingId": 10
+    "endDate": "2024-08-20"
   },
   {
     "name": "Natalie Davis",
@@ -290,8 +270,7 @@
     "bio": "Subletting a bright, airy room in a shared apartment. It's a peaceful space, perfect for summer studies.",
     "budget": "1500",
     "startDate": "2024-06-01",
-    "endDate": "2024-08-31",
-    "activeListingId": 11
+    "endDate": "2024-08-31"
   },
   {
     "name": "Marcus Brown",
@@ -304,8 +283,7 @@
     "bio": "Offering my studio for sublet. It's a cozy, fully-furnished space, ideal for someone spending summer in the city.",
     "budget": "1400",
     "startDate": "2024-05-20",
-    "endDate": "2024-09-01",
-    "activeListingId": 12
+    "endDate": "2024-09-01"
   },
   {
     "name": "Angela Martinez",
@@ -318,8 +296,7 @@
     "bio": "Looking to sublet my apartment while I'm on a study abroad program. It's a quiet, spacious place near campus.",
     "budget": "1300",
     "startDate": "2024-06-10",
-    "endDate": "2024-08-20",
-    "activeListingId": 13
+    "endDate": "2024-08-20"
   },
   {
     "name": "Isaac Lee",
@@ -332,8 +309,7 @@
     "bio": "Subletting my room in a shared apartment. Great location, close to shops and the university.",
     "budget": "1200",
     "startDate": "2024-05-15",
-    "endDate": "2024-09-15",
-    "activeListingId": 14
+    "endDate": "2024-09-15"
   },
   {
     "name": "Grace Thompson",
@@ -346,8 +322,7 @@
     "bio": "My cozy, well-decorated apartment is available for sublet this summer. It's a perfect spot for anyone looking for a calm environment.",
     "budget": "1550",
     "startDate": "2024-06-05",
-    "endDate": "2024-08-25",
-    "activeListingId": 15
+    "endDate": "2024-08-25"
   },
   {
     "name": "Henry Kim",
@@ -360,8 +335,7 @@
     "bio": "Subletting a spacious one-bedroom apartment. It's fully furnished and includes a modern kitchen.",
     "budget": "1450",
     "startDate": "2024-05-25",
-    "endDate": "2024-09-05",
-    "activeListingId": 16
+    "endDate": "2024-09-05"
   },
   {
     "name": "Sophia Patel",
@@ -374,8 +348,7 @@
     "bio": "I'm subletting my apartment for the summer months. Great for someone who enjoys a vibrant neighborhood.",
     "budget": "1350",
     "startDate": "2024-06-10",
-    "endDate": "2024-09-10",
-    "activeListingId": 17
+    "endDate": "2024-09-10"
   },
   {
     "name": "Lucas Nguyen",
@@ -388,8 +361,7 @@
     "bio": "Looking for someone to sublet my room. It's in a large apartment with great roommates, close to campus.",
     "budget": "1400",
     "startDate": "2024-05-30",
-    "endDate": "2024-08-30",
-    "activeListingId": 18
+    "endDate": "2024-08-30"
   },
   {
     "name": "Chloe Rodriguez",
@@ -402,8 +374,7 @@
     "bio": "My sunny studio is up for sublet this summer. It's a charming space with a small balcony.",
     "budget": "1300",
     "startDate": "2024-06-01",
-    "endDate": "2024-09-01",
-    "activeListingId": 19
+    "endDate": "2024-09-01"
   },
   {
     "name": "Mason Thompson",
@@ -416,8 +387,7 @@
     "bio": "Subletting a furnished apartment in a quiet neighborhood. Perfect for a focused student or young professional.",
     "budget": "1500",
     "startDate": "2024-05-20",
-    "endDate": "2024-08-20",
-    "activeListingId": 20
+    "endDate": "2024-08-20"
   },
   {
     "name": "Ella Johnson",
@@ -430,8 +400,7 @@
     "bio": "Offering my beautiful, airy room for sublet. Located in a vibrant area, close to many amenities.",
     "budget": "1400",
     "startDate": "2024-06-05",
-    "endDate": "2024-08-25",
-    "activeListingId": 21
+    "endDate": "2024-08-25"
   },
   {
     "name": "Oliver Williams",
@@ -444,8 +413,7 @@
     "bio": "My apartment is available for sublet. It's a cozy, modern space, great for anyone who's looking for convenience and comfort.",
     "budget": "1550",
     "startDate": "2024-05-25",
-    "endDate": "2024-09-05",
-    "activeListingId": 22
+    "endDate": "2024-09-05"
   },
   {
     "name": "Charlotte Davis",
@@ -458,8 +426,7 @@
     "bio": "Looking to sublet my spacious room in a 2-bedroom apartment. It's fully furnished and very close to the campus.",
     "budget": "1300",
     "startDate": "2024-06-10",
-    "endDate": "2024-09-10",
-    "activeListingId": 23
+    "endDate": "2024-09-10"
   },
   {
     "name": "James Wilson",
@@ -472,8 +439,7 @@
     "bio": "Subletting my room in a shared house with friendly housemates. Great backyard and kitchen amenities.",
     "budget": "1200",
     "startDate": "2024-05-15",
-    "endDate": "2024-09-15",
-    "activeListingId": 24
+    "endDate": "2024-09-15"
   },
   {
     "name": "Nathan Garcia",
@@ -486,8 +452,7 @@
     "bio": "Subletting my apartment as I'll be away on an exchange program. Great location near the university, with a spacious living room.",
     "budget": "1500",
     "startDate": "2024-05-10",
-    "endDate": "2024-08-15",
-    "activeListingId": 25
+    "endDate": "2024-08-15"
   },
   {
     "name": "Isabel Perez",
@@ -500,8 +465,7 @@
     "bio": "Looking for someone to sublet my cozy studio while I'm on a summer internship. It's fully furnished and close to public transit.",
     "budget": "1400",
     "startDate": "2024-06-01",
-    "endDate": "2024-09-01",
-    "activeListingId": 26
+    "endDate": "2024-09-01"
   },
   {
     "name": "Derek Wong",
@@ -514,8 +478,7 @@
     "bio": "I'm subletting my room in a shared apartment for the summer. Great location, friendly roommates, and a comfortable living space.",
     "budget": "1300",
     "startDate": "2024-05-15",
-    "endDate": "2024-08-20",
-    "activeListingId": 27
+    "endDate": "2024-08-20"
   },
   {
     "name": "Emma Johnson",
@@ -528,8 +491,7 @@
     "bio": "Subletting a beautiful one-bedroom apartment near campus. Fully equipped and ideal for someone looking for a quiet place to study.",
     "budget": "1600",
     "startDate": "2024-06-05",
-    "endDate": "2024-09-05",
-    "activeListingId": 28
+    "endDate": "2024-09-05"
   },
   {
     "name": "Carlos Rodriguez",
@@ -542,8 +504,7 @@
     "bio": "Offering my room for sublet as I will be traveling this summer. It's a neat space, perfect for a student or young professional.",
     "budget": "1200",
     "startDate": "2024-05-20",
-    "endDate": "2024-08-30",
-    "activeListingId": 29
+    "endDate": "2024-08-30"
   },
   {
     "name": "Julia Smith",
@@ -556,7 +517,6 @@
     "bio": "My apartment is available for subletting from May to August. It's a charming place with a great view and close to local amenities.",
     "budget": "1550",
     "startDate": "2024-05-25",
-    "endDate": "2024-08-25",
-    "activeListingId": 30
+    "endDate": "2024-08-25"
   }
 ]

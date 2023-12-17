@@ -11,6 +11,7 @@ class GetUserApiHandler(Resource):
 
         user_data = {
             'id': user.id,
+            'active_listing': user.active_listing.id if user.active_listing else 0,
             'name': user.name,
             'email': user.email,
             'age': user.age,
@@ -21,8 +22,7 @@ class GetUserApiHandler(Resource):
             'bio': user.bio,
             'budget': user.budget,
             'start_date': user.start_date.strftime('%Y-%m-%d'),
-            'end_date': user.end_date.strftime('%Y-%m-%d'),
-            'active_listing_id': user.active_listing_id
+            'end_date': user.end_date.strftime('%Y-%m-%d')
         }
 
         return user_data

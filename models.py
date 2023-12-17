@@ -18,8 +18,9 @@ class Listing(db.Model):
     rent = db.Column(db.Integer)
     apartment_img_urls = db.Column(JSON, name='apartment_img_urls')
 
+    owner_id = db.Column(db.Integer, db.ForeignKey('users.id'), name='owner_id')
     owner = db.relationship('User', back_populates='active_listing', uselist=False)
-
+    
     def __repr__(self):
         return f'<Listing {self.id}>'
 
@@ -53,7 +54,6 @@ class User(db.Model):
     budget = db.Column(db.String(100))
     start_date = db.Column(db.Date, name='start_date')
     end_date = db.Column(db.Date, name='end_date')
-    active_listing_id = db.Column(db.Integer, db.ForeignKey('listings.id'), name='active_listing_id')
 
     # Relationships
     active_listing = db.relationship('Listing', back_populates='owner', uselist=False)

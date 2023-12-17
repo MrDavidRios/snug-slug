@@ -8,7 +8,18 @@ from api.GetListingApiHandler import GetListingApiHandler
 from api.UpdateListingApiHandler import UpdateListingApiHandler
 from api.CreateUserApiHandler import CreateUserApiHandler
 from api.GetUserApiHandler import GetUserApiHandler
-from models import db, Listing, User
+from api.AddSavedListingApiHandler import AddSavedListingApiHandler
+from api.DeleteSavedListingApiHandler import DeleteSavedListingApiHandler
+from api.GetSavedListingsApiHandler import GetSavedListingsApiHandler
+from api.AddArchivedListingApiHandler import AddArchivedListingApiHandler
+from api.DeleteArchivedListingApiHandler import DeleteArchivedListingApiHandler
+from api.GetArchivedListingsApiHandler import GetArchivedListingsApiHandler
+from api.AddArchivedUserApiHandler import AddArchivedUserApiHandler
+from api.DeleteArchivedUserApiHandler import DeleteArchivedUserApiHandler
+from api.GetArchivedUsersApiHandler import GetArchivedUsersApiHandler
+from api.AddChatMessageApiHandler import AddChatMessageApiHandler 
+from api.GetChatMessagesApiHandler import GetChatMessagesApiHandler
+from models import db, Listing, User, ChatMessage, user_saved_listings, user_archived_listings, user_archived_users
 import os
 import json
 from datetime import datetime
@@ -39,10 +50,15 @@ with app.app_context():
     # start from fresh database
     db.session.query(Listing).delete()
     db.session.query(User).delete()
+    db.session.query(ChatMessage).delete()
+    db.session.execute(user_saved_listings.delete())
+    db.session.execute(user_archived_listings.delete())
+    db.session.execute(user_archived_users.delete())
     db.session.commit()
 
     for listing_data in initial_listing:
         listing = Listing(
+            owner_id=listing_data['ownerId'],
             location=listing_data['location'],
             overview=listing_data['overview'],
             details=listing_data['details'],
@@ -69,8 +85,7 @@ with app.app_context():
             bio=user_data['bio'],
             budget=user_data['budget'],
             start_date=datetime.strptime(user_data['startDate'], '%Y-%m-%d').date(),
-            end_date=datetime.strptime(user_data['endDate'], '%Y-%m-%d').date(),
-            active_listing_id=user_data['activeListingId']
+            end_date=datetime.strptime(user_data['endDate'], '%Y-%m-%d').date()
         )
         db.session.add(user)
     db.session.commit()
@@ -92,3 +107,14 @@ api.add_resource(GetListingApiHandler, '/api/snugslug/getListing/<int:id>')
 api.add_resource(UpdateListingApiHandler, '/api/snugslug/updateListing/<int:id>')
 api.add_resource(CreateUserApiHandler, '/api/snugslug/createUser')
 api.add_resource(GetUserApiHandler, '/api/snugslug/getUser/<int:id>')
+api.add_resource(AddSavedListingApiHandler, '/api/snugslug/addSavedListing')
+api.add_resource(DeleteSavedListingApiHandler, '/api/snugslug/deleteSavedListing')
+api.add_resource(GetSavedListingsApiHandler, '/api/snugslug/getSavedListings/<int:id>')
+api.add_resource(AddArchivedListingApiHandler, '/api/snugslug/addArchivedListing')
+api.add_resource(DeleteArchivedListingApiHandler, '/api/snugslug/deleteArchivedListing')
+api.add_resource(GetArchivedListingsApiHandler, '/api/snugslug/getArchivedListings/<int:id>')
+api.add_resource(AddArchivedUserApiHandler, '/api/snugslug/addArchivedUser')
+api.add_resource(DeleteArchivedUserApiHandler, '/api/snugslug/deleteArchivedUser')
+api.add_resource(GetArchivedUsersApiHandler, '/api/snugslug/getArchivedUsers/<int:id>')
+api.add_resource(AddChatMessageApiHandler, '/api/snugslug/addChatMessage')
+api.add_resource(GetChatMessagesApiHandler, '/api/snugslug/getChatMessages')

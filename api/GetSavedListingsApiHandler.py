@@ -1,16 +1,16 @@
 from flask import request
 from flask_restful import Resource
-from datetime import datetime
-from models import Listing, User, db
+from models import User, db
 
-class GetListingApiHandler(Resource):
+class GetSavedListingsApiHandler(Resource):
     def get(self, id):
-        listing = Listing.query.get(id)
+        user = User.query.get(id)
+        if not user:
+            return {'message': 'User not found'}, 404
         
-        if not listing:
-            return {'message': 'Listing not found'}, 404
-        
-        listing_json = {
+        saved_listings = user.saved_listings.all()
+
+        listings_data = [{
             'id': listing.id,
             'ownerId': listing.owner_id,
             'location': listing.location,
@@ -23,6 +23,6 @@ class GetListingApiHandler(Resource):
             'endDate': listing.end_date.strftime('%Y-%m-%d'),
             'rent': listing.rent,
             'apartmentImgUrls': listing.apartment_img_urls
-        }
+        } for listing in saved_listings]
 
-        return listing_json, 200
+        return listings_data, 200
