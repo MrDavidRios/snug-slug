@@ -1,6 +1,11 @@
 import { Listing } from "../types/listing";
 
-export async function createListing(listing: Listing) {
+/**
+ * A listing type that can be used to create a new listing in the database
+ */
+export interface NewListing extends Omit<Listing, "id"> {}
+
+export async function createListing(listing: NewListing) {
   const response = await fetch("http://127.0.0.1:8080/api/snugslug/createListing", {
     method: "POST",
     headers: {

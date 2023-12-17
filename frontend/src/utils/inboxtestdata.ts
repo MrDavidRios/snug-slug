@@ -117,7 +117,8 @@ export const sampleListing: Listing = {
   ],
   tags: ["city view", "pet-friendly", "gym"],
   rent: 2500,
-  dates: "June 1, 2023, - June 1, 2024",
+  startDate: "June 1, 2023",
+  endDate: "June 1, 2024",
   apartmentImgUrls: [
     "https://media.istockphoto.com/id/1127580796/photo/3d-illustration-of-a-new-modern-city-loft-apartment.jpg?s=612x612&w=0&k=20&c=fnA4265CyfboDls6iEP8azUGyDxlPgnno9EHkORu-0w=",
   ],
@@ -150,7 +151,8 @@ export const sampleListing2: Listing = {
   ],
   tags: ["city view", "pet-friendly", "gym"],
   rent: 2500,
-  dates: "June 1, 2023, - June 1, 2024",
+  startDate: "June 1, 2023",
+  endDate: "June 1, 2024",
   apartmentImgUrls: [
     "https://media.istockphoto.com/id/1127580796/photo/3d-illustration-of-a-new-modern-city-loft-apartment.jpg?s=612x612&w=0&k=20&c=fnA4265CyfboDls6iEP8azUGyDxlPgnno9EHkORu-0w=",
   ],
@@ -183,7 +185,8 @@ export const sampleListing3: Listing = {
   ],
   tags: ["city view", "pet-friendly", "gym"],
   rent: 2500,
-  dates: "June 1, 2023, - June 1, 2024",
+  startDate: "June 1, 2023",
+  endDate: "June 1, 2024",
   apartmentImgUrls: [
     "https://media.istockphoto.com/id/1127580796/photo/3d-illustration-of-a-new-modern-city-loft-apartment.jpg?s=612x612&w=0&k=20&c=fnA4265CyfboDls6iEP8azUGyDxlPgnno9EHkORu-0w=",
   ],

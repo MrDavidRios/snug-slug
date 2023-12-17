@@ -1,13 +1,16 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { UserContext, UserContextType } from "../../components/UserContext";
 import { Button } from "../../components/button/Button";
 import { DatePickerDropdown } from "../../components/datePickerDropdown/DatePickerDropdown";
 import { Dropdown } from "../../components/dropdown/Dropdown";
 import { Input } from "../../components/input/Input";
 import { TextArea } from "../../components/textArea/TextArea";
-import { Listing } from "../../types/listing";
 import { getYMDString } from "../../utils/datefunctions";
+import { NewListing, createListing } from "../../utils/listingDataHelper";
 
 export const ListingCreationPage: React.FC = () => {
+  const { slug } = useContext(UserContext) as UserContextType;
+
   // price
   const [price, setPrice] = useState("");
   // Function to generate price options
@@ -39,7 +42,7 @@ export const ListingCreationPage: React.FC = () => {
 
   // utilitiesIncluded
   const [utilitiesIncluded, setUtilitiesIncluded] = useState("");
-  const utilitiesIncludedOptions = ["All Utilities Included", "Utilities Partially Included", "No Utilites Included"];
+  const utilitiesIncludedOptions = ["All Utilities Included", "Utilities Partially Included", "No Utilities Included"];
   const handleUtilitiesIncluded = (selectedOption: string) => {
     setUtilitiesIncluded(selectedOption);
   };
@@ -154,28 +157,33 @@ export const ListingCreationPage: React.FC = () => {
     setOtherAmenities(e.target.value);
   };
 
-  // post - TO-DO!
-  const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
-    const listing: Listing = {
-      id: number;
-      ownerId: number;
-      location: string;
-      overview: string;
-      details: string[];
-      requirements: string[];
-      additionalInfo: additional
-      // tags: 
+  const handleSubmit = () => {
+    if (!slug) {
+      console.error("Can't submit a listing without being logged in!");
+    }
+
+    const requirements = [interview, deposit, gender, otherPreferences].filter((value) => value !== "");
+    const additionalInfo = [pet, laundry, gym, otherAmenities].filter((value) => value !== "");
+
+    const listing: NewListing = {
+      ownerId: slug!.id,
+      location: `${streetAddress}, ${neighborhood}`,
+      overview: shortDescription,
+      details: [apartmentType, shared, furnished, utilitiesIncluded],
+      requirements: requirements,
+      additionalInfo: additionalInfo,
+      tags: [pet, laundry, gym],
       startDate: startDate,
       endDate: endDate,
       rent: parseInt(price.replace("$", "")),
-      // apartmentImgUrls: ;
+      apartmentImgUrls: ["images/apartment.png"], // Placeholder
     };
 
-    e.preventDefault();
+    createListing(listing);
   };
 
   return (
-    <div id="overall">
+    <div id="listingCreationPageWrapper">
       <div id="title">
         <h1>New Listing</h1>
       </div>
@@ -184,12 +192,18 @@ export const ListingCreationPage: React.FC = () => {
         <h3>Share some information about your place!</h3>
 
         <div id="entry">
-          <Dropdown options={priceOptions} placeholder="Monthly Rent" onChange={handlePriceChange} />
+          <Dropdown
+            options={priceOptions}
+            style={{ width: 220 }}
+            placeholder="Monthly Rent"
+            onChange={handlePriceChange}
+          />
         </div>
 
         <div id="entry">
           <Dropdown
             options={utilitiesIncludedOptions}
+            style={{ width: 220 }}
             placeholder="Utilities Included"
             onChange={handleUtilitiesIncluded}
           />
@@ -208,15 +222,30 @@ export const ListingCreationPage: React.FC = () => {
         </div>
 
         <div id="entry">
-          <Dropdown options={apartmentTypeOptions} placeholder="Apartment Type" onChange={handleApartmentTypeChange} />
+          <Dropdown
+            options={apartmentTypeOptions}
+            style={{ width: 220 }}
+            placeholder="Apartment Type"
+            onChange={handleApartmentTypeChange}
+          />
         </div>
 
         <div id="entry">
-          <Dropdown options={sharedOptions} placeholder="Shared?" onChange={handleSharedChange} />
+          <Dropdown
+            options={sharedOptions}
+            style={{ width: 220 }}
+            placeholder="Shared?"
+            onChange={handleSharedChange}
+          />
         </div>
 
         <div id="entry">
-          <Dropdown options={furnishedOptions} placeholder="Furnished?" onChange={handleFurnishedChange} />
+          <Dropdown
+            options={furnishedOptions}
+            style={{ width: 220 }}
+            placeholder="Furnished?"
+            onChange={handleFurnishedChange}
+          />
         </div>
 
         <div id="entry">
@@ -244,6 +273,7 @@ export const ListingCreationPage: React.FC = () => {
           <Dropdown
             options={interviewOptions}
             placeholder="Interview, Background Check etc."
+            style={{ width: 360 }}
             onChange={handleInterviewChange}
           />
         </div>
@@ -253,7 +283,12 @@ export const ListingCreationPage: React.FC = () => {
         </div>
 
         <div id="entry">
-          <Dropdown options={genderOptions} placeholder="Gender of Sublettor" onChange={handleGenderChange} />
+          <Dropdown
+            options={genderOptions}
+            style={{ width: 300 }}
+            placeholder="Gender of Sublettor"
+            onChange={handleGenderChange}
+          />
         </div>
 
         <div id="entry">
@@ -270,19 +305,30 @@ export const ListingCreationPage: React.FC = () => {
         <h3>A few more questions about your place!</h3>
 
         <div id="entry">
-          <Dropdown options={petOptions} placeholder="Is your space pet-friendly?" onChange={handlePetChange} />
+          <Dropdown
+            options={petOptions}
+            style={{ width: 360 }}
+            placeholder="Is your space pet-friendly?"
+            onChange={handlePetChange}
+          />
         </div>
 
         <div id="entry">
           <Dropdown
             options={laundryOptions}
+            style={{ width: 260 }}
             placeholder="What's the laundry situation?"
             onChange={handleLaundryChange}
           />
         </div>
 
         <div id="entry">
-          <Dropdown options={gymOptions} placeholder="Does your building have a gym?" onChange={handleGymChange} />
+          <Dropdown
+            options={gymOptions}
+            style={{ width: 360 }}
+            placeholder="Does your building have a gym?"
+            onChange={handleGymChange}
+          />
         </div>
 
         <div id="entry">
@@ -313,12 +359,8 @@ export const ListingCreationPage: React.FC = () => {
           </div>
         </div>
       </div>
-
-      <Button
-        onClick={handleSubmit}
-        text="All done! Share my listing."
-        style={{ marginTop: "10px", backgroundColor: "lightblue" }}
-      />
+      <br />
+      <Button onClick={handleSubmit} text="All done! Share my listing." className="action" />
     </div>
   );
 };

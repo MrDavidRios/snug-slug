@@ -1,5 +1,6 @@
 import marker from "../../assets/Marker.svg";
 import { Listing } from "../../types/listing";
+import { formatListingDate } from "../../utils/datefunctions";
 import { HeartButton } from "../button/heart-button/HeartButton";
 import { Card, CardProps } from "../card/Card";
 
@@ -22,10 +23,14 @@ export const ListingCard: React.FC<ListingCardProps> = ({
     location,
     overview,
     tags,
-    dates,
+    startDate,
+    endDate,
     rent,
     apartmentImgUrls: [apartmentImg],
   } = listing;
+
+  const formattedStartDate = formatListingDate(startDate);
+  const formattedEndDate = formatListingDate(endDate);
 
   return (
     <Card className={`listing-card ${className}`} onClick={onClick}>
@@ -52,7 +57,7 @@ export const ListingCard: React.FC<ListingCardProps> = ({
 
         <div className="bottom-row">
           <div className="dates-rent">
-            {dates}
+            {`${formattedStartDate} - ${formattedEndDate}`}
             <p>${rent}/month</p>
           </div>
           <div>{liked}</div>

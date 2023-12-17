@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Listing } from "../../types/listing";
 import { Slug } from "../../types/slug";
+import { formatListingDate } from "../../utils/datefunctions";
 import { getUserData } from "../../utils/userDataHelper";
 import { Carousel } from "../carousel/Carousel";
 import { LoadingIndicator } from "../loadingIndicator/loadingIndicator";
@@ -27,12 +28,15 @@ export const DetailedListing: React.FC<DetailedListingProps> = ({ listing, onClo
     getOwner();
   }, [listing.ownerId]);
 
+  const formattedStartDate = formatListingDate(startDate);
+  const formattedEndDate = formatListingDate(endDate);
+
   return (
     <Modal id="detailedListing" onClose={onClose} blurBackdrop={true}>
       <div className="left">
         <div>
           <h1 className="location">{location}</h1>
-          <h2 className="dates">{`${startDate} to ${endDate}`}</h2>
+          <h2 className="dates">{`${formattedStartDate} - ${formattedEndDate}`}</h2>
           <div style={{ display: "flex", alignItems: "center" }}>
             <h2>{`$${rent}`}</h2>
             <h2 style={{ color: "var(--dark-gray)", marginBottom: 2 }}>/month</h2>
@@ -66,7 +70,7 @@ export const DetailedListing: React.FC<DetailedListingProps> = ({ listing, onClo
         </div>
         <div>
           <h3>Location</h3>
-          <p>Exact location to be shared after agreement.</p>
+          <p style={{ paddingBottom: 16 }}>Exact location to be shared after agreement.</p>
           <MapView />
         </div>
       </div>

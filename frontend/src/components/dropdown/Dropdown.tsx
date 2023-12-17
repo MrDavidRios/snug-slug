@@ -2,14 +2,15 @@ import React, { useEffect, useRef, useState } from "react";
 import clearIcon from "../../assets/clear.svg";
 import dropdownArrow from "../../assets/dropdown-arrow.svg";
 
-type DropdownProps = {
+interface DropdownProps {
   options: string[];
   defaultSelection?: string;
   placeholder: string;
   onChange: (selectedOption: string) => void;
-};
+  style?: React.CSSProperties;
+}
 
-export const Dropdown: React.FC<DropdownProps> = ({ options, placeholder, defaultSelection, onChange }) => {
+export const Dropdown: React.FC<DropdownProps> = ({ options, placeholder, defaultSelection, style, onChange }) => {
   const [selectedOption, setSelectedOption] = useState<string | undefined>(defaultSelection);
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -40,7 +41,7 @@ export const Dropdown: React.FC<DropdownProps> = ({ options, placeholder, defaul
   }, []);
 
   return (
-    <div className="dropdown" ref={dropdownRef}>
+    <div className="dropdown" style={style} ref={dropdownRef}>
       <button
         className={`dropdown-toggle ${selectedOption === undefined ? "placeholder" : ""}`}
         onClick={() => setIsOpen(!isOpen)}
