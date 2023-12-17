@@ -203,35 +203,35 @@ exampleUserD.activeListing = sampleListing3;
 export const sampleUserASentMessages: ChatMessage[] = [
   {
     senderId: exampleUserA.id,
-    receiverId: exampleUserB.id,
+    recipientId: exampleUserB.id,
     listingId: exampleUserB.activeListing!.id,
     timestamp: new Date("2023-10-01T09:00:00"),
     text: "Hey, I saw your listing! Is it still available?",
   },
   {
     senderId: exampleUserA.id,
-    receiverId: exampleUserB.id,
+    recipientId: exampleUserB.id,
     listingId: exampleUserB.activeListing!.id,
     timestamp: new Date("2023-10-01T09:10:00"),
     text: "Definitely! Can we schedule a visit?",
   },
   {
     senderId: exampleUserA.id,
-    receiverId: exampleUserC.id,
+    recipientId: exampleUserC.id,
     listingId: exampleUserA.activeListing!.id,
     timestamp: new Date("2023-10-01T09:00:00"),
     text: "Hi! Yes, it is available.",
   },
   {
     senderId: exampleUserA.id,
-    receiverId: exampleUserC.id,
+    recipientId: exampleUserC.id,
     listingId: exampleUserA.activeListing!.id,
     timestamp: new Date("2023-10-01T09:10:00"),
     text: "Can I schedule a visit?",
   },
   {
     senderId: exampleUserA.id,
-    receiverId: exampleUserD.id,
+    recipientId: exampleUserD.id,
     listingId: exampleUserD.activeListing!.id,
     timestamp: new Date("2023-10-01T09:00:00"),
     text: "Hi D!",
@@ -241,7 +241,7 @@ export const sampleUserASentMessages: ChatMessage[] = [
 export const sampleUserBSentMessages: ChatMessage[] = [
   {
     senderId: exampleUserB.id,
-    receiverId: exampleUserA.id,
+    recipientId: exampleUserA.id,
     listingId: exampleUserB.activeListing!.id,
     timestamp: new Date("2023-10-01T09:05:00"),
     text: "Yes, it is! Would you like to know more?",
@@ -251,14 +251,14 @@ export const sampleUserBSentMessages: ChatMessage[] = [
 export const sampleUserCSentMessages: ChatMessage[] = [
   {
     senderId: exampleUserC.id,
-    receiverId: exampleUserA.id,
+    recipientId: exampleUserA.id,
     listingId: exampleUserA.activeListing!.id,
     timestamp: new Date("2023-10-01T09:00:00"),
     text: "Hi! How are you? I am interested in your listing",
   },
   {
     senderId: exampleUserC.id,
-    receiverId: exampleUserA.id,
+    recipientId: exampleUserA.id,
     listingId: exampleUserA.activeListing!.id,
     timestamp: new Date("2023-10-01T09:10:00"),
     text: "Can I schedule a visit?",
@@ -268,21 +268,21 @@ export const sampleUserCSentMessages: ChatMessage[] = [
 export const sampleUserDSentMessages: ChatMessage[] = [
   {
     senderId: exampleUserD.id,
-    receiverId: exampleUserA.id,
+    recipientId: exampleUserA.id,
     listingId: exampleUserA.activeListing!.id,
     timestamp: new Date("2023-10-01T09:00:00"),
     text: "Hi A! Can I stay at your place?",
   },
   {
     senderId: exampleUserD.id,
-    receiverId: exampleUserA.id,
+    recipientId: exampleUserA.id,
     listingId: exampleUserA.activeListing!.id,
     timestamp: new Date("2023-10-01T09:10:00"),
     text: "Can I schedule a visit?",
   },
   {
     senderId: exampleUserD.id,
-    receiverId: exampleUserA.id,
+    recipientId: exampleUserA.id,
     listingId: exampleUserD.activeListing!.id,
     timestamp: new Date("2023-10-01T09:05:00"),
     text: "Hi A!",

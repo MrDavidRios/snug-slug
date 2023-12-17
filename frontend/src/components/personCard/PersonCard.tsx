@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Slug } from "../../types/slug";
 import { getLastMessage } from "../../utils/chatHelper";
+import { getListing } from "../../utils/listingDataHelper";
 import { PersonCardMessageBox } from "../PersonCardMessageBox/PersonCardMessageBox";
 import { Button } from "../button/Button";
 import { ArchiveIconButton } from "../button/archive-button/ArchiveIconButton";
@@ -36,7 +37,8 @@ export const PersonCard: React.FC<PersonCardProps> = ({
     const updateLastMessage = async () => {
       if (!currentUser || !person) return;
 
-      const lastMessage = await getLastMessage(currentUser, person as Slug, false);
+      const { id: listingId } = await getListing(person.id!);
+      const lastMessage = await getLastMessage(currentUser, person as Slug, listingId);
       setLastMessage(lastMessage.message);
     };
 

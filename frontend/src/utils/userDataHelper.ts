@@ -1,6 +1,7 @@
 import { ChatMessage } from "../types/chatMessage";
 import { Listing } from "../types/listing";
 import { Slug } from "../types/slug";
+import { getChatMessages } from "./chatHelper";
 import { sampleListing, sampleListing2, sampleListing3 } from "./inboxtestdata";
 
 const listings = [sampleListing, sampleListing2, sampleListing3];
@@ -49,29 +50,22 @@ export async function getUserData(id: number): Promise<Slug | undefined> {
 export async function getChatHistory(
   currentUserId: number,
   otherUserId: number,
-  currentUserFindingApartment: boolean
+  listingId: number
 ): Promise<ChatMessage[]> {
   // flask
   // temp: replace this with flask call
-  const currentUser = await getUserData(currentUserId);
-  const otherUser = await getUserData(otherUserId);
-
-  if (!currentUser || !otherUser) {
-    if (!currentUser) console.error("Current user not found");
-    if (!otherUser) console.error("Other user not found");
-
-    return [];
-  }
+  const chatHistory = await getChatMessages(currentUserId, otherUserId, listingId);
 
   // Returns all of the messages where the other user is involved (since current user is implicitly involved, given
   // that we're using their chat history)
-  const chatHistory = [...currentUser.sentMessages, ...currentUser.receivedMessages];
   return chatHistory.filter((message) => {
-    const otherUserPresent = message.senderId === otherUserId || message.receiverId === otherUserId;
+    const otherUserPresent = message.senderId === otherUserId || message.recipientId === otherUserId;
+
+    console.log("haha goin through the messages. he here? ", otherUserPresent, message);
+
     if (!otherUserPresent) return false;
 
-    const relevantListing = currentUserFindingApartment ? otherUser.activeListing : currentUser.activeListing;
-    return message.listingId === relevantListing?.id;
+    return message.listingId === listingId;
   });
 }
 
@@ -102,7 +96,7 @@ export async function getActiveListings(user: Slug): Promise<Listing[]> {
   const activeListingIDs: Set<number> = new Set();
 
   for (let i = 0; i < user.sentMessages.length; i++) {
-    const otherUserId = user.sentMessages[i].receiverId;
+    const otherUserId = user.sentMessages[i].recipientId;
 
     // get user active listing ID
     const otherUser = await getUserData(otherUserId);
@@ -129,7 +123,7 @@ export async function getActivePeople(user: Slug): Promise<Slug[]> {
   if (!user.activeListing) return [];
 
   for (let i = 0; i < user.sentMessages.length; i++) {
-    const otherUserId = user.sentMessages[i].receiverId;
+    const otherUserId = user.sentMessages[i].recipientId;
 
     if (!otherUserId) continue;
 
