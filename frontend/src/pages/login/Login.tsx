@@ -26,9 +26,15 @@ export const Login: React.FC = () => {
       {slug ? (
         <>
           <h1>Logged in!</h1>
-          <Link to={REDIRECT_TO_PROFILE_CREATION ? "/profile-creation" : "/"}>
-            <Button className="action" text="Homepage" />
-          </Link>
+          {REDIRECT_TO_PROFILE_CREATION ? (
+            <Link to={"/profile-creation"}>
+              <Button className="action" text="Create Profile" />
+            </Link>
+          ) : (
+            <Link to={"/"}>
+              <Button className="action" text="Homepage" />
+            </Link>
+          )}
         </>
       ) : (
         <>
