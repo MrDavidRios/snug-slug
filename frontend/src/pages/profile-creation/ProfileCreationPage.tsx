@@ -1,8 +1,11 @@
 import { useState } from "react";
 import marker from "../../assets/addProfilePic.svg";
+import Jenny from "../../assets/testprofile.svg";
 import { Button } from "../../components/button/Button";
 import { Input } from "../../components/input/Input";
+import { PersonCard } from "../../components/personCard/PersonCard";
 import { TextArea } from "../../components/textArea/TextArea";
+import { Slug } from "../../types/slug";
 
 export const ProfileCreationPage: React.FC = () => {
   // firstName
@@ -52,50 +55,60 @@ export const ProfileCreationPage: React.FC = () => {
     e.preventDefault();
   };
 
+  const constructedUser: Partial<Slug> = {
+    name: `${firstName} ${lastName}`,
+    pronouns: pronouns,
+    age: age.trim() === "" ? undefined : parseInt(age),
+    school: affiliation,
+    classYear: classYear.trim() === "" ? undefined : parseInt(classYear),
+    bio: bio,
+    profilePicUrl: Jenny,
+  };
+
   return (
     <div id="profileCreationPageWrapper">
-      <div>
-        <h1>Let's work on your profile!</h1>
+      <div id="profileCreation">
+        <div>
+          <h1>Let's work on your profile!</h1>
 
-        <div id="section">
-          <div id="entry">
-            <div id="entry2">
+          <div className="section" id="mainDetails">
+            <div id="entry">
               <Input value={firstName} onChange={handleFirstNameChange} placeholder="First Name" />
-            </div>
-            <div id="entry2">
               <Input value={lastName} onChange={handleLastNameChange} placeholder="Last Name" />
-            </div>
-            <div id="entry2">
               <Input value={pronouns} onChange={handlePronounsChange} placeholder="Pronouns" />
-            </div>
-            <div id="entry2">
-              <Input value={age} onChange={handleAgeChange} placeholder="Age" />
-            </div>
-            <div id="entry2">
+              <Input value={age} onChange={handleAgeChange} numbersOnly={true} maxLength={3} placeholder="Age" />
               <Input value={affiliation} onChange={handleAffiliationChange} placeholder="School + Major/Program" />
+              <Input
+                value={classYear}
+                onChange={handleClassYearChange}
+                numbersOnly={true}
+                maxLength={4}
+                placeholder="Class Year"
+              />
             </div>
-            <div id="entry2">
-              <Input value={classYear} onChange={handleClassYearChange} placeholder="Class Year" />
+            <div id="entry">
+              <div id="container">
+                <img src={marker} alt="Example SVG" />
+              </div>
+              <div id="container">Share an image for your profile!</div>
             </div>
           </div>
-          <div id="entry">
-            <div id="container">
-              <img src={marker} alt="Example SVG" />
-            </div>
-            <div id="container">Share an image for your profile!</div>
+          <div className="section" id="bio">
+            <TextArea
+              value={bio}
+              onChange={handleBioChange}
+              placeholder="Bio - tell people more about yourself and why you are looking for a space!"
+              style={{ height: "100px" }}
+            />
           </div>
         </div>
-        <div id="section">
-          <TextArea
-            value={bio}
-            onChange={handleBioChange}
-            placeholder="Bio - tell people more about yourself and why you are looking for a space!"
-            style={{ height: "100px" }}
-          />
-        </div>
+        <br />
+        <Button onClick={handlePost} text="Create Profile" className="action" />
       </div>
-      <br />
-      <Button onClick={handlePost} text="All done! Ready to share my profile!" className="action" />
+      <div id="livePreview">
+        <h3>This is what your profile card looks like!</h3>
+        <PersonCard person={constructedUser} />
+      </div>
     </div>
   );
 };

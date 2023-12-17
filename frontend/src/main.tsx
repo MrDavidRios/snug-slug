@@ -11,6 +11,7 @@ import { ListingCreationPage } from "./pages/listing-creation/ListingCreationPag
 import { ListingPage } from "./pages/listing/ListingPage";
 import { Login } from "./pages/login/Login";
 import { Marketplace } from "./pages/marketplace/Marketplace";
+import { ProfileCreationPage } from "./pages/profile-creation/ProfileCreationPage";
 import { ProfilePage } from "./pages/profile/ProfilePage";
 import { SavedPlaces } from "./pages/saved-places/SavedPlaces";
 import { InboxTest } from "./pages/test-pages/InboxTest";
@@ -33,6 +34,7 @@ const router = createBrowserRouter([
       { path: "listing", element: <ListingPage /> },
       { path: "listing-creation", element: <ListingCreationPage /> },
       { path: "profile", element: <ProfilePage /> },
+      { path: "profile-creation", element: <ProfileCreationPage /> },
     ],
   },
 ]);

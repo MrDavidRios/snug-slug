@@ -10,6 +10,8 @@ export const Login: React.FC = () => {
   // const provider = new GoogleAuthProvider();
   // const auth = getAuth();
 
+  const REDIRECT_TO_PROFILE_CREATION = true;
+
   const { slug, setSlug } = useContext(UserContext) as UserContextType;
 
   const signInWithGoogle = () => {
@@ -24,7 +26,7 @@ export const Login: React.FC = () => {
       {slug ? (
         <>
           <h1>Logged in!</h1>
-          <Link to="/">
+          <Link to={REDIRECT_TO_PROFILE_CREATION ? "/profile-creation" : "/"}>
             <Button className="action" text="Homepage" />
           </Link>
         </>

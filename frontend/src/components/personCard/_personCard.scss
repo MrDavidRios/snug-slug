@@ -37,19 +37,18 @@
         font-size: var(--font-size-xs);
         margin-bottom: 10px;
       }
+    }
 
-      .image-container {
-        border-radius: 50%;
-        width: 90px;
-        height: 90px;
-        border: 2px solid black;
+    .image-container {
+      border-radius: 50%;
+      width: 90px;
+      height: 90px;
 
-        img {
-          display: inline;
-          margin: 0 auto;
-          height: 100%;
-          width: auto;
-        }
+      img {
+        display: inline;
+        margin: 0 auto;
+        height: 100%;
+        width: auto;
       }
     }
   }

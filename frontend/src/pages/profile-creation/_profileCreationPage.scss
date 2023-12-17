@@ -1,21 +1,51 @@
-html {
-  height: 100%;
-  margin-bottom: 20px;
-}
-
 #profileCreationPageWrapper {
-  margin-left: 2%;
-  margin-right: 50%;
   padding-bottom: 100px;
   height: 100%;
+  width: 100%;
+
+  box-sizing: border-box;
+
+  display: flex;
+  justify-content: space-between;
+  padding: 32px;
 
   text-align: left;
 
-  h1 {
-    margin-top: 30px;
+  #profileCreation {
+    width: 40vw;
+
+    > div {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
   }
 
-  #section {
+  #livePreview {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0 48px;
+    margin-bottom: 48px;
+    gap: 16px;
+
+    h3 {
+      color: var(--dark-gray);
+    }
+  }
+
+  #mainDetails {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  #bio {
+    display: flex;
+  }
+
+  .section {
     display: grid;
     grid-template-columns: 1fr 1fr;
     width: 100%;
@@ -27,32 +57,29 @@ html {
     }
 
     #entry {
-      #entry2 {
-        input {
-          width: 100%;
-          margin-bottom: 10px;
-        }
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
 
-        input,
-        button {
-          font-weight: var(--font-weight-normal);
-          height: 40px;
-          box-sizing: border-box;
-        }
+      input,
+      button {
+        font-weight: var(--font-weight-normal);
+        height: 40px;
+        box-sizing: border-box;
+      }
 
-        input {
-          font-family: var(--default-font-family);
-          font-size: var(--font-size-sm);
-          padding-left: 20px;
+      input {
+        font-family: var(--default-font-family);
+        font-size: var(--font-size-sm);
+        padding-left: 20px;
 
-          &::placeholder {
-            color: var(--secondary-text);
-          }
+        &::placeholder {
+          color: var(--secondary-text);
         }
+      }
 
-        div.react-datepicker__input-container {
-          width: 30%;
-        }
+      div.react-datepicker__input-container {
+        width: 30%;
       }
 
       #container {
@@ -66,8 +93,8 @@ html {
     }
 
     textarea {
-      width: 200%;
       height: 100px;
+      width: 100%;
 
       font-family: var(--default-font-family);
       font-size: var(--font-size-sm);

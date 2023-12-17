@@ -7,7 +7,7 @@ import { ArchiveIconButton } from "../button/archive-button/ArchiveIconButton";
 import { Card, CardProps } from "../card/Card";
 
 interface PersonCardProps extends CardProps {
-  person: Slug;
+  person: Partial<Slug> | Slug;
   currentUser?: Slug;
   archived?: boolean;
   onArchive?: (id: number, archivingListing: boolean) => void;
@@ -33,7 +33,7 @@ export const PersonCard: React.FC<PersonCardProps> = ({
     const updateLastMessage = async () => {
       if (!currentUser || !person) return;
 
-      const lastMessage = await getLastMessage(currentUser, person, false);
+      const lastMessage = await getLastMessage(currentUser, person as Slug, false);
       setLastMessage(lastMessage.message);
     };
 
@@ -78,8 +78,8 @@ export const PersonCard: React.FC<PersonCardProps> = ({
         </div>
 
         <div className="looking-for">
-          <p>Budget: {budget}</p>
-          <p>Dates: {dates}</p>
+          {budget && <p>Budget: {budget}</p>}
+          {dates && <p>Dates: {dates}</p>}
         </div>
       </div>
 
@@ -91,9 +91,9 @@ export const PersonCard: React.FC<PersonCardProps> = ({
           {inInbox && (
             <>
               {archived ? (
-                <Button onClick={() => onUnarchive!(id, false)} text="Unarchive" className="unarchive" />
+                <Button onClick={() => onUnarchive!(id!, false)} text="Unarchive" className="unarchive" />
               ) : (
-                <ArchiveIconButton style={{ width: 40, height: 40 }} onClick={() => onArchive!(id, false)} />
+                <ArchiveIconButton style={{ width: 40, height: 40 }} onClick={() => onArchive!(id!, false)} />
               )}
             </>
           )}
