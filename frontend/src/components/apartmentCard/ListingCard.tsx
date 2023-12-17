@@ -61,7 +61,7 @@ export const ListingCard: React.FC<ListingCardProps> = ({
             <p>${rent}/month</p>
           </div>
           <div>{liked}</div>
-          {liked !== undefined ?? (
+          {liked !== undefined && (
             <HeartButton
               liked={liked ?? false}
               onClick={() => {

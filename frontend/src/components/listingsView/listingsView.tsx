@@ -1,7 +1,8 @@
 import _ from "lodash";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Listing } from "../../types/listing";
-import { savedListingsListener } from "../../utils/savedlistingslistener";
+import { getSavedListings, modifySavedListing } from "../../utils/listingDataHelper";
+import { UserContext, UserContextType } from "../UserContext";
 import { ListingCard } from "../apartmentCard/ListingCard";
 
 interface ListingsViewProps {
@@ -9,6 +10,7 @@ interface ListingsViewProps {
   onSelectListing: (listing: Listing) => void;
   selectedListingPredicate?: (listing: Listing) => boolean;
   emptyMessage?: string;
+  hideIfUnliked?: boolean;
 }
 
 export const ListingsView: React.FC<ListingsViewProps> = ({
@@ -16,38 +18,52 @@ export const ListingsView: React.FC<ListingsViewProps> = ({
   onSelectListing,
   selectedListingPredicate,
   emptyMessage = "",
+  hideIfUnliked = false,
 }) => {
-  const savedListingsFromStorage = localStorage.getItem("savedListings");
-  const [savedListings, setSavedListings] = useState<Listing[]>(JSON.parse(savedListingsFromStorage || "[]"));
+  const [savedListings, setSavedListings] = useState<Listing[]>([]);
 
-  // Update saved listings in local storage whenever savedListings changes in local storage
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  useEffect(savedListingsListener(setSavedListings), []);
+  const { slug } = useContext(UserContext) as UserContextType;
+
+  useEffect(() => {
+    const updateSavedListings = async () => {
+      if (!slug) return;
+
+      setSavedListings(await getSavedListings(slug.id));
+    };
+
+    updateSavedListings();
+  }, [slug]);
 
   const handleLikeUpdate = (listing: Listing, liked: boolean) => {
+    if (!slug) return;
+
     if (liked) {
       // Add listing to saved listings
-      const updatedSavedListings = [...savedListings, listing];
-      localStorage.setItem("savedListings", JSON.stringify(updatedSavedListings));
-      setSavedListings(updatedSavedListings);
+      modifySavedListing(slug.id, listing.id, false);
+
+      // Update saved listings
+      setSavedListings(_.concat(savedListings, listing));
     } else {
       // Remove listing from saved listings
-      const updatedSavedListings = savedListings.filter((savedListing) => !_.isEqual(listing, savedListing));
-      localStorage.setItem("savedListings", JSON.stringify(updatedSavedListings));
-      setSavedListings(updatedSavedListings);
-    }
+      modifySavedListing(slug.id, listing.id, true);
 
-    window.dispatchEvent(new Event("storage"));
+      const savedListingsCopy = _.cloneDeep(savedListings);
+      _.remove(savedListingsCopy, (l) => l.id === listing.id);
+
+      setSavedListings(savedListingsCopy);
+    }
   };
 
   return (
     <div className="listingGrid">
       {listings.length === 0 && <p>{emptyMessage}</p>}
       {listings.map((listing, index) => {
+        if (slug && hideIfUnliked && !_.some(savedListings, listing)) return null;
+
         return (
           <ListingCard
             listing={listing}
-            liked={_.some(savedListings, listing)}
+            liked={slug ? _.some(savedListings, listing) : undefined}
             likeUpdate={handleLikeUpdate}
             key={index}
             locationIndex={index + 1}

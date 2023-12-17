@@ -1,18 +1,26 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { UserContext, UserContextType } from "../../components/UserContext";
 import { DetailedListing } from "../../components/detailedListing/DetailedListing";
 import { ListingsView } from "../../components/listingsView/ListingsView";
 import { MapView } from "../../components/mapView/MapView";
 import { Listing } from "../../types/listing";
-import { savedListingsListener } from "../../utils/savedlistingslistener";
+import { getSavedListings } from "../../utils/listingDataHelper";
 
 export const SavedPlaces: React.FC = () => {
-  const savedListingsFromStorage = localStorage.getItem("savedListings");
-  const [savedListings, setSavedListings] = useState<Listing[]>(JSON.parse(savedListingsFromStorage || "[]"));
+  const [savedListings, setSavedListings] = useState<Listing[]>([]);
   const [selectedListing, setSelectedListing] = useState<Listing | undefined>(undefined);
 
-  // Update saved listings in local storage whenever savedListings changes in local storage
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  useEffect(savedListingsListener(setSavedListings), []);
+  const { slug } = useContext(UserContext) as UserContextType;
+
+  useEffect(() => {
+    const updateSavedListings = async () => {
+      if (!slug) return;
+
+      setSavedListings(await getSavedListings(slug.id));
+    };
+
+    updateSavedListings();
+  }, [slug]);
 
   return (
     <div id="savedPlacesPageWrapper">
@@ -20,7 +28,11 @@ export const SavedPlaces: React.FC = () => {
       <div className="listings-and-map-page">
         <div className="listings-container">
           {savedListings.length > 0 ? (
-            <ListingsView listings={savedListings} onSelectListing={(listing) => setSelectedListing(listing)} />
+            <ListingsView
+              listings={savedListings}
+              onSelectListing={(listing) => setSelectedListing(listing)}
+              hideIfUnliked={true}
+            />
           ) : (
             <p id="emptyListText">It's lonely here. Go find some places!</p>
           )}

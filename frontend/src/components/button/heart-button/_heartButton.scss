@@ -1,4 +1,15 @@
-.heart-button {
+.heart {
+  height: 32px;
+  width: 32px;
+
   display: flex;
   align-items: center;
+  padding: 0;
+
+  box-shadow: none !important;
+  outline: none !important;
+
+  &:hover {
+    filter: brightness(1.1);
+  }
 }
