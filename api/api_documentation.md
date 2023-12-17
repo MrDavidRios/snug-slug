@@ -334,3 +334,64 @@ GET http://127.0.0.1:8080/api/snugslug/getArchivedUsers/1
 ```
 DELETE http://127.0.0.1:8080/api/snugslug/deleteArchivedUser?userId=1&archivedUserId=2
 ```
+
+## Send Chat Message
+
+**POST** /addChatMessage
+
+- Send a message from a sender user to a recipient user, for a given listing.
+
+### Request Body
+
+- `senderId` (integer): User id of the sender.
+- `recipientId` (integer): User id of the recipient.
+- `listingId` (integer): Listing id.
+- `text` (string): Body of the message.
+
+### Example Request
+
+```
+POST http://127.0.0.1:8080/api/snugslug/addChatMessage
+Content-Type: application/json
+```
+
+```json
+{
+  "senderId": 1,
+  "recipientId": 2,
+  "listingId": 3,
+  "text": "I'm interested in this place!"
+}
+```
+
+```
+POST http://127.0.0.1:8080/api/snugslug/addChatMessage
+Content-Type: application/json
+```
+
+```json
+{
+  "senderId": 2,
+  "recipientId": 1,
+  "listingId": 3,
+  "text": "Awesome, let's chat!"
+}
+```
+
+## Get Chat Messages
+
+**GET** /getChatMessages
+
+- Retrieve all messages between a sender user and a recipient user, for a given listing. Sorted in chronological order.
+
+### Parameters
+
+- `senderId` (integer): User id of the sender.
+- `recipientId` (integer): User id of the recipient.
+- `listingId` (integer): Listing id.
+
+### Example Request
+
+```
+GET http://127.0.0.1:8080/api/snugslug/getChatMessages?senderId=1&recipientId=2&listingId=3
+```

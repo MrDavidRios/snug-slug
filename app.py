@@ -17,7 +17,9 @@ from api.GetArchivedListingsApiHandler import GetArchivedListingsApiHandler
 from api.AddArchivedUserApiHandler import AddArchivedUserApiHandler
 from api.DeleteArchivedUserApiHandler import DeleteArchivedUserApiHandler
 from api.GetArchivedUsersApiHandler import GetArchivedUsersApiHandler
-from models import db, Listing, User, user_saved_listings, user_archived_listings, user_archived_users
+from api.AddChatMessageApiHandler import AddChatMessageApiHandler 
+from api.GetChatMessagesApiHandler import GetChatMessagesApiHandler
+from models import db, Listing, User, ChatMessage, user_saved_listings, user_archived_listings, user_archived_users
 import os
 import json
 from datetime import datetime
@@ -48,6 +50,7 @@ with app.app_context():
     # start from fresh database
     db.session.query(Listing).delete()
     db.session.query(User).delete()
+    db.session.query(ChatMessage).delete()
     db.session.execute(user_saved_listings.delete())
     db.session.execute(user_archived_listings.delete())
     db.session.execute(user_archived_users.delete())
@@ -113,3 +116,5 @@ api.add_resource(GetArchivedListingsApiHandler, '/api/snugslug/getArchivedListin
 api.add_resource(AddArchivedUserApiHandler, '/api/snugslug/addArchivedUser')
 api.add_resource(DeleteArchivedUserApiHandler, '/api/snugslug/deleteArchivedUser')
 api.add_resource(GetArchivedUsersApiHandler, '/api/snugslug/getArchivedUsers/<int:id>')
+api.add_resource(AddChatMessageApiHandler, '/api/snugslug/addChatMessage')
+api.add_resource(GetChatMessagesApiHandler, '/api/snugslug/getChatMessages')
