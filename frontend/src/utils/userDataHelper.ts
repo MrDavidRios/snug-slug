@@ -58,7 +58,7 @@ export async function getChatHistory(
 
   // Returns all of the messages where the other user is involved (since current user is implicitly involved, given
   // that we're using their chat history)
-  return chatHistory.filter((message) => {
+  const filteredChatHistory = chatHistory.filter((message) => {
     const otherUserPresent = message.senderId === otherUserId || message.recipientId === otherUserId;
 
     console.log("haha goin through the messages. he here? ", otherUserPresent, message);
@@ -67,6 +67,9 @@ export async function getChatHistory(
 
     return message.listingId === listingId;
   });
+
+  const sortedChatHistory = filteredChatHistory.sort((a, b) => a.timestamp.getTime() - b.timestamp.getTime());
+  return sortedChatHistory;
 }
 
 export async function updateUserData(user: Slug) {
