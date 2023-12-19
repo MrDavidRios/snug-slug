@@ -60,32 +60,32 @@ export const Homepage: React.FC = () => {
   return (
     <div id="homepageWrapper">
       <div id="content">
-      <Hero vertical={true} />
-      <p className="italics" style={{ padding: 10 }}>
-        The trusted subleasing platform for our Columbia University community.
-      </p>
-      <div id="homepageSearch">
-        <div id="searchWrapper">
-          <Input value={location} onChange={handleInputChange} placeholder="Search location..." />
-          <Button onClick={handleSearch} text="Search" />
-        </div>
-        <div id="searchOptions">
-          <Dropdown options={priceOptions} placeholder="Min Price" onChange={handleMinPriceChange} />
-          <Dropdown options={priceOptions} placeholder="Max Price" onChange={handleMaxPriceChange} />
+        <Hero vertical={true} />
+        <p className="italics" style={{ padding: 10 }}>
+          The trusted subleasing platform for our Columbia University community.
+        </p>
+        <div id="homepageSearch">
+          <div id="searchWrapper">
+            <Input value={location} onChange={handleInputChange} placeholder="Search location..." />
+            <Button onClick={handleSearch} text="Search" />
+          </div>
+          <div id="searchOptions">
+            <Dropdown options={priceOptions} placeholder="Min Price" onChange={handleMinPriceChange} />
+            <Dropdown options={priceOptions} placeholder="Max Price" onChange={handleMaxPriceChange} />
 
-          <DatePickerDropdown
-            startDate={startDate === "" ? null : new Date(startDate)}
-            endDate={endDate === "" ? null : new Date(endDate)}
-            placeholder="Select Dates"
-            onChange={(e) => {
-              setStartDate(getYMDString(e.startDate));
-              setEndDate(getYMDString(e.endDate));
-            }}
-          />
+            <DatePickerDropdown
+              startDate={startDate === "" ? null : new Date(startDate)}
+              endDate={endDate === "" ? null : new Date(endDate)}
+              placeholder="Select Dates"
+              onChange={(e) => {
+                setStartDate(getYMDString(e.startDate));
+                setEndDate(getYMDString(e.endDate));
+              }}
+            />
+          </div>
+          <div id="advancedSearch">Advanced search</div>
+          {/* Need to update the above to also render additional search criteria */}
         </div>
-        <div id="advancedSearch">Advanced search</div>
-        {/* Need to update the above to also render additional search criteria */}
-      </div>
       </div>
       <img className="sample-card left" src={sampleApartment} alt="Sample decorative apartment listing" />
       <img className="sample-card right" src={sampleProfile} alt="Sample decorative profile listing" />
