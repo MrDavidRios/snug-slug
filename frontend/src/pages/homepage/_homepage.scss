@@ -1,11 +1,39 @@
 #homepageWrapper {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -60%);
+
+  @media (max-width: 1200px) {
+    padding: 6vh 10vw;
+
+    .sample-card {
+      opacity: 0;
+    }
+  }
+
+  .sample-card {
+    position: fixed;
+    transition: all 0.15s ease-in-out;
+    width: 30%;
+
+    &.right {
+      right: -10%;
+      bottom: 0px;
+    }
+
+    &.left {
+      left: -6%;
+      top: 80px;
+    }
+  }
+
+  #content{
+
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -60%);
+  
 
   #homepageSearch {
     display: flex;
@@ -57,4 +85,5 @@
       padding: 0 16px;
     }
   }
+}
 }

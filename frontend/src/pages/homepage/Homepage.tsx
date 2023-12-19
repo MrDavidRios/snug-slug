@@ -8,6 +8,9 @@ import { getYMDString } from "../../utils/datefunctions";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+import sampleApartment from "../../assets/sampleListing.svg";
+import sampleProfile from "../../assets/sampleProfile.svg";
+
 export const Homepage: React.FC = () => {
   const [location, setLocation] = useState("");
   const [minPrice, setMinPrice] = useState("");
@@ -56,6 +59,7 @@ export const Homepage: React.FC = () => {
 
   return (
     <div id="homepageWrapper">
+      <div id="content">
       <Hero vertical={true} />
       <p className="italics" style={{ padding: 10 }}>
         The trusted subleasing platform for our Columbia University community.
@@ -82,6 +86,9 @@ export const Homepage: React.FC = () => {
         <div id="advancedSearch">Advanced search</div>
         {/* Need to update the above to also render additional search criteria */}
       </div>
+      </div>
+      <img className="sample-card left" src={sampleApartment} alt="Sample decorative apartment listing" />
+      <img className="sample-card right" src={sampleProfile} alt="Sample decorative profile listing" />
     </div>
   );
 };

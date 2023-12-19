@@ -192,7 +192,8 @@
     "startDate": "2024-05-06",
     "endDate": "2024-07-30",
     "rent": 2400,
-    "apartmentImgUrls": ["images/apartment-14.png"],
+    "apartmentImgUrls": ["images/apartment--.png",
+                        "images/kitchen-1.png"],
     "ownerId": 14
   },
   {
