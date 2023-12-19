@@ -290,7 +290,7 @@ export const ListingCreationPage: React.FC = () => {
           <Dropdown
             options={genderOptions}
             style={{ width: 300 }}
-            placeholder="Gender of Sublettor"
+            placeholder="Gender of Sublessee"
             onChange={handleGenderChange}
           />
         </div>
@@ -299,7 +299,7 @@ export const ListingCreationPage: React.FC = () => {
           <TextArea
             value={otherPreferences}
             onChange={handleOtherPreferencesChange}
-            placeholder="Do you have other preferences for sublettors?"
+            placeholder="Do you have other preferences for sublessees?"
             style={{ height: "50px" }}
           />
         </div>
