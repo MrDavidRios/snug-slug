@@ -35,10 +35,12 @@ export const ListingCard: React.FC<ListingCardProps> = ({
   return (
     <Card className={`listing-card ${className}`} onClick={onClick}>
       <div className="image-container">
-        <div className="marker">
-          <div className="location-number"> {locationIndex} </div>
-          <img src={marker} />
-        </div>
+        {locationIndex > -1 && (
+          <div className="marker">
+            <div className="location-number">{locationIndex}</div>
+            <img src={marker} />
+          </div>
+        )}
         <img src={apartmentImg} alt="Apartment" />
       </div>
 
@@ -46,7 +48,6 @@ export const ListingCard: React.FC<ListingCardProps> = ({
         <div className="location-text">{location}</div>
         <hr />
         <div className="overview">{overview}</div>
-
         <div className="all-tags">
           {tags.map((tag, index) => (
             <div key={index} className="tag">
@@ -54,7 +55,6 @@ export const ListingCard: React.FC<ListingCardProps> = ({
             </div>
           ))}
         </div>
-
         <div className="bottom-row">
           <div className="dates-rent">
             {`${formattedStartDate} - ${formattedEndDate}`}

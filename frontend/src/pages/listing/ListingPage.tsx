@@ -43,7 +43,7 @@ export const ListingPage: React.FC = () => {
       </div>
       <div>
         {activeListing ? (
-          <ListingCard listing={activeListing} onClick={() => setShowDetailedListing(true)} locationIndex={0} />
+          <ListingCard listing={activeListing} onClick={() => setShowDetailedListing(true)} locationIndex={-1} />
         ) : (
           <p>No active listing.</p>
         )}
