@@ -23,8 +23,6 @@ export const ListingPage: React.FC = () => {
     updateActiveListing();
   }, [slug]);
 
-  console.log(activeListing);
-
   return (
     <div id="listingPageWrapper">
       <div className="action-bar">

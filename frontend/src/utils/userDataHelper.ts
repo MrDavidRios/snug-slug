@@ -55,8 +55,6 @@ export async function getUserData(id: number): Promise<Slug | undefined> {
     school: string;
   };
 
-  console.log("user loaded:", loadedUser);
-
   const {
     id: loadedUserId,
     age,

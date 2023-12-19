@@ -29,9 +29,8 @@ export const PersonCard: React.FC<PersonCardProps> = ({
   className,
   onClick,
 }) => {
-  const { id, name, email, age, school, classYear, pronouns, profilePicUrl, bio, budget, startDate, endDate } = person;
-
-  console.log("profile pic url", profilePicUrl);
+  const { id, name, email, age, school, classYear, pronouns, profilePicUrl, bio /*budget, startDate, endDate*/ } =
+    person;
 
   const [lastMessage, setLastMessage] = useState<string | undefined>();
 
@@ -84,10 +83,10 @@ export const PersonCard: React.FC<PersonCardProps> = ({
           <p>Bio: {bio}</p>
         </div>
 
-        <div className="looking-for">
+        {/* <div className="looking-for">
           {budget && <p>{`Budget: $${budget}`}</p>}
           {startDate && endDate && <p>{`Dates: ${startDate} - ${endDate}`}</p>}
-        </div>
+        </div> */}
       </div>
 
       <div className="actions-messagebox">

@@ -63,9 +63,6 @@ export const Marketplace: React.FC = () => {
       }
 
       const data = await response.json();
-
-      console.log("this the data", data);
-
       setListings(data);
     };
 

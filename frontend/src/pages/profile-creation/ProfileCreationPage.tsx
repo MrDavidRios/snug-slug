@@ -62,7 +62,6 @@ export const ProfileCreationPage: React.FC = () => {
 
   // post - TO-DO!
   const handlePost = async () => {
-    console.log("we here");
     setLoading(true);
 
     constructedUser.startDate = "2024-06-01";
@@ -71,7 +70,6 @@ export const ProfileCreationPage: React.FC = () => {
 
     const newUserData = (await createUser(constructedUser)) as { message: string; user_id: number };
 
-    console.log("User created! Result: ", newUserData);
     constructedUser.id = newUserData.user_id;
 
     const fullUser: Slug = {
