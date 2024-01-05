@@ -1,8 +1,14 @@
+# Snug Slug
+
+## Demo
+
+https://github.com/MrDavidRios/snug-slug/assets/114184852/d3e563d7-0a9b-4476-b6b5-badb7ed50d87
+
+## Setup
+
 These are the instructions to set up the Flask backend for Snug Slug.
 
 Frontend setup instructions can be found in [`./frontend/README.md`](https://github.com/MrDavidRios/snug-slug/tree/main/frontend#readme).
-
-## Setup
 
 Make sure to get a virtual environment up and running.
 
